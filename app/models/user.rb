@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password
-
   has_many :submissions
   has_many :upvotes
   has_many :comments
