@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email, :name, :password_digest
   validates_uniqueness_of :email
-  validates :email, format: { with: /^\S+@\S+$/ }
+  validates :email, format: { with: /\S+@\S+/ }
   validates_presence_of :password, :on => :create
   validates :password, :length => { :minimum => 4 }
 
