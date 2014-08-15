@@ -8,7 +8,7 @@
 				<p class="vote-count">326</p>
 			</div>
 			<div class="song-details-container">
-				<h3 class="song-list-title"><%= link_to submission.title, submission.url, :target => "_blank" %></a></h3>
+				<h3 class="song-list-title"><%= link_to "#{submission.title} - #{submission.artist}", submission.url, :target => "_blank" %></a></h3>
 				<div class="song-submitter">
 					<img class="song-submitter-avatar" src="headsht.png" />
 					<p class="song-submitter-name">Kevin Ko</p>
