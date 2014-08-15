@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :submissions
+  resources :upvotes
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
