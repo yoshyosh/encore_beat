@@ -1,0 +1,9 @@
+<div class="main-container" style="margin-top: 200px; text-align: center;">
+	<h1 class="logo" style="margin-bottom: 100px;">SUBMIT A SONG</h1>
+	<%= form_for @submission, url: {action: "create"} do |f| %>
+		<%= f.text_field :title, class: "submit-input", placeholder: "Title" %>
+		<%= f.text_field :artist, class: "submit-input", placeholder: "Artist" %>
+		<%= f.text_field :url, class: "submit-input", placeholder: "Paste in youtube/soundcloud link" %>
+		<%= f.submit "Submit", id: "submit-song-button" %>
+	<% end %>
+</div>

@@ -1,0 +1,21 @@
+<div class="main-container" style="margin-top: 200px; text-align: center;">
+	<h1 class="logo" style="margin-bottom: 100px;">ENCOREBEAT</h1>
+	<div class="songs" style="max-width: 700px; margin: 0 auto; text-align: left;">
+	<% @submissions.each do |submission| %>
+		<div class="song">
+			<div class="upvote-container" style="float: left; width: 50px">
+				<div class="arrow-up"></div>
+				<p class="vote-count">326</p>
+			</div>
+			<div class="song-details-container">
+				<h3 class="song-list-title"><%= link_to submission.title, submission.url, :target => "_blank" %></a></h3>
+				<div class="song-submitter">
+					<img class="song-submitter-avatar" src="headsht.png" />
+					<p class="song-submitter-name">Kevin Ko</p>
+					<p class="song-comments-label">20 comments</p>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	</div>
+</div>

@@ -1,5 +1,4 @@
 class Submission < ActiveRecord::Base
-  attr_accessible :title, :artist, :url, :approved
 
   VALID_HOST_SUBMISSION_URLS = /youtube.com|soundcloud.com/
 
