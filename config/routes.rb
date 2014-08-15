@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   get '/auth/failure', to: 'sessions#error', as: 'failure'
+  resources :identities
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -2,10 +2,11 @@ class User < ActiveRecord::Base
   has_many :submissions
   has_many :upvotes
   has_many :comments
+  has_many :identities
 
-  validates_presence_of :email, :name, :password_digest
-  validates_uniqueness_of :email
-  validates :email, format: { with: /\S+@\S+/ }
+  validates_presence_of :name
+  validates_uniqueness_of :email, if: 'email.present?'
+  # validates :email, format: { with: /\S+@\S+/ }
   validates_presence_of :password, :on => :create
   validates :password, :length => { :minimum => 4 }
 

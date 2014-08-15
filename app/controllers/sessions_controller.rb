@@ -3,14 +3,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_from_auth_hash(auth_hash)
-    self.current_user = @user
-    redirect_to '/'
-  end
+    auth = request.env["omniauth.auth"]
+    identity = Identity.find_by_provider_and_uid(auth["provider"], auth["uid"]) || Identity.create_with_omniauth(auth)
+    @user = identity.user
+    session[:user_id] = @user.id
 
-  protected
-
-  def auth_hash
-    request.env['omniauth.auth']
+    redirect_to root_path
   end
 end
