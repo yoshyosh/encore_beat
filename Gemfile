@@ -18,6 +18,7 @@ gem 'spring', group: :development
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
+gem 'figaro'
 
 group :development, :test do
   gem 'rspec-rails'
