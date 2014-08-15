@@ -5,11 +5,13 @@ class SubmissionsController < ApplicationController
 	end
 
 	def create
-		@submission = Submission.create(params[:submission])
+		@submission = Submission.create(submission_params)
+		redirect_to root_path
 	end
 
 	def submission_params
-		params.require(:submission).permit(:title, :artist, :url, :approved)
+		#TODO: Figure out way to default set approved to false, then submission will truly come from admins or preapproved users
+		params.require(:submission).permit(:title, :artist, :url)
 	end
 
 end
