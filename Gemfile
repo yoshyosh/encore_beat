@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.4'
-gem 'pg'
+gem 'mysql2'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -15,6 +15,9 @@ gem 'execjs'
 gem 'therubyracer', platforms: :ruby
 gem 'react-rails', git: 'git://github.com/reactjs/react-rails.git'
 gem 'spring', group: :development
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'twitter'
 
 group :development, :test do
   gem 'rspec-rails'
