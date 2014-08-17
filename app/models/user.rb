@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :identities
 
   EMAIL_REGEXP = /\S+@\S+/
-  USERNAME_REGEXP = /^[a-zA-Z0-9_-]{3,16}$/
+  USERNAME_REGEXP = /\A[a-zA-Z0-9_-]{3,16}\z/
 
   validates_presence_of :name
   validates_uniqueness_of :username
