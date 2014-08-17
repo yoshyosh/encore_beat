@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20140815084920) do
   create_table "users", force: true do |t|
     t.string   "username",                      null: false
     t.string   "email"
-    t.string   "name",                          null: false
     t.string   "admin",           default: "0"
     t.string   "password_digest",               null: false
     t.string   "password_salt",                 null: false
