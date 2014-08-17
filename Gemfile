@@ -21,7 +21,15 @@ gem 'omniauth-identity'
 gem 'twitter'
 gem 'figaro'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'better_errors'
