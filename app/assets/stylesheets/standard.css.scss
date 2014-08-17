@@ -30,6 +30,8 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
   font-family: 'Avenir Next';
+  background-color: #28292E;
+  color: #fff;
 }
 ol, ul {
   list-style: none;
@@ -48,8 +50,47 @@ table {
 }
 
 .main-container-outer {
-  margin-top: 200px;
   text-align: center;
+}
+
+.main-container-header {
+  background-image: asset-url("concert960.jpg", image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 150px;
+  height: 440px;
+  background-position-y: -350px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 0;
+  .main-container-header-overlay {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .5;
+  }
+  .main-header-subtitle {
+    font-size: 24px;
+  }
+}
+
+.navigation {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  a {
+    color: #fff;
+    margin-left: 12px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #ff0000;
+  }
 }
 
 .main-header-title {
@@ -59,7 +100,7 @@ table {
 }
 
 .main-header-title-margin-bot {
-  margin-bottom: 100px;
+  margin-bottom: 12px;
 }
 
 .main-container {
@@ -78,10 +119,15 @@ table {
   height: 0; 
   border-left: 18px solid transparent;
   border-right: 18px solid transparent;
-  border-bottom: 18px solid black;
+  border-bottom: 18px solid white;
   margin-top: 3px;
   margin-bottom: 12px;
   margin-left: 7px;
+}
+
+.upvote-container {
+  float: left; 
+  width: 50px
 }
 
 .vote-count {
@@ -90,8 +136,15 @@ table {
 
 .songs-list-container {
   max-width: 700px; 
-  margin: 0 auto; 
+  margin: 50px auto 0; 
   text-align: left;
+  .song-list-date-group {
+    color: #8A8D95;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 }
 
 .song {
@@ -111,12 +164,12 @@ table {
   font-weight: 500;
   font-size: 25px;
   margin-bottom: 12px;
-  color: #333;
+  color: #fff;
   text-decoration: none;
 }
 
 .song-list-title a:hover {
-  color: #000;
+  color: #ff0000;
 }
 
 .song-submitter {
@@ -145,17 +198,19 @@ table {
 .new_submission {
   max-width: 600px;
   margin: 0 auto;
+  margin-top: 70px;
 }
 
 .submit-input {
   font-family: 'Avenir Next';
+  color: #fff;
   font-size: 30px;
   border: none;
-  border-bottom: 2px solid #555;
+  border-bottom: 2px solid #8A8D95;
   margin-bottom: 30px;
   width: 500px;
-  text-align: center;
   outline: none;
+  background: none;
 }
 
 #submit-song-button {

@@ -1,7 +1,14 @@
 .main-container-outer
-  = link_to "Submit Song", new_submission_path, style: "margin-top: -50px; display: block; margin-bottom: 50px;"
-  %h1.main-header-title-margin-bot.main-header-title ENCOREBEAT
+  .main-container-header
+    .navigation
+      = link_to "Submit Song", new_submission_path
+      = link_to "Sign Up", "#"
+    .main-container-header-overlay
+    
+    %h1.main-header-title-margin-bot.main-header-title ENCOREBEAT
+    %h2.main-header-subtitle The best EDM beats everyday
   .songs-list-container
+    %h4.song-list-date-group TUESDAY AUG 16TH
     -@submissions.each do |submission|
       .song
         .upvote-container
@@ -11,6 +18,6 @@
           %h3.song-list-title
             = link_to "#{submission.title} - #{submission.artist}", submission.url, target: "_blank"
           .song-submitter
-            = image_tag "headshot.png", class: "song-submitter-avatar"
+            = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
             %p.song-submitter-name Kevin Ko
             %p.song-comments-label 20 comments
