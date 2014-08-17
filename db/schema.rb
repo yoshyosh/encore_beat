@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815084920) do
+ActiveRecord::Schema.define(version: 20140817222245) do
 
   create_table "comments", force: true do |t|
     t.text     "body",          null: false
@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 20140815084920) do
   end
 
   create_table "submissions", force: true do |t|
-    t.string   "title",                      null: false
-    t.string   "artist",                     null: false
-    t.string   "url",                        null: false
-    t.boolean  "approved",   default: false
+    t.string   "title",                  null: false
+    t.string   "artist",                 null: false
+    t.string   "url",                    null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",     default: 0, null: false
   end
 
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
@@ -59,11 +59,10 @@ ActiveRecord::Schema.define(version: 20140815084920) do
   create_table "users", force: true do |t|
     t.string   "username",                      null: false
     t.string   "email"
-    t.string   "admin",           default: "0"
-    t.string   "password_digest",               null: false
-    t.string   "password_salt",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",         default: false
+    t.string   "password_hash",                 null: false
   end
 
 end

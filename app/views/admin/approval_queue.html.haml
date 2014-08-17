@@ -1,0 +1,4 @@
+- @submissions.each do |submission|
+  = formatted_line_for_submission(submission)
+  = link_to "Approve", edit_submission_path, {remote: true, approved: 1}
+  = link_to "Reject", edit_submission_path, {remote: true, approved: 2}
