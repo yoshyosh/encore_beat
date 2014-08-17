@@ -1,2 +1,14 @@
 = form_tag '/auth/twitter', method: 'get' do
-  %button= "Sign In"
+  %button= "Sign In Via Twitter"
+%h1 Login
+%p.flash
+  = flash[:error]
+= form_tag sessions_path do
+  = label_tag :username_or_email, 'Username or Email'
+  = text_field_tag :username_or_email, params[:username_or_email], :autofocus => true
+  = label_tag :password
+  = password_field_tag :password
+  = submit_tag "Login"
+
+%p
+  = link_to "I don't have an account yet", new_user_path

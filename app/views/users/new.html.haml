@@ -1,0 +1,18 @@
+= form_tag '/auth/twitter', method: 'get' do
+  %button= "Sign Up Via Twitter"
+
+= form_for @user do |f|
+  -if @user.errors.any?
+    .error_messages
+      %ul
+        - for message in @user.errors.full_messages
+          %li= message
+  = f.label :username, 'Username'
+  = f.text_field :username, :placeholder => 'yourusername', id: 'username'
+  = f.label :email, 'Email'
+  = f.text_field :email, :placeholder => 'you.are@awesome.com', id: 'email'
+  = f.label :password, 'Password'
+  = f.password_field :password, id: 'password'
+  = f.submit 'Signup'
+%p
+  = link_to '(or log in if you\'re already registered)', new_session_path

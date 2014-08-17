@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20140815084920) do
   add_index "upvotes", ["user_id"], name: "index_upvotes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
+    t.string   "username",                      null: false
     t.string   "email"
     t.string   "name",                          null: false
     t.string   "admin",           default: "0"

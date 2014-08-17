@@ -11,7 +11,6 @@ class Identity < ActiveRecord::Base
     create(
       provider: auth["provider"],
       uid: auth["uid"],
-      name: auth["info"]["name"],
       username: auth["info"]["nickname"],
       user_id: user.id,
     )
