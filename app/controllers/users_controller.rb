@@ -5,17 +5,23 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(submission_params)
-    @user.password = params[:password]
 
     if @user.save
-      binding.pry
       session[:user_id] = @user.id
-      redirect_to root_path
+      render :final_signup_step
     else
-      binding.pry
       flash[:error] = "Signup error, please try again."
       redirect_to root_path
     end
+  end
+
+  def update
+    current_user.update_attributes(submission_params)
+    redirect_to root_path
+  end
+
+  def final_signup_step
+    render 'final_signup_step' and return
   end
 
   def submission_params

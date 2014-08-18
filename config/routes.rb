@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   get '/auth/failure', to: 'sessions#error', as: 'failure'
   get '/admin/approval_queue', to: 'admin#approval_queue', as: 'approval_queue'
+  get '/final_signup_step', to: 'users#final_signup_step', as: 'final_signup_step'
 
 
   # Example of regular route:

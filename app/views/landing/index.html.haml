@@ -2,7 +2,12 @@
   .main-container-header
     .navigation
       = link_to "Submit Song", new_submission_path
-      = link_to "Sign Up", new_user_path
+      
+      - if current_user
+        #{current_user.username}
+        = link_to "Logout", session_path(current_user), method: :delete
+      - else 
+        = link_to "Sign Up", new_user_path
     .main-container-header-overlay
     
     %h1.main-header-title-margin-bot.main-header-title ENCOREBEAT

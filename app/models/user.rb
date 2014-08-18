@@ -1,6 +1,6 @@
-require 'bcrypt'
+# require 'bcrypt'
 class User < ActiveRecord::Base
-  include BCrypt
+  # include BCrypt
 
   has_many :submissions
   has_many :upvotes
@@ -15,29 +15,20 @@ class User < ActiveRecord::Base
   validates :email, format: { with: EMAIL_REGEXP }, if: 'email.present?'
   validates :username, format: { with: USERNAME_REGEXP }
   validates_presence_of :password, :on => :create
-  validates :password, :length => { :minimum => 4 }
+  validates :password, :length => { :minimum => 4 }, unless: 'password_digest.present?'
 
   before_create :downcase_username
 
-  def password
-    @password ||= Password.new(password_hash)
-  end
+  has_secure_password
 
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
-  end
+  # def password
+  #   @password ||= Password.new(password_hash)
+  # end
 
-  def login
-    is_username == !!(username_or_email =~ USERNAME_REGEXP)
-    user = is_username ? find_by_username(username_or_email) : find_by_email(email)
-
-    if user.password == params[:password]
-      give_token
-    else
-      redirect_to home_url
-    end
-  end
+  # def password=(new_password)
+  #   @password = Password.create(new_password)
+  #   self.password_hash = @password
+  # end
 
   def downcase_username
     username = username.downcase if username.present?
