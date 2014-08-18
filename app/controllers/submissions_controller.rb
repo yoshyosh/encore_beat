@@ -12,8 +12,8 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find_by_id(params[:submission_id])
   end
 
-  def update
-    submission = Submission.find_by_id(params[:submission_id])
+  def edit
+    submission = Submission.find_by_id(params[:id])
 
     submission.update_attributes(edit_params)
     render :json => {}
