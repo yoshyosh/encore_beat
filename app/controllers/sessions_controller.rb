@@ -33,6 +33,8 @@ class SessionsController < ApplicationController
 
       if existing_identity
         @user = existing_identity.user
+        render 'users/final_signup_step' and return unless @user && @user.email
+
         session[:user_id] = @user.id
         redirect_to root_path and return
       else
