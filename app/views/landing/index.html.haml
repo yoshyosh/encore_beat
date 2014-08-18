@@ -20,4 +20,4 @@
           .song-submitter
             = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
             %p.song-submitter-name Kevin Ko
-            %p.song-comments-label 20 comments
+            = link_to "20 comments", submission_path(submission.id), class: "song-comments-label"

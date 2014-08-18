@@ -8,6 +8,10 @@ class SubmissionsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @submission = Submission.find_by_id(params[:submission_id])
+  end
+
   def update
     submission = Submission.find_by_id(params[:submission_id])
 
