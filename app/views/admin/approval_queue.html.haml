@@ -13,5 +13,5 @@
           .song-submitter
             = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
             %p.song-submitter-name Kevin Ko
-            = link_to "Approve", edit_submission_path(submission), {remote: true, approved: 1}
-            = link_to "Reject", edit_submission_path(submission), {remote: true, approved: 2}
+            = link_to "Approve", edit_submission_path(submission, status: 1), {remote: true}
+            = link_to "Reject", edit_submission_path(submission, status: 2), {remote: true}

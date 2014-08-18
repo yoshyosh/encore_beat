@@ -8,15 +8,21 @@ class SubmissionsController < ApplicationController
     redirect_to root_path
   end
 
-  def update
-    submission = Submission.find_by_id(params[:submission_id])
+  def edit
+    submission = Submission.find_by_id(params[:id])
 
-    submission.update_attributes(params)
+    submission.update_attributes(edit_params)
     render :json => {}
   end
+
+  private
 
   def submission_params
     #TODO: Figure out way to default set approved to false, then submission will truly come from admins or preapproved users
     params.require(:submission).permit(:title, :artist, :url)
+  end
+
+  def edit_params
+    params.permit(:status, :id)
   end
 end
