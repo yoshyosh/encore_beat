@@ -17,7 +17,7 @@
     -@submissions.each do |submission|
       .song
         .upvote-container
-          - if current user && current_user.upvotes.where('submission_id = ? AND nullified = ?', submission.id, false).exists?
+          - if current_user && current_user.upvotes.where('submission_id = ? AND nullified = ?', submission.id, false).exists?
             = react_component('Upvote', {upvoted: true, song_id: submission.id}, :span)
           - else
             = react_component('Upvote', {upvoted: false, song_id: submission.id}, :span)
