@@ -1,5 +1,6 @@
 class LandingController < ApplicationController
   def index
-  	@submissions = Submission.all
+    @upvotes = current_user.upvotes if current_user
+    @submissions = Submission.all
   end
 end

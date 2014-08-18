@@ -135,6 +135,14 @@ a:hover {
   margin-top: 3px;
   margin-bottom: 12px;
   margin-left: 7px;
+
+  &.clicked {
+    border-bottom: 18px solid #ff0000;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .upvote-container {

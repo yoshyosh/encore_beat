@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818072744) do
+ActiveRecord::Schema.define(version: 20140818092225) do
 
   create_table "comments", force: true do |t|
     t.text     "body",          null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140818072744) do
     t.integer  "submission_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "nullified",     default: false
   end
 
   add_index "upvotes", ["submission_id"], name: "index_upvotes_on_submission_id", using: :btree

@@ -17,7 +17,10 @@
     -@submissions.each do |submission|
       .song
         .upvote-container
-          .arrow-up
+          - if current_user.upvotes.where('submission_id = ? AND nullified = ?', submission.id, false).exists?
+            = react_component('Upvote', {upvoted: true, song_id: submission.id}, :span)
+          - else
+            = react_component('Upvote', {upvoted: false, song_id: submission.id}, :span)
           %p.vote-count= submission.upvotes.count
         .song-details-container
           %h3.song-list-title
