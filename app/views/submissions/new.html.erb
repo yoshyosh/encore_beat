@@ -1,9 +1,9 @@
 <div class="main-container-outer">
-	<h1 class="main-header-title main-header-title-margin-bot" style="margin-top: 100px;">SUBMIT A BEAT</h1>
-	<%= form_for @submission, url: {action: "create"} do |f| %>
+	<h1 class="main-header-title main-header-title-margin-bot">SUBMIT A BEAT</h1>
+	<%= form_for @submission, url: {action: "create"}, html: {class: "form-container"} do |f| %>
 		<%= f.text_field :title, class: "submit-input", placeholder: "Title" %>
 		<%= f.text_field :artist, class: "submit-input", placeholder: "Artist" %>
 		<%= f.text_field :url, class: "submit-input", placeholder: "Paste in youtube/soundcloud link" %>
-		<%= f.submit "Submit", id: "submit-song-button" %>
+		<%= f.submit "Submit", id: "submit-song-button", class: "primary-action-button" %>
 	<% end %>
 </div>

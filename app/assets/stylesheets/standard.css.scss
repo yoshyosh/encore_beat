@@ -49,8 +49,20 @@ table {
   border-spacing: 0;
 }
 
+a {
+  color: #fff;
+}
+a:hover {
+  color: #ff0000;
+}
+
+#main-container-homepage {
+  margin-top: 0;
+}
+
 .main-container-outer {
   text-align: center;
+  margin-top: 100px;
 }
 
 .main-container-header {
@@ -195,10 +207,10 @@ table {
 
 /* SUBMIT A SONG PAGE */
 
-.new_submission {
+.form-container {
   max-width: 600px;
   margin: 0 auto;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 
 .submit-input {
@@ -208,16 +220,18 @@ table {
   border: none;
   border-bottom: 2px solid #8A8D95;
   margin-bottom: 30px;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   outline: none;
   background: none;
 }
 
-#submit-song-button {
+.primary-action-button {
   display: block;
   margin: 0 auto;
   border: none;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   background: #1f1f1f;
   color: #fff;
   font-family: 'Avenir Next';
@@ -225,7 +239,28 @@ table {
   font-size: 24px;
 }
 
-#submit-song-button:hover {
+.primary-action-button:hover {
   cursor: pointer;
   background: #0f0f0f;
+}
+
+/* sign up page */
+
+.login-link {
+  margin-top: 50px;
+}
+
+.signup-twitter-button {
+  background: #4099ff;
+  border: none;
+  color: #fff;
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  font-size: 24px;
+  outline: none;
+  margin-top: 30px;
+  &:hover {
+    cursor: pointer;
+  }
 }
