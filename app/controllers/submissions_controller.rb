@@ -9,7 +9,7 @@ class SubmissionsController < ApplicationController
   end
 
   def show
-    @submission = Submission.find_by_id(params[:submission_id])
+    @submission = Submission.find_by_id(params[:id])
   end
 
   def update
