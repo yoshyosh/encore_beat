@@ -19,14 +19,15 @@
         .song
           .upvote-container
             - if current_user
-              = react_component('Upvote', {upvoted: current_user.upvotes.any? {|upvote| upvote.submission_id == submission.id && !upvote.nullified}, song_id: submission.id}, :span)
+              = react_component('Upvote', {upvoted: @current_user_upvotes.any? {|upvote| !upvote.nullified && upvote.submission_id == submission.id }, song_id: submission.id}, :span)
             - else
-              = link_to "", new_user_path, class: 'arrow-up'
+              = link_to "", onclick: "window.location = '/users/new'" do
+                .arrow-up
             %p.vote-count{:'data-count-id' => submission.id}
               = submission.upvotes.any? ? @upvote_counts[submission.id].count : 0
           .song-details-container
             %h3.song-list-title
-              = link_to "#{submission.title} - #{submission.artist}", submission.url, target: "_blank"
+              = link_to "#{submission.artist} - #{submission.title}", submission.url, target: "_blank"
             .song-submitter
               = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
               %p.song-submitter-name Kevin Ko
