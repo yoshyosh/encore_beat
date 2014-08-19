@@ -14,14 +14,14 @@
     %h2.main-header-subtitle The best EDM beats everyday
   .songs-list-container
     %h4.song-list-date-group TUESDAY AUG 16TH
-    -@submissions.each do |submission|
+    - @submissions.each do |submission|
       .song
         .upvote-container
-          - if current_user && current_user.upvotes.where('submission_id = ? AND nullified = ?', submission.id, false).exists?
-            = react_component('Upvote', {upvoted: true, song_id: submission.id}, :span)
+          - if current_user
+            = react_component('Upvote', {upvoted: current_user.upvotes.any? {|upvote| upvote.submission_id == submission.id && !upvote.nullified}, song_id: submission.id}, :span)
           - else
-            = react_component('Upvote', {upvoted: false, song_id: submission.id}, :span)
-          %p.vote-count= submission.upvotes.count
+            = link_to "", new_user_path, class: 'arrow-up'
+          %p.vote-count= submission.upvotes.any? ? @upvote_counts[submission.id].count : 0
         .song-details-container
           %h3.song-list-title
             = link_to "#{submission.title} - #{submission.artist}", submission.url, target: "_blank"

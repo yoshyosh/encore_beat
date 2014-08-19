@@ -15,7 +15,7 @@ var Upvote = React.createClass({
 
   handleClick: function() {
     this.setState({clicked: !this.state.clicked});
-    console.log(!this.state.clicked)
+
     $.ajax({
       data: {submission_id: this.props.song_id, upvoted: !this.state.clicked },
       url: '/upvotes',
