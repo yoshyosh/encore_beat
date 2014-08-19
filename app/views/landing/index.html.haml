@@ -22,7 +22,8 @@
               = react_component('Upvote', {upvoted: current_user.upvotes.any? {|upvote| upvote.submission_id == submission.id && !upvote.nullified}, song_id: submission.id}, :span)
             - else
               = link_to "", new_user_path, class: 'arrow-up'
-            %p.vote-count= submission.upvotes.any? ? @upvote_counts[submission.id].count : 0
+            %p.vote-count{:'data-count-id' => submission.id}
+              = submission.upvotes.any? ? @upvote_counts[submission.id].count : 0
           .song-details-container
             %h3.song-list-title
               = link_to "#{submission.title} - #{submission.artist}", submission.url, target: "_blank"
