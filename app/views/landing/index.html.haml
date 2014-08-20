@@ -24,7 +24,7 @@
               = link_to "", onclick: "window.location = '/users/new'" do
                 .arrow-up
             %p.vote-count{:'data-count-id' => submission.id}
-              = submission.upvotes.any? ? @upvote_counts[submission.id].count : 0
+              = submission.count.submission_upvotes
           .song-details-container
             %h3.song-list-title
               = link_to "#{submission.artist} - #{submission.title}", submission.url, target: "_blank"
