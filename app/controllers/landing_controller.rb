@@ -2,9 +2,9 @@ class LandingController < ApplicationController
   def index
     @submissions = 
       Submission
-      .by_publish_date
       .includes(:count)
       .where('submissions.status = ?', Submission::STATUSES[:approved])
+      .order('counts.submission_upvotes DESC, published_at DESC')
       .limit(50)
       .group_by(&:published_at)
 

@@ -12,8 +12,6 @@ class Submission < ActiveRecord::Base
 
   after_save :spawn_count , if: Proc.new {|a| a.status == 1}
 
-  # default_scope order('published_at ASC')
-  scope :by_publish_date, -> { order('published_at DESC') }
   scope :pending, -> { where(status: STATUSES[:pending]) }
 
   def spawn_count
