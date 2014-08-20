@@ -27,7 +27,7 @@
               = submission.count.submission_upvotes
           .song-details-container
             %h3.song-list-title
-              = link_to "#{submission.artist} - #{submission.title}", submission.url, target: "_blank"
+              = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
             .song-submitter
               = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
               %p.song-submitter-name Kevin Ko
