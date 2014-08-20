@@ -3,6 +3,8 @@
 %h1 Login
 %p.flash
   = flash[:error]
+  - if params[:w]
+    You must be logged in to do that
 = form_tag sessions_path do
   = label_tag :username_or_email, 'Username or Email'
   = text_field_tag :username_or_email, params[:username_or_email], :autofocus => true
@@ -11,4 +13,4 @@
   = submit_tag "Login"
 
 %p
-  = link_to "I don't have an account yet", new_user_path
+  = link_to "I don't have an account yet", signup_path
