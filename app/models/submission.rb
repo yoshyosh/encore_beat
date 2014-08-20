@@ -3,7 +3,7 @@ class Submission < ActiveRecord::Base
   VALID_HOST_SUBMISSION_URLS = /youtube.com|soundcloud.com/
 
   has_many :comments
-  has_many :upvotes
+  has_many :upvotes, -> { where(nullified: false) }
   belongs_to :user
 
   validates_presence_of :title, :artist, :url

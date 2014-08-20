@@ -2,22 +2,33 @@
   .main-container-header
     .navigation
       = link_to "Submit Song", new_submission_path
-      = link_to "Sign Up", new_user_path
+      
+      - if current_user
+        #{current_user.username}
+        = link_to "Logout", session_path(current_user), method: :delete
+      - else 
+        = link_to "Sign Up", new_user_path
     .main-container-header-overlay
     
     %h1.main-header-title-margin-bot.main-header-title ENCOREBEAT
     %h2.main-header-subtitle The best EDM beats everyday
   .songs-list-container
-    %h4.song-list-date-group TUESDAY AUG 16TH
-    -@submissions.each do |submission|
-      .song
-        .upvote-container
-          .arrow-up
-          %p.vote-count= submission.upvotes.count
-        .song-details-container
-          %h3.song-list-title
-            = link_to "#{submission.title} - #{submission.artist}", submission.url, target: "_blank"
-          .song-submitter
-            = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
-            %p.song-submitter-name Kevin Ko
-            = link_to "20 comments", submission_path(submission.id), class: "song-comments-label"
+    - @submissions.each do |date, submissions|
+      %h4.song-list-date-group= humanize_date(date)
+      - submissions.each do |submission|
+        .song
+          .upvote-container
+            - if current_user
+              = react_component('Upvote', {upvoted: @current_user_upvotes.any? {|upvote| !upvote.nullified && upvote.submission_id == submission.id }, song_id: submission.id}, :span)
+            - else
+              = link_to "", onclick: "window.location = '/users/new'" do
+                .arrow-up
+            %p.vote-count{:'data-count-id' => submission.id}
+              = submission.upvotes.any? ? @upvote_counts[submission.id].count : 0
+          .song-details-container
+            %h3.song-list-title
+              = link_to "#{submission.artist} - #{submission.title}", submission.url, target: "_blank"
+            .song-submitter
+              = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
+              %p.song-submitter-name Kevin Ko
+              = link_to "20 comments", submission_path(submission.id), class: "song-comments-label"

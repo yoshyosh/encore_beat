@@ -2,11 +2,8 @@ class Identity < ActiveRecord::Base
   belongs_to :user
 
   def self.create_with_omniauth(auth)
-    user = User.create(
-      name: auth["info"]["name"],
-      password: SecureRandom.uuid,
-      password_digest: SecureRandom.uuid
-    )
+    user = User.new(username: SecureRandom.hex(4), password: SecureRandom.uuid)
+    user.save
 
     create(
       provider: auth["provider"],

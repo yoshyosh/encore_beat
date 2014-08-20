@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817222245) do
+ActiveRecord::Schema.define(version: 20140819081725) do
 
   create_table "comments", force: true do |t|
     t.text     "body",          null: false
@@ -34,14 +34,22 @@ ActiveRecord::Schema.define(version: 20140817222245) do
     t.datetime "updated_at"
   end
 
-  create_table "submissions", force: true do |t|
-    t.string   "title",                  null: false
-    t.string   "artist",                 null: false
-    t.string   "url",                    null: false
+  create_table "photos", force: true do |t|
+    t.string   "url"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status",     default: 0, null: false
+  end
+
+  create_table "submissions", force: true do |t|
+    t.string   "title",                    null: false
+    t.string   "artist",                   null: false
+    t.string   "url",                      null: false
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "status",       default: 0, null: false
+    t.date     "published_at"
   end
 
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
@@ -51,18 +59,19 @@ ActiveRecord::Schema.define(version: 20140817222245) do
     t.integer  "submission_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "nullified",     default: false
   end
 
   add_index "upvotes", ["submission_id"], name: "index_upvotes_on_submission_id", using: :btree
   add_index "upvotes", ["user_id"], name: "index_upvotes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "username",                      null: false
+    t.string   "username",                        null: false
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",         default: false
-    t.string   "password_hash",                 null: false
+    t.boolean  "admin",           default: false
+    t.string   "password_digest",                 null: false
   end
 
 end
