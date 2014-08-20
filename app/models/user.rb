@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   # include BCrypt
 
   has_many :submissions
-  has_many :upvotes
+  has_many :upvotes, dependent: :destroy
   has_many :comments
-  has_many :identities
+  has_many :identities, dependent: :destroy
 
   EMAIL_REGEXP = /\S+@\S+/
   USERNAME_REGEXP = /\A[a-zA-Z0-9_-]{3,16}\z/

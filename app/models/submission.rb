@@ -2,9 +2,9 @@ class Submission < ActiveRecord::Base
   STATUSES = {:pending => 0, :approved => 1, :rejected => 2}
   VALID_HOST_SUBMISSION_URLS = /youtube.com|soundcloud.com/
 
-  has_many :comments
-  has_many :upvotes, -> { where(nullified: false) }
-  has_one :count
+  has_many :comments, dependent: :destroy
+  has_many :upvotes, dependent: :destroy
+  has_one :count, dependent: :destroy
   belongs_to :user
 
   validates_presence_of :title, :artist, :url
