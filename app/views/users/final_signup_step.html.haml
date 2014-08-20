@@ -1,6 +1,6 @@
 - if @user.identities.any?
   .main-container-outer
-    .main-header-title.main-header-title-margin-bot CREATE ACCOUNT
+    .main-header-title CREATE ACCOUNT
 
     = form_for @user, html: {class: "form-container"} do |f|
       -if @user.errors.any?
