@@ -4,8 +4,8 @@
       = link_to "Submit Song", new_submission_path
       
       - if current_user
-        #{current_user.username}
-        = link_to "Logout", session_path(current_user), method: :delete
+        = link_to current_user.username, "#"
+        = link_to "Logout", session_path(current_user), method: :delete, class: "hiddenView"
       - else 
         = link_to "Sign Up", new_user_path
     .main-container-header-overlay
@@ -30,5 +30,5 @@
               = link_to "#{submission.artist} - #{submission.title}", submission.url, target: "_blank"
             .song-submitter
               = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
-              %p.song-submitter-name Kevin Ko
-              = link_to "20 comments", submission_path(submission.id), class: "song-comments-label"
+              %p.song-submitter-name.bold Kevin Ko
+              = link_to "20 comments", submission_path(submission.id), class: "song-comments-label grey"

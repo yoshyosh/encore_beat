@@ -29,9 +29,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
-  font-family: 'Avenir Next';
-  background-color: #28292E;
-  color: #fff;
+  font-family: 'Droid sans', sans-serif;
+  background-color: #F7F9FD;
+  color: #4F535E;
 }
 ol, ul {
   list-style: none;
@@ -50,14 +50,32 @@ table {
 }
 
 a {
-  color: #fff;
+  color: #4F535E;
 }
 a:hover {
   color: #ff0000;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.grey {
+  color: #8D94A8;
+}
+
+.hiddenView {
+  display: none;
+}
+
 #main-container-homepage {
   margin-top: 0;
+  .main-container-header {
+    color: #fff;
+  }
+  .main-container-subtitle {
+    color: #fff;
+  }
 }
 
 .main-container-outer {
@@ -131,7 +149,7 @@ a:hover {
   height: 0; 
   border-left: 18px solid transparent;
   border-right: 18px solid transparent;
-  border-bottom: 18px solid white;
+  border-bottom: 18px solid #4F535E;
   margin-top: 3px;
   margin-bottom: 12px;
   margin-left: 7px;
@@ -168,7 +186,6 @@ a:hover {
 }
 
 .song {
-  font-family: 'Avenir Next';
   margin-bottom: 36px;
 }
 
@@ -184,12 +201,7 @@ a:hover {
   font-weight: 500;
   font-size: 25px;
   margin-bottom: 12px;
-  color: #fff;
   text-decoration: none;
-}
-
-.song-list-title a:hover {
-  color: #ff0000;
 }
 
 .song-submitter {
@@ -216,19 +228,18 @@ a:hover {
 /* SUBMIT A SONG PAGE */
 
 .form-container {
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 50px;
 }
 
 .submit-input {
   font-family: 'Avenir Next';
-  color: #fff;
+  color: #333;
   font-size: 30px;
   border: none;
   border-bottom: 2px solid #8A8D95;
   margin-bottom: 30px;
-  max-width: 500px;
   width: 100%;
   outline: none;
   background: none;
@@ -238,7 +249,6 @@ a:hover {
   display: block;
   margin: 0 auto;
   border: none;
-  max-width: 500px;
   width: 100%;
   background: #1f1f1f;
   color: #fff;
@@ -250,6 +260,21 @@ a:hover {
 .primary-action-button:hover {
   cursor: pointer;
   background: #0f0f0f;
+}
+
+.music-preview {
+  display: none;
+  height: 80px;
+  text-align: left;
+  margin-bottom: 12px;
+  img {
+    float: left;
+    width: 70px;
+  }
+  p {
+    margin-left: 82px;
+    font-size: 24px;
+  }
 }
 
 /* sign up page */
@@ -271,4 +296,52 @@ a:hover {
   &:hover {
     cursor: pointer;
   }
+}
+
+/* comment page */
+
+.main-header-comment-title {
+  font-size: 50px;
+  line-height: 60px;
+  margin-bottom: 12px;
+  a {
+    text-decoration: none;
+  }
+}
+
+.comment-container {
+  margin-top: 200px;
+  max-width: 700px; 
+  position: relative;
+  .upvote-container {
+    width: 75px;
+    position: absolute;
+    top: 8px;
+    left: -100px;
+    text-align: center;
+    .arrow-up {
+      width: 0;
+      height: 0;
+      border-left: 36px solid transparent;
+      border-right: 36px solid transparent;
+      border-bottom: 36px solid #4F535E;
+      margin-top: 3px;
+      margin-bottom: 12px;
+      margin-left: 1px;
+    }
+    .vote-count {
+      font-size: 40px;
+    }
+  }
+}
+
+.comments-container {
+  margin-top: 30px;
+  border-top: 1px solid #ddd;
+}
+
+.comment-details-container {
+  display: inline-block;
+  margin-left: 12px;
+  text-align: left;
 }

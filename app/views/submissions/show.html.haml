@@ -1,16 +1,18 @@
-.main-container{ style: "margin-top: 200px; text-align: center;" }
-  .upvote-container{ style: "float: left; width: 50px" }
+.main-container.comment-container
+  .upvote-container
     .arrow-up
     .vote-count 326
-  %h1.main-header-title.main-header-title-margin-bot
+  %h1.main-header-title.main-header-comment-title
     = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank"
-  .song-submitter{style: "margin-bottom: 180px;"}
+  .song-submitter
     = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
-    .song-submitter-name Kevin Ko
-  .songs
+    .song-submitter-name
+      %span.bold Kevin Ko
+      %span.grey added this 3 days ago
+  .comments-container
     .song
     = image_tag "/assets/headsht.png", style: "width: 40px; border-radius: 40px;"
-    .song-details-container{ style:"display: inline-block; margin-left: 12px;"}
-      %p.song-submitter-name Kevin Ko
-      %p.song-comments-label 47 minutes ago
+    .comment-details-container
+      %p.song-submitter-name.bold Kevin Ko
+      %p.song-comments-label.grey 47 minutes ago
       %p{style: "padding: 8px 0;"} Paris Hilton makes more money DJing than deadmau5 and Tiesto combined
