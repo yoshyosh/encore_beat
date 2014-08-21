@@ -1,16 +1,16 @@
 .main-container-outer#main-container-homepage
   .main-container-header
     .navigation
-      = link_to "Submit Song", new_submission_path
-      
       - if current_user
-        = link_to current_user.username, "#"
-        = link_to "Logout", session_path(current_user), method: :delete, class: "hiddenView"
+        #{current_user.username}
+        = link_to "Submit Song", new_submission_path
+        = link_to "Logout", session_path(current_user), method: :delete
       - else 
-        = link_to "Sign Up", new_user_path
+        = link_to "Sign Up", signup_path
+        = link_to "Login", login_path
     .main-container-header-overlay
     
-    %h1.main-header-title-margin-bot.main-header-title ENCOREBEAT
+    %h1.main-header-title ENCOREBEAT
     %h2.main-header-subtitle The best EDM beats everyday
   .songs-list-container
     - @submissions.each do |date, submissions|
@@ -21,13 +21,13 @@
             - if current_user
               = react_component('Upvote', {upvoted: @current_user_upvotes.any? {|upvote| !upvote.nullified && upvote.submission_id == submission.id }, song_id: submission.id}, :span)
             - else
-              = link_to "", onclick: "window.location = '/users/new'" do
+              = link_to login_path(w: true) do
                 .arrow-up
             %p.vote-count{:'data-count-id' => submission.id}
-              = submission.upvotes.any? ? @upvote_counts[submission.id].count : 0
+              = submission.count.submission_upvotes
           .song-details-container
             %h3.song-list-title
-              = link_to "#{submission.artist} - #{submission.title}", submission.url, target: "_blank"
+              = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
             .song-submitter
               = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
               %p.song-submitter-name.bold Kevin Ko

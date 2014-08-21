@@ -22,7 +22,6 @@ class SubmissionsController < ApplicationController
   private
 
   def submission_params
-    #TODO: Figure out way to default set approved to false, then submission will truly come from admins or preapproved users
     params.require(:submission).permit(:title, :artist, :url)
   end
 

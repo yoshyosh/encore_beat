@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#error', as: 'failure'
   get '/admin/approval_queue', to: 'admin#approval_queue', as: 'approval_queue'
   get '/final_signup_step', to: 'users#final_signup_step', as: 'final_signup_step'
+  get '/login', to: 'sessions#new', as: 'login'
+  get '/signup', to: 'users#new', as: 'signup'
 
 
   # Example of regular route:

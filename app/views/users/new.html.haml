@@ -1,5 +1,5 @@
 .main-container-outer
-  .main-header-title.main-header-title-margin-bot CREATE ACCOUNT
+  .main-header-title CREATE ACCOUNT
   
   = form_tag '/auth/twitter', method: 'get' do
     %button.signup-twitter-button= "Sign Up Via Twitter"
@@ -10,12 +10,9 @@
         %ul
           - for message in @user.errors.full_messages
             %li= message
-    /= f.label :username, 'Username'
-    = f.text_field :username, :placeholder => 'Your Username', id: 'username', class: 'submit-input'
-    /= f.label :email, 'Email'
+    = f.text_field :username, :placeholder => 'Your Username', id: 'username', class: 'submit-input', autofocus: true
     = f.text_field :email, :placeholder => 'Email (you.are@awesome.com)', id: 'email', class: 'submit-input'
-    /= f.label :password, 'Password'
     = f.password_field :password, id: 'password', placeholder: "Password", class: 'submit-input'
     = f.submit 'Signup', class: "primary-action-button"
   %p.login-link
-    = link_to '(or log in if you\'re already registered)', new_session_path
+    = link_to '(or log in if you\'re already registered)', login_path
