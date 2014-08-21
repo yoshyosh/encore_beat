@@ -5,7 +5,7 @@ $(document).ready(function(){
 		setTimeout(function(){
 			var pastedText = $(element).val();
 			requestMusicData(pastedText);
-			//Make sure we have http(s) in front of create url
+			//TODO: Make sure we have http(s) in front of create url
 		}, 100);
 	});
 
@@ -16,7 +16,6 @@ function requestMusicData(link){
 	var a = document.createElement('a');
 	a.href = link;
 	var domain = a.hostname.replace('www.', '');
-	console.log(domain);
 	if (domain == "soundcloud.com") {
 		var musicRequestUrl = createSoundcloudRequestLink(link);
 		getSoundCloudMusicData(musicRequestUrl);
@@ -37,7 +36,8 @@ function requestMusicData(link){
 function createYoutubeRequestLink(url){
 	var API_BASE_URL = "http://gdata.youtube.com/feeds/api/videos/"
 	var API_END_URL = "?v=2&prettyprint=true&alt=jsonc"
-	var shortURL = getYoutubeShortCode(url); //Need to parse further in the case that the youtube link has more params after video
+	//TODO: Need to parse further in the case that the youtube link has more params after video
+	var shortURL = getYoutubeShortCode(url);
 	var apiURL = API_BASE_URL + shortURL + API_END_URL
 	return apiURL;
 }

@@ -16,3 +16,7 @@
       %p.song-submitter-name.bold Kevin Ko
       %p.song-comments-label.grey 47 minutes ago
       %p{style: "padding: 8px 0;"} Paris Hilton makes more money DJing than deadmau5 and Tiesto combined
+
+  = form_for Comment.new, method: :post, html: { class: "form-container" } do |f|
+    = f.text_area :body, placeholder: "Have anything to add?"
+    = f.submit "Submit", id: "submit-song-button", class: "primary-action-button"

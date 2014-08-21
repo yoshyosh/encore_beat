@@ -4,7 +4,7 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    @submission = Submission.create(submission_params)
+    @submission = current_user.submissions.create(submission_params)
     redirect_to root_path
   end
 
