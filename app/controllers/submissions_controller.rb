@@ -10,6 +10,7 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find_by_id(params[:id])
+    @comments = @submission.comments
   end
 
   def edit

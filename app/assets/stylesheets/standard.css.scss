@@ -334,11 +334,22 @@ a:hover {
 
 .comments-container {
   margin-top: 30px;
+  padding-top: 30px;
   border-top: 1px solid #ddd;
+  .comment {
+    margin-bottom: 36px;
+  }
 }
 
 .comment-details-container {
   display: inline-block;
   margin-left: 12px;
   text-align: left;
+}
+
+.comment-text-area {
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
