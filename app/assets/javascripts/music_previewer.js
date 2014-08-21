@@ -11,6 +11,29 @@ $(document).ready(function(){
 
 });
 
+function requestMusicData(link){
+	//TODO: Refactor in the case we accept other music sites/links
+	var a = document.createElement('a');
+	a.href = link;
+	var domain = a.hostname.replace('www.', '');
+	console.log(domain);
+	if (domain == "soundcloud.com") {
+		var musicRequestUrl = createSoundcloudRequestLink(link);
+		getSoundCloudMusicData(musicRequestUrl);
+		buildAndShowSpinner();
+		$(".js-music-preview-box").show();
+		$(".js-show-field").show();
+	} else if (domain == "youtube.com" || domain == "youtu.be") {
+		var musicRequestUrl = createYoutubeRequestLink(link);
+		getYoutubeMusicData(musicRequestUrl);
+		buildAndShowSpinner();
+		$(".js-music-preview-box").show();
+		$(".js-show-field").show();
+	} else {
+		alert("C'Mon quit pulling my strings, use a youtube or sound cloud link!");
+	}
+}
+
 function createYoutubeRequestLink(url){
 	var API_BASE_URL = "http://gdata.youtube.com/feeds/api/videos/"
 	var API_END_URL = "?v=2&prettyprint=true&alt=jsonc"
@@ -50,27 +73,6 @@ function getYoutubeMusicData(url){
 function addToHtmlPreviewBox(title, thumbnail){
 	var imgAndTitleHtml = "<img src='" + thumbnail + "' />" + "<p>" + title + "</p>";
 	$(".js-music-preview-box").html(imgAndTitleHtml);
-}
-
-function requestMusicData(link){
-	//TODO: Refactor in the case we accept other music sites/links
-	var a = document.createElement('a');
-	a.href = link;
-	var domain = a.hostname.replace('www.', '');
-	console.log(domain);
-	if (domain == "soundcloud.com") {
-		var musicRequestUrl = createSoundcloudRequestLink(link);
-		getSoundCloudMusicData(musicRequestUrl);
-		buildAndShowSpinner();
-		$(".js-music-preview-box").show();
-	} else if (domain == "youtube.com" || domain == "youtu.be") {
-		var musicRequestUrl = createYoutubeRequestLink(link);
-		getYoutubeMusicData(musicRequestUrl);
-		buildAndShowSpinner();
-		$(".js-music-preview-box").show();
-	} else {
-		alert("C'Mon quit pulling my strings, use a youtube or sound cloud link!");
-	}
 }
 
 function getYoutubeShortCode(link) {

@@ -2,8 +2,8 @@
   %h1.main-header-title
     SUBMIT SONG
   = form_for @submission, method: :post, html: { class: "form-container" } do |f|
-    = f.text_field :artist, class: "submit-input", placeholder: "Artist", autofocus: true
-    = f.text_field :title, class: "submit-input", placeholder: "Title"
-    = f.text_field :url, class: "submit-input", placeholder: "Enter YouTube or Soundcloud URL"
     .music-preview.js-show-spinner.js-music-preview-box
+    = f.text_field :url, class: "submit-input js-paste-music-previewer", placeholder: "Enter YouTube or Soundcloud URL", autcomplete: "off", autofocus: true
+    = f.text_field :artist, class: "submit-input hiddenView js-show-field", placeholder: "Artist"
+    = f.text_field :title, class: "submit-input hiddenView js-show-field", placeholder: "Title"
     = f.submit "Submit", id: "submit-song-button", class: "primary-action-button"
