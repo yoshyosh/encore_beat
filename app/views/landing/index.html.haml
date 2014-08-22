@@ -29,6 +29,6 @@
             %h3.song-list-title
               = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
             .song-submitter
-              = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
+              = image_tag "headsht.png", class: "song-submitter-avatar"
               %p.song-submitter-name.bold= submission.user.username
               = link_to "20 comments", submission_path(submission.id), class: "song-comments-label grey"

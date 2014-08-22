@@ -5,14 +5,14 @@
   %h1.main-header-title.main-header-comment-title
     = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank"
   .song-submitter
-    = image_tag "/assets/headsht.png", class: "song-submitter-avatar"
+    = image_tag "headsht.png", class: "song-submitter-avatar"
     .song-submitter-name
       %span.bold Kevin Ko
       %span.grey added this 3 days ago
   .comments-container
     - @comments.each do |comment|
       .comment
-        = image_tag "/assets/headsht.png", style: "width: 40px; border-radius: 40px;"
+        = image_tag "headsht.png", style: "width: 40px; border-radius: 40px;"
         .comment-details-container
           %p.song-submitter-name.bold= comment.user.username
           %p.song-comments-label.grey= comment.created_at
