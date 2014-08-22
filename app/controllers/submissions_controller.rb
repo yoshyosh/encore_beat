@@ -10,7 +10,16 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find_by_id(params[:id])
-    @comments = @submission.comments
+    @presenter = {
+      comments: @submission.comments,
+      user: current_user,
+      submission_id: @submission.id,
+      form: {
+        action: comments_path,
+        csrf_param: request_forgery_protection_token,
+        csrf_token: form_authenticity_token
+      }
+    }
   end
 
   def edit

@@ -10,16 +10,4 @@
       %span.bold Kevin Ko
       %span.grey added this 3 days ago
   .comments-container
-    - @comments.each do |comment|
-      .comment
-        = image_tag "headsht.png", style: "width: 40px; border-radius: 40px;"
-        .comment-details-container
-          %p.song-submitter-name.bold= comment.user.username
-          %p.song-comments-label.grey= comment.created_at
-          %p{style: "padding: 8px 0;"}= comment.body
-  = form_for @submission.comments.new, method: :post, html: { class: "comment-form-container" } do |f|
-    = f.text_area :body, placeholder: "Have anything to add?", class: "comment-text-area"
-    / Not sure how to get this to automatically add due to association, I think we need certain setup in comment#create
-    = f.hidden_field :user_id, value: current_user.id
-    = f.hidden_field :submission_id, value: @submission.id
-    = f.submit "Submit", id: "submit-song-button", class: "primary-action-button"
+    = react_component('CommentBox', {presenter: @presenter.to_json}, {:prerender => true})
