@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   get '/signup', to: 'users#new', as: 'signup'
   get '/terms', to: 'landing#terms', as: 'terms'
+  get '/faq', to: 'landing#faq', as: 'faq'
 
 
   # Example of regular route:

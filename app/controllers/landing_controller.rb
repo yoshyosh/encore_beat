@@ -15,4 +15,7 @@ class LandingController < ApplicationController
 
   def terms
   end
+
+  def faq
+  end
 end
