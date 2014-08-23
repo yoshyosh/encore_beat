@@ -12,4 +12,7 @@ class LandingController < ApplicationController
       @current_user_upvotes = current_user.upvotes
     end
   end
+
+  def terms
+  end
 end

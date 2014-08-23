@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/final_signup_step', to: 'users#final_signup_step', as: 'final_signup_step'
   get '/login', to: 'sessions#new', as: 'login'
   get '/signup', to: 'users#new', as: 'signup'
+  get '/terms', to: 'landing#terms', as: 'terms'
 
 
   # Example of regular route:
