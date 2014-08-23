@@ -27,7 +27,7 @@
               = submission.count.submission_upvotes
           .song-details-container
             %h3.song-list-title
-              = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
+              = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id
             .song-submitter
               = image_tag "headsht.png", class: "song-submitter-avatar"
               %p.song-submitter-name.bold= submission.user.username

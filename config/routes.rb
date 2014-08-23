@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :identities
   resources :upvotes
   resources :comments
+  resources :counts, only: :update
 
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   get '/auth/failure', to: 'sessions#error', as: 'failure'
