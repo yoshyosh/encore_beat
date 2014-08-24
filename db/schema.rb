@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20140824040131) do
     t.integer  "comments",      default: 0
   end
 
+  add_index "submission_counts", ["upvotes"], name: "index_submission_counts_on_upvotes", using: :btree
+
   create_table "submissions", force: true do |t|
     t.string   "title",                    null: false
     t.string   "artist",                   null: false

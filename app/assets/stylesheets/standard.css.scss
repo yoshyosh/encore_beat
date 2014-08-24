@@ -30,7 +30,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
   font-family: 'Droid sans', sans-serif;
-  background-color: #F7F9FD;
+  background-color: #27282E;
   color: #4F535E;
 }
 ol, ul {
@@ -84,15 +84,14 @@ a:hover {
 }
 
 .main-container-header {
-  background-image: asset-url("concert960.jpg", image);
+  background-image: asset-url("headerCrowd.jpg", image);
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 150px;
-  height: 440px;
-  background-position-y: -350px;
+  padding-top: 50px;
   box-sizing: border-box;
   position: relative;
   z-index: 0;
+  height: 205px;
   .main-container-header-overlay {
     z-index: -1;
     position: absolute;
@@ -100,8 +99,8 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000;
-    opacity: .5;
+    @include background-image( linear-gradient(180deg, rgba(39, 40, 46, 0.2) 0%, #27282e 120%) );
+    -webkit-filter: blur(1px);
   }
   .main-header-subtitle {
     font-size: 24px;
