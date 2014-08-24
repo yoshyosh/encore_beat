@@ -8,7 +8,7 @@
       %h1.main-header-comment-title
         = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank"
       .song-submitter
-        = user_avatar_thumb(@submission.user)
+        = user_avatar_thumb_small(@submission.user)
         .song-submitter-name
           %span.bold= submission_username(@submission.user)
           %span.grey= humanize_date(@submission.created_at)
