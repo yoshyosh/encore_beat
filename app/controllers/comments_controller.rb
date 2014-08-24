@@ -4,12 +4,13 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      submission_count = @comment.submission.submission_count
+      @submission = @comment.submission
+      submission_count = @submission.submission_count
       submission_count.comments += 1
       submission_count.save
 
       if request.xhr?
-        render :json => @comment.submission.comments
+        render :json => @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
       else
         redirect_to submission_path(submission)
       end

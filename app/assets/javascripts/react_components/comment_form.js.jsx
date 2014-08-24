@@ -19,7 +19,6 @@ var CommentForm = React.createClass({
     var count = $('.comment-count')
     var countParts = count.text().split(" ")
     var newCount = parseInt(countParts[0]) + 1
-
     count.text(newCount + " Comments")
   },
 

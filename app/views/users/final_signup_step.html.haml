@@ -16,7 +16,6 @@
         = f.text_field :email, :placeholder => 'Email', spellcheck: false, id: 'email', class: 'submit-input'
       - else
         %label{ for: :avatar } Upload photo
-        = image_tag(@user.avatar_url) if @user.avatar?
         = f.hidden_field(:avatar_cache)
         = f.file_field(:avatar)
 

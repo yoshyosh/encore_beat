@@ -1,14 +1,14 @@
 .main-container.comment-container
   .upvote-container
     .arrow-up
-    .vote-count 326
+    .vote-count= @submission.submission_count.upvotes
   %h1.main-header-title.main-header-comment-title
     = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank"
   .song-submitter
-    = image_tag "headsht.png", class: "song-submitter-avatar"
+    = user_avatar_thumb(@submission.user)
     .song-submitter-name
-      %span.bold Kevin Ko
-      %span.grey added this 3 days ago
+      %span.bold= submission_username(@submission.user)
+      %span.grey= humanize_date(@submission.created_at)
     %p.comment-count= comment_count(@submission)
   .comments-container
     = react_component('CommentBox', {presenter: @presenter.to_json}, {:prerender => true})

@@ -10,8 +10,10 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find_by_id(params[:id])
+    @comments = @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
+
     @presenter = {
-      comments: @submission.comments,
+      comments: @comments,
       user: current_user,
       submission_id: @submission.id,
       form: {
