@@ -2,7 +2,11 @@ class AdminController < ApplicationController
   before_filter :authorize
 
   def approval_queue
-    @submissions = Submission.pending
+    @submissions = 
+      Submission
+      .pending
+      .order('created_at DESC')
+      .group_by {|s| s.created_at.strftime('%a %B %d')}
   end
 
   private

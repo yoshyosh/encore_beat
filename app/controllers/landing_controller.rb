@@ -4,8 +4,9 @@ class LandingController < ApplicationController
       Submission
       .includes(:submission_count)
       .where('submissions.status = ?', Submission::STATUSES[:approved])
-      .order('submission_counts.upvotes DESC, published_at DESC')
+      .order('published_at DESC, submission_counts.upvotes DESC')
       .limit(50)
+      .references(:submission_count)
       .group_by(&:published_at)
 
     if current_user
