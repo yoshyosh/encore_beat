@@ -1,14 +1,18 @@
-.main-container.comment-container
-  .upvote-container
-    .arrow-up
-    .vote-count= @submission.submission_count.upvotes
-  %h1.main-header-title.main-header-comment-title
-    = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank"
-  .song-submitter
-    = user_avatar_thumb(@submission.user)
-    .song-submitter-name
-      %span.bold= submission_username(@submission.user)
-      %span.grey= humanize_date(@submission.created_at)
-    %p.comment-count= comment_count(@submission)
+= render "partials/header"
+.main-content-container.comment-content-container
+  .hero-content
+    .hero-content-inner
+      .upvote-container
+        .arrow-up
+        .vote-count= @submission.submission_count.upvotes
+      %h1.main-header-comment-title
+        = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank"
+      .song-submitter
+        = user_avatar_thumb(@submission.user)
+        .song-submitter-name
+          %span.bold= submission_username(@submission.user)
+          %span.grey= humanize_date(@submission.created_at)
+  
   .comments-container
+    %p.comment-count= comment_count(@submission)
     = react_component('CommentBox', {presenter: @presenter.to_json}, {:prerender => true})
