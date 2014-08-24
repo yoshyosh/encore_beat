@@ -15,6 +15,14 @@ module ApplicationHelper
     if user && user.avatar_url
       cl_image_tag user.avatar.thumb, alt: user.username, radius: :max, class: 'user-avatar-thumb'
     else
+      cl_image_tag User::DEFAULT_USER_IMAGE_PATH, radius: :max, width: 50, height: 50, alt: 'EncoreBeat User', class: 'user-avatar-thumb'
+    end
+  end
+
+  def user_avatar_thumb_small(user)
+    if user && user.avatar_url
+      cl_image_tag user.avatar.thumb_small, alt: user.username, radius: :max, class: 'user-avatar-thumb'
+    else
       cl_image_tag User::DEFAULT_USER_IMAGE_PATH, alt: 'EncoreBeat User', class: 'user-avatar-thumb'
     end
   end
