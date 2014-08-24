@@ -1,26 +1,23 @@
-- if @user.identities.any?
+.container
   .main-container-outer
-    .main-header-title CREATE ACCOUNT
-
-    = form_for @user, html: {class: "form-container"} do |f|
-      -if @user.errors.any?
+    %h1.main-header-title Just one last step
+    %p You're almost there, we just need some last bits of information before you can start upvoting, commenting, and submitting songs.
+    = form_for @user, html: { class: 'form-container' } do |f|
+      - if @user.errors.any?
         .error_messages
           %ul
             - for message in @user.errors.full_messages
               %li= message
-      = f.label :username, 'Username'
-      = f.text_field :username, placeholder: 'Username', value: @user.identities.first.username, id: 'username', class: 'submit-input'
-      = f.label :username, 'Email'
-      = f.text_field :email, :placeholder => 'you.are@awesome.com', id: 'email', class: 'submit-input'
-      = f.submit 'Signup', class: "primary-action-button"
-- else
-  = form_for @user, html: {class: "form-container"} do |f|
-    -if @user.errors.any?
-      .error_messages
-        %ul
-          - for message in @user.errors.full_messages
-            %li= message
-    / Photo form here
-    / This is just a dummy form, please delete when photo is done:
-    = f.text_field :username, placeholder: 'Username', id: 'username', class: 'submit-input'
-    = f.submit 'Signup', class: "primary-action-button"
+      - if @user.identities.any?
+        = f.label :username, 'Username'
+        = f.text_field :username, placeholder: 'Username', value: @user.identities.first.username, id: 'username', class: 'submit-input'
+        = f.label :username, 'Email'
+        = f.text_field :email, :placeholder => 'Email', id: 'email', class: 'submit-input'
+      - else
+        %label{ for: :avatar } Upload photo
+        = image_tag(@user.avatar_url) if @user.avatar?
+        = f.hidden_field(:avatar_cache)
+        = hidden_field_tag 'final_signup_step', true
+        = f.file_field(:avatar)
+
+      = f.submit 'Signup', class: 'primary-action-button'

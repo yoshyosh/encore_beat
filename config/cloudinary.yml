@@ -1,0 +1,10 @@
+---
+development:
+  enhance_image_tag: false
+  static_image_support: false
+production:
+  enhance_image_tag: false
+  static_image_support: false
+test:
+  enhance_image_tag: false
+  static_image_support: false

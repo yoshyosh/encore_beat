@@ -19,6 +19,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-identity'
 gem 'twitter'
 gem 'figaro'
+gem 'carrierwave'
+gem 'cloudinary'
 
 group :production do
   gem 'rails_12factor'

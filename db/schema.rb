@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823214458) do
+ActiveRecord::Schema.define(version: 20140824004020) do
 
   create_table "comments", force: true do |t|
     t.text     "body",          null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140823214458) do
     t.datetime "updated_at"
     t.boolean  "admin",           default: false
     t.string   "password_digest",                 null: false
+    t.string   "avatar"
   end
 
 end
