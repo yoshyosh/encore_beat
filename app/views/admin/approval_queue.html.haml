@@ -1,17 +1,19 @@
-.main-container-outer
-  %h1.main-header-title APPROVE BEATS
-  .songs-list-container
-    %h4.song-list-date-group TUESDAY AUG 16TH
-    -@submissions.each do |submission|
-      .song
-        .upvote-container
-          / .arrow-up
-          / %p.vote-count= submission.upvotes.count
-        .song-details-container
-          %h3.song-list-title
-            = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
-          .song-submitter
-            = image_tag "headsht.png", class: "song-submitter-avatar"
-            %p.song-submitter-name Kevin Ko
-            = link_to "Approve", edit_submission_path(submission, status: 1, published_at: Date.today), {remote: true}
-            = link_to "Reject", edit_submission_path(submission, status: 2), {remote: true}
+.admin-approvals
+  .main-container-outer
+    %h1.main-header-title Admin Approval Queue
+    .songs-list-container
+      - if @submissions.empty?
+        No submissions to approve right now. Why not spread the word? :)
+      - else
+        - @submissions.each do |date, submissions|
+          %h4.song-list-date-group= date
+          - submissions.each do |submission|
+            .song{ :'data-submission-id' => submission.id }
+              .song-details-container
+                %h3.song-list-title
+                  = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
+                .song-submitter
+                  = user_avatar_thumb(submission.user)
+                  %p.song-submitter-name= submission_username(submission.user)
+                  = link_to "Approve", edit_submission_path(submission, status: 1, published_at: Date.today), {remote: true, :'data-submission-id' => submission.id, class: 'approve-submission'}
+                  = link_to "Reject", edit_submission_path(submission, status: 2), {remote: true, :'data-submission-id' => submission.id, class: 'reject-submission'}

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_filter :handle_oauth, only: :create
+
   def new
   end
 

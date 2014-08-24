@@ -4,7 +4,7 @@ class UpvotesController < ApplicationController
     submission_id = params[:submission_id]
     is_upvoted = params[:upvoted] == "true"
     upvote = Upvote.where(submission_id: submission_id, user_id: current_user.id).first_or_initialize
-    count = SubmissionsCount.find_by_submission_id(submission_id)
+    count = SubmissionCount.find_by_submission_id(submission_id)
     upvote_exists = upvote.persisted?
 
     if is_upvoted && !upvote_exists && count

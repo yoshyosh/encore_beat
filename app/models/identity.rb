@@ -3,8 +3,9 @@ class Identity < ActiveRecord::Base
 
   def self.create_with_omniauth(auth)
     nickname = auth[:info][:nickname]
+    photo = auth[:info][:image].gsub("_normal", "")
     public_id = "#{nickname}_twitter"
-    avatar = Cloudinary::Uploader.upload(auth[:info][:image], public_id: public_id)
+    avatar = Cloudinary::Uploader.upload(photo, public_id: public_id)
 
     user = User.new(username: SecureRandom.hex(4), password: SecureRandom.uuid)
     user.remote_avatar_url = avatar['url']
