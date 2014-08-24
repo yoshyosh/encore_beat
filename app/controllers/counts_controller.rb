@@ -1,7 +1,7 @@
-class CountsController < ApplicationController
+class SubmissionCountsController < ApplicationController
   def update
-    count = Count.find_by_submission_id(edit_params[:id])
-    count.submission_clicks += 1 if count
+    count = SubmissionCount.find_by_submission_id(edit_params[:id])
+    count.clicks += 1 if count
 
     render json: {}
   end

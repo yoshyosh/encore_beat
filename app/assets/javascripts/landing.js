@@ -3,7 +3,7 @@ $(document).ready(function() {
     var submission_id = $(this).attr('data-submission-id')
 
     $.ajax({
-      url: '/counts/' + submission_id,
+      url: '/submission_counts/' + submission_id,
       type: 'put'
     });
   })

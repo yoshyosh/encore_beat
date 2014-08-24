@@ -4,7 +4,7 @@ class Submission < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
   has_many :upvotes, dependent: :destroy
-  has_one :count, dependent: :destroy
+  has_one :submission_count, dependent: :destroy
   belongs_to :user
 
   validates_presence_of :title, :artist, :url
@@ -15,6 +15,6 @@ class Submission < ActiveRecord::Base
   scope :pending, -> { where(status: STATUSES[:pending]) }
 
   def spawn_count
-    Count.create(submission: self)
+    SubmissionCount.create(submission: self)
   end
 end
