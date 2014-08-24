@@ -14,7 +14,15 @@ var CommentForm = React.createClass({
 
     // reset form
     this.refs.body.getDOMNode().value = "";
+
+    // increment comment count
+    var count = $('.comment-count')
+    var countParts = count.text().split(" ")
+    var newCount = parseInt(countParts[0]) + 1
+
+    count.text(newCount + " Comments")
   },
+
   render: function () {
     return (
       <form ref="form" className="comment-form-container" action={ this.props.form.action } accept-charset="UTF-8" method="post" onSubmit={ this.handleSubmit }>

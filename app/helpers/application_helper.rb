@@ -26,4 +26,10 @@ module ApplicationHelper
       user.username
     end
   end
+
+  def comment_count(submission)
+    count = submission.submission_count.comments
+
+    "#{pluralize(count, 'Comment')}"
+  end
 end

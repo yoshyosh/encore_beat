@@ -32,4 +32,4 @@
             .song-submitter
               = user_avatar_thumb(submission.user)
               %p.song-submitter-name.bold= submission_username(submission.user)
-              = link_to "#{submission.submission_count.comments} Comments", submission_path(submission.id), class: "song-comments-label grey"
+              = link_to comment_count(submission), submission_path(submission.id), class: "song-comments-label grey"

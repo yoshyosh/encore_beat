@@ -2,7 +2,6 @@
 
 var Comment = React.createClass({
   render: function () {
-    debugger
     return (
       <div className="comment">
         <div className="comment-details-container">

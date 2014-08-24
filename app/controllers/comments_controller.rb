@@ -4,7 +4,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      @comment.submission.submission_counts.comments += 1
+      submission_count = @comment.submission.submission_count
+      submission_count.comments += 1
+      submission_count.save
 
       if request.xhr?
         render :json => @comment.submission.comments

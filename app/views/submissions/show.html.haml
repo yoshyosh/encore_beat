@@ -9,5 +9,6 @@
     .song-submitter-name
       %span.bold Kevin Ko
       %span.grey added this 3 days ago
+    %p.comment-count= comment_count(@submission)
   .comments-container
     = react_component('CommentBox', {presenter: @presenter.to_json}, {:prerender => true})
