@@ -17,5 +17,4 @@
 /config/application.yml
 /config/secrets.yml
 /public/uploads/
-/config/.DS_Store
-/config/*/.DS_Store
+.DS_Store

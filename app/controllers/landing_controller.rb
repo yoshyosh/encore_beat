@@ -2,6 +2,7 @@ class LandingController < ApplicationController
   def index
     @submissions = 
       Submission
+      .includes(:user)
       .includes(:submission_count)
       .where('submissions.status = ?', Submission::STATUSES[:approved])
       .order('published_at DESC, submission_counts.upvotes DESC')

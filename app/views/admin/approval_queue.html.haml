@@ -13,7 +13,7 @@
                 %h3.song-list-title
                   = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
                 .song-submitter
-                  = user_avatar_thumb(submission.user)
+                  = user_avatar_thumb_small(submission.user)
                   %p.song-submitter-name= submission_username(submission.user)
                   = link_to "Approve", edit_submission_path(submission, status: 1, published_at: Date.today), {remote: true, :'data-submission-id' => submission.id, class: 'approve-submission'}
                   = link_to "Reject", edit_submission_path(submission, status: 2), {remote: true, :'data-submission-id' => submission.id, class: 'reject-submission'}

@@ -6,11 +6,15 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   process :resize_to_fill => [150, 150, :face]
 
   version :thumb do
-    process :resize_to_fill => [32, 32]
+    process :resize_to_fill => [50, 50]
+  end
+
+  version :thumb_small do
+    process :resize_to_fill => [20, 20]
   end
 
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg png)
   end
 
   def public_id

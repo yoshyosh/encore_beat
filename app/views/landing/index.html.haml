@@ -17,6 +17,6 @@
               %h3.song-list-title
                 = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id
               .song-submitter
-                = user_avatar_thumb(submission.user)
+                = user_avatar_thumb_small(submission.user)
                 %p.song-submitter-name.bold= submission_username(submission.user)
                 = link_to comment_count(submission), submission_path(submission.id), class: "song-comments-label grey"
