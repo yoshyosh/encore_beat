@@ -1,18 +1,20 @@
 .main-container-outer
-  .main-header-title CREATE ACCOUNT
-  
-  = form_tag '/auth/twitter', method: 'get' do
-    %button.signup-twitter-button= "Sign Up Via Twitter"
+  .main-content-container
+    .main-content-inner-container
+      .main-header-title CREATE ACCOUNT
+      
+      = form_tag '/auth/twitter', method: 'get', class: "twitter-form" do
+        %button.signup-twitter-button= "Sign Up Via Twitter"
 
-  = form_for @user, html: { class: "form-container" } do |f|
-    - if @user.errors.any?
-      .error_messages
-        %ul
-          - for message in @user.errors.full_messages
-            %li= message
-    = f.text_field :username, placeholder: 'Username', id: 'username', class: 'submit-input', autofocus: true
-    = f.text_field :email, placeholder: "Email", id: 'email', class: 'submit-input'
-    = f.password_field :password, id: 'password', placeholder: "Password", class: 'submit-input'
-    = f.submit 'Signup', class: "primary-action-button"
-  %p.login-link
-    = link_to '(or log in if you\'re already registered)', login_path
+      = form_for @user, html: { class: "form-container" } do |f|
+        - if @user.errors.any?
+          .error_messages
+            %ul
+              - for message in @user.errors.full_messages
+                %li= message
+        = f.text_field :username, placeholder: 'Username', id: 'username', class: 'submit-input', autofocus: true
+        = f.text_field :email, placeholder: "Email", id: 'email', class: 'submit-input'
+        = f.password_field :password, id: 'password', placeholder: "Password", class: 'submit-input'
+        = f.submit 'Signup', class: "primary-action-button"
+      %p.alternative-account-option-link
+        = link_to '(or log in if you\'re already registered)', login_path

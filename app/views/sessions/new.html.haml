@@ -1,16 +1,17 @@
-= form_tag '/auth/twitter', method: 'get' do
-  %button= "Sign In Via Twitter"
-%h1 Login
-%p.flash
-  = flash[:error]
-  - if params[:w]
-    You must be logged in to do that
-= form_tag sessions_path do
-  = label_tag :username_or_email, 'Username or Email'
-  = text_field_tag :username_or_email, params[:username_or_email], :autofocus => true
-  = label_tag :password
-  = password_field_tag :password
-  = submit_tag "Login"
+.main-container-outer
+  .main-content-container
+    .main-content-inner-container
+      .main-header-title LOGIN
+      = form_tag '/auth/twitter', method: 'get', class: "twitter-form" do
+        %button.signup-twitter-button= "Login Via Twitter"
+      %p.flash
+        = flash[:error]
+        - if params[:w]
+          You must be logged in to do that
+      = form_tag sessions_path, method: 'post', class: "form-container" do
+        = text_field_tag :username_or_email, params[:username_or_email], placeholder: "Username or email", class: "submit-input", autofocus: true
+        = password_field_tag :password, nil, placeholder: "Password", class: "submit-input"
+        = submit_tag "Login", class: "primary-action-button"
 
-%p
-  = link_to "I don't have an account yet", signup_path
+      %p.alternative-account-option-link
+        = link_to "I don't have an account yet", signup_path

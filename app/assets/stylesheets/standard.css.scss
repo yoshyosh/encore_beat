@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
-  font-family: 'Droid sans', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   background-color: #27282E;
   color: #4F535E;
   padding-bottom: 100px;
@@ -70,7 +70,6 @@ a:hover {
 }
 
 #main-container-homepage {
-  margin-top: 0;
   .user-avatar-thumb {
     width: 20px;
     border-radius: 20px;
@@ -79,7 +78,6 @@ a:hover {
 
 .main-container-outer {
   text-align: center;
-  margin-top: 100px;
 }
 
 .main-container-header {
@@ -138,13 +136,22 @@ a:hover {
   .main-nav-options {
     float: right;
   }
+  .user-avatar-thumb {
+    margin-right: 6px;
+  }
 }
 
 .main-header-title {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  font-size: 70px;
-  margin-bottom: 12px;
+  font-size: 50px;
+  text-align: center;
+}
+
+.main-header-description-text {
+  line-height: 22px;
+  max-width: 500px;
+  margin: 20px auto 0;
 }
 
 .main-container {
@@ -173,6 +180,7 @@ a:hover {
   }
 
   &:hover {
+    border-bottom: 18px solid #F3324A;
     cursor: pointer;
   }
 }
@@ -299,23 +307,4 @@ a:hover {
   }
 }
 
-/* sign up page */
 
-.login-link {
-  margin-top: 50px;
-}
-
-.signup-twitter-button {
-  background: #4099ff;
-  border: none;
-  color: #fff;
-  width: 100%;
-  max-width: 500px;
-  padding: 10px;
-  font-size: 24px;
-  outline: none;
-  margin-top: 30px;
-  &:hover {
-    cursor: pointer;
-  }
-}

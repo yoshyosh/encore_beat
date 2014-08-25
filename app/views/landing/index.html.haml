@@ -1,5 +1,4 @@
 .main-container-outer#main-container-homepage
-  = render "/partials/header"
   - @submissions.each do |date, submissions|
     %h4.song-list-date-group= humanize_date(date)
     .main-content-container
