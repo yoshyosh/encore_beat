@@ -86,7 +86,7 @@ a:hover {
   background-image: asset-url("headerCrowd.jpg", image);
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 110px;
+  padding-top: 150px;
   box-sizing: border-box;
   position: relative;
   z-index: 0;
@@ -98,8 +98,8 @@ a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    @include background-image( linear-gradient(180deg, rgba(39, 40, 46, 0.2) 0%, #27282e 120%) );
+    height: 210px;
+    @include background-image( linear-gradient(180deg, rgba(39, 40, 46, 0.2), #27282e) );
     -webkit-filter: blur(1px);
   }
   .main-header-subtitle {

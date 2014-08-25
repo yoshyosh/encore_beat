@@ -20,7 +20,7 @@ var CommentBox = React.createClass({
   render: function () {
     return (
       <div>
-        <CommentForm form={ this.state.form } onCommentSubmit={ this.handleCommentSubmit } submission_id={ JSON.parse(this.props.presenter).submission_id } />
+        <CommentForm form={ this.state.form } onCommentSubmit={ this.handleCommentSubmit } submission_id={ JSON.parse(this.props.presenter).submission_id } user={ this.state.user }/>
         <CommentList comments={ this.state.comments } />
       </div>
     );

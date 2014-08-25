@@ -37,6 +37,20 @@
   }
 }
 
+.comment-input-container {
+  .user-avatar-thumb {
+    width: 50px;
+    float: left;
+  }
+  .comment-form-container {
+    max-width: 525px;
+    width: 100%;
+    margin-left: 64px;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+}
+
 .comment-container {
   display: inline-block;
   text-align: left;
@@ -69,6 +83,7 @@
   max-width: 120px;
   font-size: 16px;
   border-radius: 5px;
+  float: right;
 }
 
 .comment-form-container {
