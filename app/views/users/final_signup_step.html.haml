@@ -15,6 +15,6 @@
           = f.text_field :email, placeholder: 'Email', spellcheck: false, id: 'email', class: 'submit-input'
         - else
           = f.hidden_field(:avatar_cache)
-          = f.file_field :avatar, class: "upload-avatar-button js-get-file-name"
+          = f.file_field :avatar, class: "upload-avatar-button js-get-file-name", onchange: "alert('hey');"
 
         = f.submit 'Signup', class: 'primary-action-button'
