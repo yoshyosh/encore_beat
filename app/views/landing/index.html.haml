@@ -1,23 +1,10 @@
 .main-container-outer#main-container-homepage
-  = render "/partials/header"
-  - @submissions.each do |date, submissions|
-    %h4.song-list-date-group= humanize_date(date)
-    .main-content-container
-      .main-content-inner-container
-        - submissions.each do |submission|
-          .song
-            .upvote-container
-              - if current_user
-                = react_component('Upvote', {upvoted: @current_user_upvotes.any? {|upvote| !upvote.nullified && upvote.submission_id == submission.id }, song_id: submission.id}, :span)
-              - else
-                = link_to login_path(w: true) do
-                  .arrow-up
-              %p.vote-count{:'data-count-id' => submission.id}
-                = submission.submission_count.upvotes
-            .song-details-container
-              %h3.song-list-title
-                = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id
-              .song-submitter
-                = user_avatar_thumb_small(submission.user)
-                %p.song-submitter-name.bold= submission_username(submission.user)
-                = link_to comment_count(submission), submission_path(submission.id), class: "song-comments-label grey"
+  = render 'partials/header'
+  = render 'partials/submission_date'
+  #load-more-container
+    #paginate-container
+      /- if @submission_dates
+      = react_component('InfinitePagination', {total_pages: @submissions_dates.total_pages, current_page: @submissions_dates.current_page})
+  - if @submissions_dates && @submissions_dates.total_pages >= 2 && @submissions_dates.total_pages != @submissions_dates.current_page
+    / #paginate-container
+    /   = link_to 'Load more songs', nil, id: 'paginate-trigger'
