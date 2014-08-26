@@ -7,3 +7,10 @@
 .user-avatar {
   border-radius: 150px;
 }
+
+.action-button {
+  background: #4099ff;
+  &:hover {
+    background: #3C90F1;
+  }
+}

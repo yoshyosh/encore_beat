@@ -40,36 +40,57 @@
 }
 
 .upload-avatar-button {
-  width: 500px;
+  width: 200px;
   height: 50px;
   color: #fff;
   font-family: 'Avenir Next';
   outline: none;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  display: block;
   &:hover {
     border-color: #40454C;
   }
 }
 
-/*.upload-avatar-button::-webkit-file-upload-button {
+.upload-avatar-button::-webkit-file-upload-button {
   visibility: hidden;
 }
 .upload-avatar-button::before {
   content: 'Upload a photo';
+  background: #4099ff;
   display: inline-block;
-  background: #4F545D;
   border: none;
   width: 100%;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 20px;
   padding: 10px;
   text-align: center;
+  box-sizing: border-box;
 }
 .upload-avatar-button:hover::before {
-  border-color: #40454C;
+  border-color: #3C90F1;
 }
-.upload-avatar-button:active::before {
-  background: #32353B;
-}*/
+
+.avatar-added-text {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: 'Avenir Next';
+  display: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.close-icon {
+  margin-left: 8px;
+  font-size: 30px;
+  vertical-align: middle;
+}
