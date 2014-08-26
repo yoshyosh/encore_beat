@@ -7,3 +7,18 @@
 .user-avatar {
   border-radius: 150px;
 }
+
+footer.main-container-footer {
+  @include outer-container();
+  padding-top: 60px;
+  min-width: 320px;
+  margin: auto;
+  text-align: center;
+
+  li {
+    list-style: none;
+    display: inline;
+    line-height: 3.7em;
+    padding-left: 3%;
+  }
+}
