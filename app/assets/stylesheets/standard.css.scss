@@ -57,11 +57,11 @@ a:hover {
   color: #F3324A;
 }
 
-.bold {
+.bold, .emphasize {
   font-weight: bold;
 }
 
-.grey {
+.grey, .de-emphasize {
   color: #8D94A8;
 }
 
@@ -137,14 +137,14 @@ a:hover {
     float: right;
   }
   .user-avatar-thumb {
-    margin-right: 6px;
+    vertical-align: sub;
   }
 }
 
 .main-header-title {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  font-size: 50px;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -210,7 +210,14 @@ a:hover {
   border-radius: 6px;
   .main-content-inner-container {
     padding: 30px;
+    .song:last-child {
+      margin-bottom: 0;
+    }
   }
+}
+
+.songs-for-the-day-container {
+  margin-bottom: 45px;
 }
 
 .song {
@@ -260,7 +267,7 @@ a:hover {
 .form-container {
   max-width: 500px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .submit-input {
@@ -275,6 +282,10 @@ a:hover {
   background: none;
 }
 
+.submit-input-url {
+  font-size: 20px;
+}
+
 .primary-action-button {
   display: block;
   margin: 0 auto;
@@ -285,6 +296,7 @@ a:hover {
   font-family: 'Avenir Next';
   padding: 10px;
   font-size: 24px;
+  max-width: 200px;
 }
 
 .primary-action-button:hover {
@@ -305,6 +317,11 @@ a:hover {
     margin-left: 82px;
     font-size: 24px;
   }
+}
+
+.approval-title {
+  color: #fff;
+  margin-bottom: 50px;
 }
 
 
