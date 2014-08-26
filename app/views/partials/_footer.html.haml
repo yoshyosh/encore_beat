@@ -1,1 +1,13 @@
-= render partial: 'partials/google_analytics'
+%footer.main-container-footer
+  %ul.footer-links
+    - if current_user
+      %li= link_to 'Logout', user_path(current_user), method: :destroy
+      %li= link_to 'Profile', user_path(current_user)
+    - else
+      %li= link_to 'Signup', signup_path
+      %li= link_to 'Login', login_path
+    %li= link_to 'FAQ', faq_path
+    %li= link_to 'Terms', terms_path
+    %li &copy; EncoreBeat #{Time.now.year}
+
+  = render partial: 'partials/google_analytics'

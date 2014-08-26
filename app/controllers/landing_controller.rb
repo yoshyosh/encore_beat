@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class LandingController < ApplicationController
   def index
     @submissions = 
