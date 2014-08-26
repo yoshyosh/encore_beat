@@ -1,4 +1,3 @@
-= render "partials/header"
 .main-content-container.comment-content-container
   .hero-content
     .hero-content-inner
@@ -10,8 +9,8 @@
       .song-submitter
         = user_avatar_thumb_small(@submission.user)
         .song-submitter-name
-          %span.bold= submission_username(@submission.user)
-          %span.grey= humanize_date(@submission.created_at)
+          %span.emphasize= submission_username(@submission.user)
+          %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
   
   .comments-container
     %p.comment-count= comment_count(@submission)

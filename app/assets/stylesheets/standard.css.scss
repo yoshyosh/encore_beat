@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
-  font-family: 'Droid sans', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   background-color: #27282E;
   color: #4F535E;
   padding-bottom: 100px;
@@ -57,11 +57,11 @@ a:hover {
   color: #F3324A;
 }
 
-.bold {
+.bold, .emphasize {
   font-weight: bold;
 }
 
-.grey {
+.grey, .de-emphasize {
   color: #8D94A8;
 }
 
@@ -70,7 +70,6 @@ a:hover {
 }
 
 #main-container-homepage {
-  margin-top: 0;
   .user-avatar-thumb {
     width: 20px;
     border-radius: 20px;
@@ -83,14 +82,13 @@ a:hover {
 
 .main-container-outer {
   text-align: center;
-  margin-top: 100px;
 }
 
 .main-container-header {
   background-image: asset-url("headerCrowd.jpg", image);
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 110px;
+  padding-top: 150px;
   box-sizing: border-box;
   position: relative;
   z-index: 0;
@@ -102,8 +100,8 @@ a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    @include background-image( linear-gradient(180deg, rgba(39, 40, 46, 0.2) 0%, #27282e 120%) );
+    height: 210px;
+    @include background-image( linear-gradient(180deg, rgba(39, 40, 46, 0.2), #27282e) );
     -webkit-filter: blur(1px);
   }
   .main-header-subtitle {
@@ -142,13 +140,22 @@ a:hover {
   .main-nav-options {
     float: right;
   }
+  .user-avatar-thumb {
+    vertical-align: sub;
+  }
 }
 
 .main-header-title {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  font-size: 70px;
-  margin-bottom: 12px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.main-header-description-text {
+  line-height: 22px;
+  max-width: 500px;
+  margin: 20px auto 0;
 }
 
 .main-container {
@@ -177,6 +184,7 @@ a:hover {
   }
 
   &:hover {
+    border-bottom: 18px solid #F3324A;
     cursor: pointer;
   }
 }
@@ -206,7 +214,14 @@ a:hover {
   border-radius: 6px;
   .main-content-inner-container {
     padding: 30px;
+    .song:last-child {
+      margin-bottom: 0;
+    }
   }
+}
+
+.songs-for-the-day-container {
+  margin-bottom: 45px;
 }
 
 .song {
@@ -256,7 +271,7 @@ a:hover {
 .form-container {
   max-width: 500px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .submit-input {
@@ -271,6 +286,10 @@ a:hover {
   background: none;
 }
 
+.submit-input-url {
+  font-size: 20px;
+}
+
 .primary-action-button {
   display: block;
   margin: 0 auto;
@@ -281,6 +300,7 @@ a:hover {
   font-family: 'Avenir Next';
   padding: 10px;
   font-size: 24px;
+  max-width: 200px;
 }
 
 .primary-action-button:hover {
@@ -303,23 +323,9 @@ a:hover {
   }
 }
 
-/* sign up page */
-
-.login-link {
-  margin-top: 50px;
-}
-
-.signup-twitter-button {
-  background: #4099ff;
-  border: none;
+.approval-title {
   color: #fff;
-  width: 100%;
-  max-width: 500px;
-  padding: 10px;
-  font-size: 24px;
-  outline: none;
-  margin-top: 30px;
-  &:hover {
-    cursor: pointer;
-  }
+  margin-bottom: 50px;
 }
+
+

@@ -37,12 +37,29 @@
   }
 }
 
+.comment-input-container {
+  .user-avatar-thumb {
+    width: 50px;
+    height: 50px;
+    float: left;
+  }
+  .comment-form-container {
+    max-width: 525px;
+    width: 100%;
+    margin-left: 64px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    color: #4F535E;
+  }
+}
+
 .comment-container {
   display: inline-block;
   text-align: left;
   overflow: hidden;
   .user-avatar-thumb {
     width: 50px;
+    height: 50px;
     float: left;
   }
   .comment-details-content {
@@ -69,6 +86,7 @@
   max-width: 120px;
   font-size: 16px;
   border-radius: 5px;
+  float: right;
 }
 
 .comment-form-container {
