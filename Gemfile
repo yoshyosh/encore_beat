@@ -21,6 +21,7 @@ gem 'twitter'
 gem 'figaro'
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'will_paginate', '~> 3.0'
 
 group :production do
   gem 'rails_12factor'
