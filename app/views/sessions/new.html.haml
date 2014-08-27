@@ -3,7 +3,7 @@
     .main-content-inner-container
       .main-header-title Login
       = form_tag '/auth/twitter', method: 'get', class: "twitter-form" do
-        %button.signup-twitter-button= "Login Via Twitter"
+        %button.signup-twitter-button= "Login via Twitter"
       %p.flash
         = flash[:error]
         - if params[:w]
