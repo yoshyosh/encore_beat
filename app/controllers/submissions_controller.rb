@@ -14,7 +14,7 @@ class SubmissionsController < ApplicationController
 
     @presenter = {
       comments: @comments,
-      user: current_user,
+      user: current_user || false,
       submission_id: @submission.id,
       form: {
         action: comments_path,
@@ -22,6 +22,10 @@ class SubmissionsController < ApplicationController
         csrf_token: form_authenticity_token
       }
     }
+
+    if current_user
+      @current_user_upvoted = !!Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
+    end
   end
 
   def edit
