@@ -2,7 +2,7 @@
   .main-content-container
     .main-content-inner-container
       %h1.main-header-title Just one last step
-      %p.main-header-description-text You're almost there, we just need a photo before you can start upvoting, commenting, and submitting songs.
+      %p.main-header-description-text Don't be so shy. Add a photo before you start upvoting, commenting, and submitting songs!
       = form_for @user, html: { class: 'form-container' } do |f|
         - if @user.errors.any?
           .error_messages

@@ -8,10 +8,11 @@
   }
 }
 
+.submission-show-detail-container {
+  margin-left: 62px;
+}
+
 .comment-content-container {
-  .upvote-container {
-    margin-right: 12px;
-  }
   .comment-count {
     margin-bottom: 30px;
     font-size: 20px;
@@ -74,12 +75,13 @@
 .comment-text-area {
   width: 100%;
   font-size: 16px;
-  background: #F3F5FA;
+  background: #feffff;
   border: 1px solid #BEBFC4;
   padding: 10px;
   max-width: 525px;
   min-height: 78px;
   border-radius: 5px;
+  outline: none;
 }
 
 #submit-comment-button {
