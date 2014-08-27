@@ -18,5 +18,8 @@
             .song-submitter
               = user_avatar_thumb_small(submission.user)
               %p.song-submitter-name.emphasize
-                = link_to submission_username(submission.user), username_path(submission.user.username)
+                - if submission.user
+                  = link_to submission_username(submission.user), username_path(submission.user.username)
+                - else
+                  = submission_username(submission.user)
               = link_to comment_count(submission), submission_path(submission.id), class: "song-comments-label grey"

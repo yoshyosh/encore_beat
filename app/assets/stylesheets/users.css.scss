@@ -17,21 +17,24 @@
 
 .twitter-form {
   text-align: center;
+
   .signup-twitter-button {
-  background: #4099ff;
-  border: none;
-  color: #fff;
-  padding: 10px 20px;
-  font-size: 24px;
-  outline: none;
-  margin-top: 30px;
-  &:hover {
-    cursor: pointer;
-    background: #3C90F1;
-  }
-  &:active {
-    background: #3A8AE5;
-  }
+    background: #4099ff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 24px;
+    outline: none;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    &:hover {
+      cursor: pointer;
+      background: #3C90F1;
+    }
+    &:active {
+      background: #3A8AE5;
+    }
   }
 }
 
