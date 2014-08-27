@@ -5,7 +5,7 @@ module ApplicationHelper
 
   def humanize_date(date)
     if date.today?
-      "TODAY"
+      "Today"
     else
       "#{date.strftime('%a %B %d')}"
     end
