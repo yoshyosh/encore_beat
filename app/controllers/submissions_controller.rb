@@ -4,9 +4,15 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    @submission = current_user.submissions.create(submission_params)
-    flash[:success] = "Your song was submitted!"
-    redirect_to root_path
+    @submission = current_user.submissions.new(submission_params)
+
+    if @submission.save
+      flash[:success] = "Your song was submitted!"
+      redirect_to root_path
+    else
+      flash.now[:error] = "Submissions need a URL (from YouTube or Soundcloud), Artist, and Title filled out."
+      render :new
+    end
   end
 
   def show
