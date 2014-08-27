@@ -35,6 +35,10 @@
   max-width: 630px;
   .comment {
     margin-bottom: 36px;
+
+    .song-comments-label {
+      font-size: 12px;
+    }
   }
 }
 
@@ -113,4 +117,8 @@
 }
 .comments-leave.comments-leave-active {
   opacity: 0.01;
+}
+
+.character-count {
+  font-size: 12px;
 }
