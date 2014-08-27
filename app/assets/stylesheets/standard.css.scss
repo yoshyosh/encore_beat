@@ -158,7 +158,7 @@ a:hover {
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
-  text-decoration: uppercase;
+  text-transform: uppercase;
 }
 
 .main-content-container {
@@ -169,6 +169,10 @@ a:hover {
   border-radius: 6px;
   .main-content-inner-container {
     padding: 30px;
+    .main-header-title {
+      font-size: 26px;
+      text-align: center;
+    }
     .song:last-child {
       margin-bottom: 0;
     }
@@ -201,8 +205,7 @@ a:hover {
 }
 
 .song-list-title {
-  margin-bottom: 12px;
-
+  margin-bottom: 4px;
   a {
     font-weight: 500;
     font-size: 20px;
@@ -275,19 +278,21 @@ a:hover {
   display: block;
   margin: 0 auto;
   border: none;
-  width: 100%;
-  background: #1f1f1f;
+  background: #429cee;
   color: #fff;
   font-family: 'Avenir Next';
-  padding: 10px;
+  padding: 10px 30px;
   font-size: 24px;
-  max-width: 200px;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    background: #2F86D5;
+  }
+  &:active {
+    background: #2C7FCA;
+  }
 }
 
-.primary-action-button:hover {
-  cursor: pointer;
-  background: #0f0f0f;
-}
 
 .music-preview {
   display: none;

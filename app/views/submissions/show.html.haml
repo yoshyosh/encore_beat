@@ -16,7 +16,6 @@
         .song-submitter-name
           %span.emphasize= submission_username(@submission.user)
           %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
-
   .comments-container
     %p.comment-count= comment_count(@submission)
     = react_component('CommentBox', {presenter: @presenter.to_json}, {:prerender => true})

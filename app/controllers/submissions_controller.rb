@@ -5,6 +5,7 @@ class SubmissionsController < ApplicationController
 
   def create
     @submission = current_user.submissions.create(submission_params)
+    flash[:success] = "Your song was submitted!"
     redirect_to root_path
   end
 
