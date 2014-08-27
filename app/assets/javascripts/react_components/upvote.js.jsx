@@ -4,11 +4,11 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var Upvote = React.createClass({
   getInitialState: function() {
-    return {initiallyUpvoted: this.props.upvoted, clicked: false};
+    return { clicked: false };
   },
 
   componentWillMount: function() {
-    if (this.state.initiallyUpvoted) {
+    if (this.props.upvoted) {
       this.setState({clicked: true});
     }
   },

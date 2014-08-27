@@ -35,6 +35,10 @@
   max-width: 630px;
   .comment {
     margin-bottom: 36px;
+
+    .song-comments-label {
+      font-size: 12px;
+    }
   }
 }
 
@@ -43,6 +47,7 @@
     width: 50px;
     height: 50px;
     float: left;
+    border-radius: 50px;
   }
   .comment-form-container {
     max-width: 525px;
@@ -62,6 +67,7 @@
     width: 50px;
     height: 50px;
     float: left;
+    border-radius: 50px;
   }
   .comment-details-content {
     margin-left: 64px;
@@ -69,6 +75,7 @@
   .comment-content {
     margin-top: 4px;
     line-height: 22px;
+    white-space: pre;
   }
 }
 
@@ -91,4 +98,25 @@
 
 .comment-form-container {
   margin-bottom: 20px;
+}
+
+.comments-enter {
+  opacity: 0.01;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.comments-enter.comments-enter-active {
+  opacity: 1.0;
+}
+.comments-leave {
+  opacity: 0.7;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.comments-leave.comments-leave-active {
+  opacity: 0.01;
+}
+
+.character-count {
+  font-size: 12px;
 }

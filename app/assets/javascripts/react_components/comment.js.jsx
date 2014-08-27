@@ -3,6 +3,7 @@
 var Comment = React.createClass({
   render: function () {
     var avatarPath = 'http://res.cloudinary.com/dhkz9zvs5/image/upload/c_fill,h_50,w_50/r_max/' + this.props.avatar;
+
     return (
       <div className="comment">
         <div className="comment-container">

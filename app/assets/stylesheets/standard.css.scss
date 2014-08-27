@@ -106,6 +106,7 @@ a {
   float: left;
   width: 50px;
   text-align: center;
+  margin-right: 12px;
 }
 
 .arrow-up {
@@ -238,12 +239,17 @@ a {
 .song-submitter-name {
   display: inline-block;
 
+  a {
+    text-decoration: none;
+  }
+
   @include media($small) {
     font-size: 12px;
   }
 }
 
 .song-comments-label {
+  font-size: 14px;
   display: inline-block;
   margin-left: 4px;
 

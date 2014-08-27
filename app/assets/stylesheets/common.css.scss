@@ -142,7 +142,7 @@ header.main-container-header {
 
 footer.main-container-footer {
   @include outer-container();
-  padding-top: 60px;
+  padding-top: 100px;
   min-width: 320px;
   margin: auto;
   text-align: center;
@@ -152,5 +152,13 @@ footer.main-container-footer {
     display: inline;
     line-height: 3.7em;
     padding-left: 3%;
+    color: #fff;
+    font-weight: 300;
+    font-size: 14px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 }

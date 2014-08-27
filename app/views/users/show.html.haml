@@ -1,0 +1,5 @@
+.user-edit
+  .main-container-outer
+    .main-header-title
+      = @user.username
+    = cl_image_tag(@user.avatar, radius: :max, class: 'user-avatar')

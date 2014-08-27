@@ -4,9 +4,15 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    @submission = current_user.submissions.create(submission_params)
-    flash[:success] = "Your song was submitted!"
-    redirect_to root_path
+    @submission = current_user.submissions.new(submission_params)
+
+    if @submission.save
+      flash[:success] = "Your song was submitted!"
+      redirect_to root_path
+    else
+      flash.now[:error] = "Submissions need a URL (from YouTube or Soundcloud), Artist, and Title filled out."
+      render :new
+    end
   end
 
   def show
@@ -15,7 +21,7 @@ class SubmissionsController < ApplicationController
 
     @presenter = {
       comments: @comments,
-      user: current_user,
+      user: current_user || false,
       submission_id: @submission.id,
       form: {
         action: comments_path,
@@ -23,6 +29,10 @@ class SubmissionsController < ApplicationController
         csrf_token: form_authenticity_token
       }
     }
+
+    if current_user
+      @current_user_upvoted = !!Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
+    end
   end
 
   def edit

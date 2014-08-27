@@ -17,5 +17,6 @@
               = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id
             .song-submitter
               = user_avatar_thumb_small(submission.user)
-              %p.song-submitter-name.bold= submission_username(submission.user)
+              %p.song-submitter-name.emphasize
+                = link_to submission_username(submission.user), username_path(submission.user.username)
               = link_to comment_count(submission), submission_path(submission.id), class: "song-comments-label grey"
