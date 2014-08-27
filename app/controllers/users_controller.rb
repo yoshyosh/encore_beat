@@ -35,6 +35,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find_by_username(params[:username])
+  end
+
   def final_signup_step
   end
 
