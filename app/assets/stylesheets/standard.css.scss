@@ -61,9 +61,12 @@ table {
 
 a {
   color: #4F535E;
-}
-a:hover {
-  color: #F3324A;
+  &:hover {
+    color: #F3324A;
+  }
+  &:active {
+    color: #D52F44;
+  }
 }
 
 .bold, .emphasize {
@@ -140,7 +143,7 @@ a:hover {
 }
 
 .upvote-container {
-  float: left; 
+  float: left;
   width: 50px
 }
 
@@ -166,7 +169,6 @@ a:hover {
   margin: 0px auto 0;
   text-align: left;
   background: #FAFAFF;
-  border-radius: 6px;
   .main-content-inner-container {
     padding: 30px;
     .main-header-title {
@@ -258,6 +260,18 @@ a:hover {
   margin-top: 30px;
 }
 
+.text-field-container {
+  position: relative;
+  .submit-label {
+    position: absolute;
+    font-size: 30px;
+    top: 9px;
+  }
+  .submit-url-label {
+    font-size: 20px;
+    top: 5px;
+  }
+}
 .submit-input {
   font-family: 'Avenir Next';
   color: #333;
@@ -268,17 +282,20 @@ a:hover {
   width: 100%;
   outline: none;
   background: none;
+  box-sizing: border-box;
+  padding-left: 170px;
 }
 
 .submit-input-url {
   font-size: 20px;
+  padding-left: 0px;
 }
 
 .primary-action-button {
   display: block;
   margin: 0 auto;
   border: none;
-  background: #429cee;
+  background: #F3324A;
   color: #fff;
   font-family: 'Avenir Next';
   padding: 10px 30px;
@@ -286,10 +303,10 @@ a:hover {
   outline: none;
   &:hover {
     cursor: pointer;
-    background: #2F86D5;
+    background: #E23147;
   }
   &:active {
-    background: #2C7FCA;
+    background: #D52F44;
   }
 }
 

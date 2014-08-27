@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       render :final_signup_step
     else
-      flash[:error] = "Signup error, please try again."
+      flash.now[:error] = "Signup error, please try again."
       render :new
     end
   end
@@ -30,12 +30,14 @@ class UsersController < ApplicationController
     elsif @user.errors.any?
       render :edit
     else
-      flash.now[:success] = "You've successfully updated your account!"
+      flash[:success] = "You've successfully updated your account!"
       redirect_to root_path
     end
   end
 
   def final_signup_step
+    flash[:success] = "Welcome to EncoreBeat!"
+    redirect_to root_path
   end
 
   def submission_params

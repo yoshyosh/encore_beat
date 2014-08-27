@@ -6,6 +6,10 @@
       = form_for @submission, method: :post, html: { class: "form-container" } do |f|
         .music-preview.js-show-spinner.js-music-preview-box
         = f.text_field :url, class: "submit-input submit-input-url js-paste-music-previewer", placeholder: "Enter YouTube or Soundcloud URL", autocomplete: "off", autofocus: true
-        = f.text_field :artist, class: "submit-input hiddenView js-show-field", placeholder: "Artist"
-        = f.text_field :title, class: "submit-input hiddenView js-show-field", placeholder: "Title"
+        .text-field-container.hiddenView.js-show-field
+          = f.label :artist, class: "submit-label"
+          = f.text_field :artist, class: "submit-input", placeholder: "What most people call them"
+        .text-field-container.hiddenView.js-show-field
+          = f.label :title, class: "submit-label"
+          = f.text_field :title, class: "submit-input", placeholder: "Name of the song"
         = f.submit "Submit", id: "submit-song-button", class: "primary-action-button"
