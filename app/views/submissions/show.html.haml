@@ -14,7 +14,8 @@
       .song-submitter
         = user_avatar_thumb_small(@submission.user)
         .song-submitter-name
-          %span.emphasize= submission_username(@submission.user)
+          %span.emphasize
+            = link_to submission_username(@submission.user), username_path(@submission.user.username)
           %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
   .comments-container
     %p.comment-count= comment_count(@submission)

@@ -103,6 +103,7 @@ a:hover {
   float: left;
   width: 50px;
   text-align: center;
+  margin-right: 12px;
 }
 
 .arrow-up {
@@ -235,6 +236,10 @@ a:hover {
 
 .song-submitter-name {
   display: inline-block;
+
+  a {
+    text-decoration: none;
+  }
 
   @include media($small) {
     font-size: 12px;
