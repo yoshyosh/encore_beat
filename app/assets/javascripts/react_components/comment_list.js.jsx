@@ -1,5 +1,7 @@
 /** @jsx React.DOM */
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 var CommentList = React.createClass({
   render: function () {
     var commentNodes = this.props.comments.map(function (comment) {
@@ -14,9 +16,9 @@ var CommentList = React.createClass({
     });
 
     return (
-      <div>
+      <ReactCSSTransitionGroup transitionName="comments">
         { commentNodes }
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 });
