@@ -52,4 +52,8 @@ module ApplicationHelper
 
     "#{pluralize(count, 'Comment')}"
   end
+
+  def user_since(user)
+    user.nil? ? '' : "Since #{user.created_at.strftime('%b %Y')}"
+  end
 end

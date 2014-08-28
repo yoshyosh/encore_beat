@@ -11,6 +11,7 @@ class LandingController < ApplicationController
       .group_by(&:published_at)
 
     @submissions_dates = @submissions.keys.paginate(page: params[:page], :per_page => 2)
+    @keep_headline = true
 
     if current_user
       @current_user_upvotes = current_user.upvotes

@@ -50,7 +50,6 @@ header.main-container-header {
   position: relative;
   z-index: 0;
   height: 205px;
-  margin-bottom: 50px;
 
   .navigation {
     position: absolute;
@@ -116,14 +115,14 @@ header.main-container-header {
     @include background-image( linear-gradient(180deg, rgba(39, 40, 46, 0.2), #27282e) );
     -webkit-filter: blur(1px);
   }
+}
 
-  .main-header-subtitle {
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-    padding: 0 20px;
-    color: #fff;
-  }
+.main-header-subtitle {
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0 20px;
+  color: #fff;
 }
 
 .main-header-description-text {
