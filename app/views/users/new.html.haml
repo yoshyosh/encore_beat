@@ -1,13 +1,13 @@
 .main-container-outer
   .main-content-container
     .main-content-inner-container
-      .main-header-title Create Account
+      .main-header-title Let's get started!
 
       = form_tag '/auth/twitter', method: 'get', class: "twitter-form" do
         %button.signup-twitter-button= "Sign Up via Twitter"
 
       %p
-        or sign up the old-fashioned way below:
+        Or Sign Up below:
 
       = form_for @user, html: { class: "form-container" } do |f|
         - if @user.errors.any?
@@ -17,13 +17,13 @@
                 %li= message
         .text-field-container
           = f.label :username, class: 'submit-label'
-          = f.text_field :username, placeholder: 'What you\'ll be called', id: 'username', class: 'submit-input', autofocus: true
+          = f.text_field :username, placeholder: 'Choose your username', id: 'username', class: 'submit-input', autofocus: true
         .text-field-container
           = f.label :email, class: 'submit-label'
           = f.text_field :email, placeholder: 'We don\'t spam', id: 'email', class: 'submit-input'
         .text-field-container
           = f.label :password, class: 'submit-label'
           = f.password_field :password, id: 'password', placeholder: "At least 5 characters", class: 'submit-input'
-        = f.submit 'Signup', class: "primary-action-button"
+        = f.submit 'Create Account', class: "primary-action-button"
       %p.alternative-account-option-link
-        = link_to 'or log in if you have an account already', login_path
+        = link_to 'click here log in if you already have an account', login_path
