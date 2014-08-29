@@ -61,6 +61,11 @@ header.main-container-header {
     left: 0;
     width: 100%;
     color: #fff;
+
+    @include media($medium) {
+      top: 40px;
+    }
+
     a {
       color: #fff;
       margin-left: 12px;
@@ -176,18 +181,24 @@ footer.main-container-footer {
   margin: auto;
   text-align: center;
 
-  li {
-    list-style: none;
-    display: inline;
-    line-height: 3.7em;
-    padding-left: 3%;
-    color: #fff;
-    font-weight: 300;
-    font-size: 14px;
+  .footer-links {
+    li:first-child {
+      padding-left: 0;
+    }
 
-    a {
+    li {
+      list-style: none;
+      display: inline;
+      line-height: 3.7em;
+      padding-left: 3%;
       color: #fff;
-      text-decoration: none;
+      font-weight: 300;
+      font-size: 14px;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
     }
   }
 }
