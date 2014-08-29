@@ -6,7 +6,7 @@
       = form_tag '/auth/twitter', method: 'get', class: "twitter-form" do
         %button.signup-twitter-button= "Sign Up via Twitter"
 
-      %p
+      %h3.callout
         Or Sign Up below:
 
       = form_for @user, html: { class: "form-container" } do |f|
