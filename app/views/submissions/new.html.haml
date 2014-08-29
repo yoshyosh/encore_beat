@@ -8,8 +8,8 @@
         = text_field_tag :url, '', class: 'submit-input submit-input-url js-paste-music-previewer', placeholder: 'Enter YouTube or Soundcloud URL', autocomplete: 'off', autofocus: true
         .text-field-container.hiddenView.js-show-field
           = label :artist, 'Artist:', class: 'submit-label'
-          = text_field_tag :artist, '', class: 'submit-input', placeholder: 'ex: Ariana Grande ft. Zedd'
+          = text_field_tag :artist, '', class: 'submit-input', placeholder: 'ex: Cosmic Gate ft. Emma Hewitt'
         .text-field-container.hiddenView.js-show-field
           = label :title, 'Title:', class: 'submit-label'
-          = text_field_tag :title, '', class: 'submit-input', placeholder: 'ex: Break Free'
+          = text_field_tag :title, '', class: 'submit-input', placeholder: 'ex: Be Your Sound'
         = f.submit 'Submit', id: 'submit-song-button', class: 'primary-action-button'
