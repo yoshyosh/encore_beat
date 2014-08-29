@@ -12,10 +12,14 @@ class UpvotesController < ApplicationController
         # User upvoting a previously nullified upvote
         count.upvotes += 1
         count.save
+        upvote.nullified = false
+        upvote.save
       else
         # User nullifying their upvote
         count.upvotes -= 1
         count.save
+        upvote.nullified = true
+        upvote.save
       end
     else
       # User upvoted, but the upvote record doesn't exist
