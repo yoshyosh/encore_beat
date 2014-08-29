@@ -3,17 +3,20 @@
     .main-content-container
       .main-content-inner-container
         .main-header-title Update Profile
-        = form_for @user, html: { class: "form-container" } do |f|
+        = form_for @user, html: { class: "form-container", multipart: true } do |f|
           - if @user.errors.any?
-            .error_messages
+            .error-messages
               %ul
                 - for message in @user.errors.full_messages
                   %li= message
-          = f.label :avatar, 'Change Photo (optional)'
+          %p.label-header Change Photo (optional)
           = cl_image_tag(@user.avatar, radius: :max, class: 'user-avatar') if @user.avatar?
-          = f.hidden_field(:avatar_cache)
-          = f.file_field(:avatar)
-          = f.label :password, 'Change Password (optional)'
-          = f.password_field :password, id: 'password', placeholder: "Password", class: 'submit-input'
-          = f.password_field :password_confirmation, id: 'password_confirmation', placeholder: "Confirm Password", class: 'submit-input'
+          = hidden_field_tag :avatar_cache
+          = file_field_tag :avatar, class: "upload-avatar-button js-get-file-name", onchange: "addFileNameToPage();"
+          %p.avatar-added-text.js-add-filename.js-hide-avatar-added-text{onclick: "hideFileNameHolder();"}
+          %p.label-header Change Password (optional)
+          = label :password, 'Password: (at least 5 characters)', class: 'submit-label'
+          = password_field :password, '', id: 'password', placeholder: "Password", class: 'submit-input vertical'
+          = label :password_confirmation, 'Confirm Password:', class: 'submit-label'
+          = password_field :password_confirmation, '', id: 'password_confirmation', placeholder: "Confirm Password", class: 'submit-input vertical'
           = f.submit 'Update', class: "primary-action-button"

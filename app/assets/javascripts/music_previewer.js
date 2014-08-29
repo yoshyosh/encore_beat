@@ -29,7 +29,7 @@ function requestMusicData(link){
 		$(".js-music-preview-box").show();
 		$(".js-show-field").show();
 	} else {
-		alert("C'Mon quit pulling my strings, use a youtube or sound cloud link!");
+		alert("Please use a YouTube or Soundcloud link");
 	}
 }
 

@@ -1,6 +1,6 @@
 %footer.main-container-footer
   %ul.footer-links
-    - if current_user
+    - if current_user && !@hide_nav
       %li= link_to 'Logout', user_path(current_user), method: :destroy
       %li= link_to 'Profile', username_path(current_user.username)
     - else

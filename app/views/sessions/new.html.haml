@@ -9,8 +9,12 @@
         - if params[:w]
           You must be logged in to do that
       = form_tag sessions_path, method: 'post', class: "form-container" do
-        = text_field_tag :username_or_email, params[:username_or_email], placeholder: "Username or email", class: "submit-input", autofocus: true
-        = password_field_tag :password, nil, placeholder: "Password", class: "submit-input"
+        .text-field-container
+          = label :username_or_email, 'Email:', class: 'submit-label'
+          = text_field_tag :username_or_email, params[:username_or_email], placeholder: "Or use your username", class: "submit-input", autofocus: true
+        .text-field-container
+          = label :password, 'Password:', class: 'submit-label'
+          = password_field_tag :password, nil, placeholder: "Password", class: "submit-input"
         = submit_tag "Login", class: "primary-action-button"
 
       %p.alternative-account-option-link

@@ -1,5 +1,6 @@
 class UserAvatarUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
+  PUBLIC_ID_SUFFIX = 'eb_twitter'
 
   process :convert => 'png'
   process :tags => ['user_picture']
@@ -15,9 +16,5 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     %w(jpg jpeg png)
-  end
-
-  def public_id
-    model.username.downcase
   end
 end

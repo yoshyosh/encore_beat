@@ -3,27 +3,25 @@
     text-align: center;
   }
 
-  label {
-    display: block;
+  p.label-header {
+    color: #4F535E;
     font-size: 24px;
     margin-bottom: 24px;
+    margin-top: 40px;
   }
 
   .user-avatar {
     display: block;
     margin: auto;
+    margin-bottom: 40px;
   }
 
-  input#user_avatar {
-    margin: 20px 0 40px 0;
+  .upload-avatar-button {
+    margin: auto;
   }
 
   h2 {
     margin: 10px 0;
-  }
-
-  p {
-    color: #fff;
   }
 }
 
@@ -83,6 +81,7 @@
   -webkit-user-select: none;
   cursor: pointer;
   font-size: 20px;
+  line-height: 30px;
   padding: 10px;
   text-align: center;
   box-sizing: border-box;

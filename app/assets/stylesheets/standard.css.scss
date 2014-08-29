@@ -71,14 +71,6 @@ a {
   }
 }
 
-.bold, .emphasize {
-  font-weight: bold;
-}
-
-.grey, .de-emphasize {
-  color: #8D94A8;
-}
-
 .hiddenView {
   display: none;
 }
@@ -95,7 +87,7 @@ a {
 }
 
 .main-container-outer {
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 0 20px;
   text-align: center;
 }
@@ -118,7 +110,7 @@ a {
   border-left: 18px solid transparent;
   border-right: 18px solid transparent;
   border-bottom: 18px solid #4F535E;
-  margin: 6px 0 12px 7px;
+  margin: 4px 0 11px 7px;
 
   &.clicked {
     border-bottom: 18px solid #E23147;
@@ -177,7 +169,13 @@ a {
     padding: 30px;
     .main-header-title {
       font-size: 26px;
+      line-height: 32px;
       text-align: center;
+
+      &.condense {
+        max-width: 500px;
+        margin: auto;
+      }
     }
     .song:last-child {
       margin-bottom: 0;
@@ -185,10 +183,6 @@ a {
 
     @include media($small) {
       padding: 20px;
-    }
-
-    p {
-      text-align: center;
     }
   }
 }
@@ -275,20 +269,30 @@ a {
 
 .text-field-container {
   position: relative;
+
   .submit-label {
     position: absolute;
-    font-size: 30px;
+    font-size: 20px;
     top: 9px;
+
+    @include media($small) {
+      font-size: 16px;
+    }
   }
+
   .submit-url-label {
     font-size: 20px;
     top: 5px;
+
+    @include media($small) {
+      font-size: 16px;
+    }
   }
 }
 .submit-input {
   font-family: 'Avenir Next';
   color: #333;
-  font-size: 30px;
+  font-size: 20px;
   border: none;
   border-bottom: 2px solid #8A8D95;
   margin-bottom: 30px;
@@ -296,12 +300,25 @@ a {
   outline: none;
   background: none;
   box-sizing: border-box;
-  padding-left: 170px;
+  padding: 6px 0 6px 120px;
+
+  &.vertical {
+    padding-left: 0;
+  }
+
+  @include media($small) {
+    padding-left: 90px;
+    font-size: 16px;
+  }
 }
 
 .submit-input-url {
   font-size: 20px;
   padding-left: 0px;
+
+  @include media($small) {
+    font-size: 16px;
+  }
 }
 
 .primary-action-button {
@@ -336,6 +353,12 @@ a {
   p {
     margin-left: 82px;
     font-size: 24px;
+    line-height: 30px;
+
+    @include media($small) {
+      font-size: 20px;
+      line-height: 24px;
+    }
   }
 }
 
