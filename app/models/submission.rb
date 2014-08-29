@@ -11,10 +11,15 @@ class Submission < ActiveRecord::Base
   validates :url, format: { with: VALID_HOST_SUBMISSION_URLS }
 
   after_save :spawn_count , if: Proc.new {|a| a.status == 1}
+  before_save :flatten_name
 
   scope :pending, -> { where(status: STATUSES[:pending]) }
 
   def spawn_count
-    SubmissionCount.create(submission: self)
+    SubmissionCount.create(submission: self) unless submission_count
+  end
+
+  def flatten_name
+    self.flat_name = "#{id}-#{artist}-#{title}".parameterize
   end
 end
