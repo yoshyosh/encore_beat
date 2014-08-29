@@ -20,6 +20,10 @@ class Submission < ActiveRecord::Base
   end
 
   def flatten_name
-    self.flat_name = "#{id}-#{artist}-#{title}".parameterize
+    self.flat_name = flat_slug
+  end
+
+  def flat_slug
+    "#{id}-#{artist}-#{title}".parameterize
   end
 end
