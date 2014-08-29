@@ -17,7 +17,6 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find_by_id(params[:id])
-    flash[:error] = "That song ID is invalid."
     redirect_to root_path if @submission.status == Submission::STATUSES[:rejected]
 
     @comments = @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
