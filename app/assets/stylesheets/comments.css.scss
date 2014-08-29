@@ -6,6 +6,10 @@
   a {
     text-decoration: none;
   }
+
+  @include media($small) {
+    font-size: 20px;
+  }
 }
 
 .submission-show-detail-container {
@@ -25,20 +29,31 @@
   border-bottom: 1px solid #C3C5CF;
   .hero-content-inner {
     padding: 30px;
+
+    @include media($small) {
+      padding: 20px;
+    }
   }
 }
 
 .comments-container {
   margin-top: 30px;
   padding-bottom: 30px;
+  padding-right: 20px;
   margin-left: 96px;
   max-width: 630px;
+
   .comment {
     margin-bottom: 36px;
 
     .song-comments-label {
       font-size: 12px;
     }
+  }
+
+  @include media($small) {
+    margin: 0;
+    padding: 0 20px 20px 20px;
   }
 }
 
@@ -48,6 +63,10 @@
     height: 50px;
     float: left;
     border-radius: 50px;
+
+    @include media($medium) {
+      display: none;
+    }
   }
   .comment-form-container {
     max-width: 525px;
@@ -56,6 +75,15 @@
     overflow: hidden;
     margin-bottom: 30px;
     color: #4F535E;
+
+    @include media($medium) {
+      max-width: 400px;
+      margin-left: 0;
+    }
+
+    @include media($small) {
+      margin-left: 0;
+    }
   }
 }
 
@@ -119,4 +147,13 @@
 
 .character-count {
   font-size: 12px;
+}
+
+.posting-as {
+  display: none;
+
+  @include media($medium) {
+    display: block;
+    font-size: 12px;
+  }
 }

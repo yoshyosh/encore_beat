@@ -43,6 +43,7 @@ var CommentForm = React.createClass({
     return (
       <div className="comment-input-container">
         <img className="user-avatar-thumb" src={ avatarPath } />
+        <p className="posting-as">Posting as: { this.props.user.username }</p>
         <form ref="form" className="comment-form-container" action={ this.props.form.action } accept-charset="UTF-8" method="post" onSubmit={ this.handleSubmit }>
           <p><input type="hidden" name={ this.props.form.csrf_param } value={ this.props.form.csrf_token } /></p>
           <p><input type="hidden" ref="submission_id" name="comment[submission_id]" value={ this.props.submission_id } /></p>
