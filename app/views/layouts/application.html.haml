@@ -9,7 +9,9 @@
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0"}
   %body
     - flash.each do |name, msg|
-      %div{class: "alert #{name}"}= msg
+      %div{class: "alert #{name}"}
+        %span= msg
+        %span.close-alert &#10006;
     = render partial: 'partials/header'
     = yield
     = render partial: 'partials/footer'

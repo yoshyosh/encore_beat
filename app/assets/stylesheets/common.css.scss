@@ -31,6 +31,17 @@
   margin-left: -400px;
   font-size: 20px;
   padding: 20px;
+  @include media($medium) {
+    max-width: 500px;
+    margin-left: -250px;
+  }
+  @include media($small) {
+    max-width: 300px;
+    margin-left: -150px;
+    font-size: 16px;
+    line-height: 20px;
+    top: 60px;
+  }
 }
 
 .success {
@@ -43,6 +54,28 @@
 
 .error-messages {
   color: #F3324A;
+}
+
+.close-alert {
+  position: absolute;
+  right: 20px;
+  font-size: 30px;
+  top: 15px;
+  opacity: .4;
+  color: #000;
+  &:hover {
+    cursor: pointer;
+    opacity: .6;
+  } 
+  @include media($medium) {
+    right: 10px;
+    font-size: 24px;
+    top: 18px;
+  }
+  @include media($small) {
+    right: 15px;
+    top: 30px;
+  }
 }
 
 header.main-container-header {
