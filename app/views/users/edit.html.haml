@@ -3,7 +3,7 @@
     .main-content-container
       .main-content-inner-container
         .main-header-title Update Profile
-        = form_for @user, html: { class: "form-container" } do |f|
+        = form_for @user, html: { class: "form-container", multipart: true } do |f|
           - if @user.errors.any?
             .error-messages
               %ul

@@ -6,7 +6,7 @@
         %p.main-header-description-text We need your email to finalize your account.
       - else
         %p.main-header-description-text Add a photo before you begin commenting and submitting songs!
-      = form_for @user, html: { class: 'form-container' } do |f|
+      = form_for @user, html: { class: 'form-container', multipart: true } do |f|
         - if @user.errors.any?
           .error-messages
             %ul
