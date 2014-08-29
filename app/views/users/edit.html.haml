@@ -5,7 +5,7 @@
         .main-header-title Update Profile
         = form_for @user, html: { class: "form-container" } do |f|
           - if @user.errors.any?
-            .error_messages
+            .error-messages
               %ul
                 - for message in @user.errors.full_messages
                   %li= message

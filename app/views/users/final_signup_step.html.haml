@@ -8,7 +8,7 @@
         %p.main-header-description-text Add a photo before you begin commenting and submitting songs!
       = form_for @user, html: { class: 'form-container' } do |f|
         - if @user.errors.any?
-          .error_messages
+          .error-messages
             %ul
               - for message in @user.errors.full_messages
                 %li= message
@@ -16,10 +16,10 @@
         - if @user.identities.any?
           .text-field-container
             = label :username, 'Username:', class: "submit-label"
-            = text_field :username, '', placeholder: 'Choose your username', value: @user.identities.first.username, id: 'username', class: 'submit-input'
+            = text_field_tag :username, '', placeholder: 'Choose your username', value: @user.identities.first.username, class: 'submit-input'
           .text-field-container
             = label :email, 'Email:', class: "submit-label"
-            = text_field_tag :email, '', placeholder: 'Email', spellcheck: false, id: 'email', class: 'submit-input'
+            = text_field_tag :email, '', placeholder: 'Email', spellcheck: false, class: 'submit-input'
         - else
           = hidden_field_tag :avatar_cache
           = file_field_tag :avatar, class: "upload-avatar-button js-get-file-name", onchange: "addFileNameToPage();"

@@ -5,10 +5,10 @@
         %span.encore Encore
         %span.beat Beat
       .main-nav-options
-        - if current_user
+        - if current_user && !@hide_nav
           = link_to username_path(current_user.username) do
             = user_avatar_thumb_small(current_user)
-            = current_user.username
+            = submission_username(current_user)
           = link_to "Submit Song", new_submission_path
           = link_to "Logout", session_path(current_user), method: :delete
         - else 

@@ -42,6 +42,7 @@ class SessionsController < ApplicationController
         new_identity = Identity.create_with_omniauth(auth)
         @user = new_identity.user
         session[:user_id] = @user.id
+        @hide_nav = true
         render 'users/final_signup_step' and return
       end
     end

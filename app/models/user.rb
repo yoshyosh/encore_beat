@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   validates :username, format: { with: USERNAME_REGEXP }
   validates :username, length: { minimum: 3 }
   validates_presence_of :password, :on => :create
+  validates_presence_of :email
+  validates_presence_of :username
   validates :password, :length => { minimum: 4 }, unless: 'password_digest.present?'
 
   has_secure_password

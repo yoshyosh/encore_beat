@@ -40,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   def final_signup_step
+    @hide_nav = true
     flash[:success] = "Welcome to EncoreBeat!"
     redirect_to root_path
   end

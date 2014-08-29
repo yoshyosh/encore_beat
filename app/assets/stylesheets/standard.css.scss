@@ -169,7 +169,13 @@ a {
     padding: 30px;
     .main-header-title {
       font-size: 26px;
+      line-height: 32px;
       text-align: center;
+
+      &.condense {
+        max-width: 500px;
+        margin: auto;
+      }
     }
     .song:last-child {
       margin-bottom: 0;

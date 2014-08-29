@@ -1,7 +1,7 @@
 .main-container-outer
   .main-content-container
     .main-content-inner-container
-      .main-header-title Join the community to start submitting your favorite songs!
+      .main-header-title.condense Join the community to start submitting your favorite songs!
 
       = form_tag '/auth/twitter', method: 'get', class: "twitter-form" do
         %button.signup-twitter-button= "Sign Up via Twitter"
@@ -11,7 +11,7 @@
 
       = form_for @user, html: { class: "form-container" } do |f|
         - if @user.errors.any?
-          .error_messages
+          .error-messages
             %ul
               - for message in @user.errors.full_messages
                 %li= message
