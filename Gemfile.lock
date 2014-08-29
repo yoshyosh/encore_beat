@@ -131,7 +131,7 @@ GEM
     minitest (5.4.0)
     multi_json (1.10.1)
     multipart-post (2.0.0)
-    mysql2 (0.3.16)
+    mysql (2.9.1)
     naught (1.0.0)
     neat (1.5.1)
       bourbon (>= 3.1)
@@ -288,7 +288,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
-  mysql2
+  mysql
   neat
   omniauth
   omniauth-identity
