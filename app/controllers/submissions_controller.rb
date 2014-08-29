@@ -45,7 +45,7 @@ class SubmissionsController < ApplicationController
   private
 
   def submission_params
-    params.require(:submission).permit(:title, :artist, :url)
+    params.permit(:title, :artist, :url)
   end
 
   def edit_params

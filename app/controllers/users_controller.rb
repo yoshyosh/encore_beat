@@ -45,6 +45,6 @@ class UsersController < ApplicationController
   end
 
   def submission_params
-    params.require(:user).permit(:username, :email, :password, :avatar, :avatar_cache)
+    params.permit(:username, :email, :password, :avatar, :avatar_cache)
   end
 end

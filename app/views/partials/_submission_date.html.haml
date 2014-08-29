@@ -17,7 +17,7 @@
               = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id
             .song-submitter
               = user_avatar_thumb_small(submission.user)
-              %p.song-submitter-name.emphasize
+              %p.song-submitter-name.off-emphasize
                 - if submission.user
                   = link_to submission_username(submission.user), username_path(submission.user.username)
                 - else

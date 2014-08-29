@@ -3,9 +3,9 @@
     .main-content-inner-container
       %h1.main-header-title Just one last step
       - if @user.identities.any?
-        %p.main-header-description-text We need your email to finalize your account. We don't spam.
+        %p.main-header-description-text We need your email to finalize your account.
       - else
-        %p.main-header-description-text Don't be so shy. Add a photo before you start upvoting, commenting, and submitting songs!
+        %p.main-header-description-text Add a photo before you begin commenting and submitting songs!
       = form_for @user, html: { class: 'form-container' } do |f|
         - if @user.errors.any?
           .error_messages
@@ -15,14 +15,14 @@
         = hidden_field_tag 'final_signup_step', true
         - if @user.identities.any?
           .text-field-container
-            = f.label :username, class: "submit-label"
-            = f.text_field :username, placeholder: 'What youll be called', value: @user.identities.first.username, id: 'username', class: 'submit-input'
+            = label :username, 'Username:', class: "submit-label"
+            = text_field :username, '', placeholder: 'Choose your username', value: @user.identities.first.username, id: 'username', class: 'submit-input'
           .text-field-container
-            = f.label :email, class: "submit-label"
-            = f.text_field :email, placeholder: 'Email', spellcheck: false, id: 'email', class: 'submit-input'
+            = label :email, 'Email:', class: "submit-label"
+            = text_field_tag :email, '', placeholder: 'Email', spellcheck: false, id: 'email', class: 'submit-input'
         - else
-          = f.hidden_field(:avatar_cache)
-          = f.file_field :avatar, class: "upload-avatar-button js-get-file-name", onchange: "addFileNameToPage();"
+          = hidden_field_tag :avatar_cache
+          = file_field_tag :avatar, class: "upload-avatar-button js-get-file-name", onchange: "addFileNameToPage();"
           %p.avatar-added-text.js-add-filename.js-hide-avatar-added-text{onclick: "hideFileNameHolder();"}
 
         = f.submit 'Signup', class: 'primary-action-button'

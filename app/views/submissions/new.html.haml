@@ -2,14 +2,14 @@
   .main-content-container
     .main-content-inner-container
       %h1.main-header-title
-        Submit song
-      = form_for @submission, method: :post, html: { class: "form-container" } do |f|
+        Submit Song
+      = form_for @submission, method: :post, html: { class: 'form-container' } do |f|
         .music-preview.js-show-spinner.js-music-preview-box
-        = f.text_field :url, class: "submit-input submit-input-url js-paste-music-previewer", placeholder: "Enter YouTube or Soundcloud URL", autocomplete: "off", autofocus: true
+        = text_field_tag :url, '', class: 'submit-input submit-input-url js-paste-music-previewer', placeholder: 'Enter YouTube or Soundcloud URL', autocomplete: 'off', autofocus: true
         .text-field-container.hiddenView.js-show-field
-          = f.label :artist, class: "submit-label"
-          = f.text_field :artist, class: "submit-input", placeholder: "What most people call them"
+          = label :artist, 'Artist:', class: 'submit-label'
+          = text_field_tag :artist, '', class: 'submit-input', placeholder: 'ex: Ariana Grande ft. Zedd'
         .text-field-container.hiddenView.js-show-field
-          = f.label :title, class: "submit-label"
-          = f.text_field :title, class: "submit-input", placeholder: "Name of the song"
-        = f.submit "Submit", id: "submit-song-button", class: "primary-action-button"
+          = label :title, 'Title:', class: 'submit-label'
+          = text_field_tag :title, '', class: 'submit-input', placeholder: 'ex: Break Free'
+        = f.submit 'Submit', id: 'submit-song-button', class: 'primary-action-button'

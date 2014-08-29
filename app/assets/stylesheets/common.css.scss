@@ -81,7 +81,28 @@ header.main-container-header {
       float: left;
       font-size: 30px;
       font-family: 'Lato', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
+      text-transform: uppercase;
+
+      &:hover {
+        color: #fff;
+      }
+
+      .encore {
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      .beat {
+        margin-left: -4px;
+        color: #F3324A;
+
+        &:hover {
+          color: #F3324A;
+        }
+      }
+
       @include media($small){
         margin-bottom: 12px;
         float: none;
@@ -165,4 +186,17 @@ footer.main-container-footer {
       text-decoration: none;
     }
   }
+}
+
+.bold, .emphasize {
+  font-weight: bold;
+}
+
+.grey, .de-emphasize {
+  color: #8D94A8;
+}
+
+.off-emphasize {
+  font-family: 'Lato';
+  font-weight: 400;
 }
