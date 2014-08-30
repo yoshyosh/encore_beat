@@ -10,7 +10,7 @@ class LandingController < ApplicationController
       .references(:submission_count)
       .group_by(&:published_at)
 
-    @submissions_dates = @submissions.keys.paginate(page: params[:page], :per_page => 2)
+    @submissions_dates = @submissions.keys.paginate(page: params[:page], :per_page => 5)
     @keep_headline = true
 
     if current_user
