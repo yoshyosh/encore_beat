@@ -24,6 +24,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find_by_id(params[:comment_id])
+    @submission = @comment.submission if @comment
+
+    if @comment.destroy
+      count = @submission.submission_count
+      count.comments -= 1
+      render :json => @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
+    end
+  end
+
   def comment_params
     params.require(:comment).permit(:body, :submission_id)
   end

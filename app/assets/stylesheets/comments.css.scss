@@ -157,3 +157,13 @@
     font-size: 12px;
   }
 }
+
+.admin-delete-comment {
+  margin-left: 20px;
+  font-size: 12px;
+
+  &:hover {
+    cursor: pointer;
+    color: #F3324A;
+  }
+}

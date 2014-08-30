@@ -17,11 +17,23 @@ var CommentBox = React.createClass({
     });
   },
 
+  handleCommentDelete: function (commentId) {
+    $.ajax({
+      data: {comment_id: commentId},
+      url: '/comments/' + commentId,
+      type: "DELETE",
+      dataType: "json",
+      success: function (data) {
+        this.setState({ comments: data });
+      }.bind(this)
+    });
+  },
+
   render: function () {
     if (this.state.user) {
       var commentBox = (<div>
         <CommentForm form={ this.state.form } onCommentSubmit={ this.handleCommentSubmit } submission_id={ this.state.submission_id } user={ this.state.user }/>
-        <CommentList comments={ this.state.comments } />
+        <CommentList comments={ this.state.comments } current_user={ this.state.user } onCommentDelete={ this.handleCommentDelete } />
       </div>)
     }
     else {
