@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   resources :identities
   resources :upvotes
   resources :comments
-  resources :counts, only: :update
+  resources :submission_counts, only: :update
 
-  get 'user/:username' => 'users#show', :as => 'username'
+  get 'user/:username' => 'users#show', as: 'username'
+  get 'song/:flat_name' => 'submissions#show', as: 'submission_flat_name'
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   get '/auth/failure', to: 'sessions#error', as: 'failure'
   get '/admin/approval_queue', to: 'admin#approval_queue', as: 'approval_queue'

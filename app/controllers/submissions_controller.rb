@@ -16,7 +16,9 @@ class SubmissionsController < ApplicationController
   end
 
   def show
-    @submission = Submission.find_by_id(params[:id])
+    @submission = Submission.find_by_flat_name(params[:flat_name])
+    redirect_to root_path if @submission.status == Submission::STATUSES[:rejected]
+
     @comments = @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
 
     @presenter = {
@@ -31,7 +33,8 @@ class SubmissionsController < ApplicationController
     }
 
     if current_user
-      @current_user_upvoted = !!Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
+      user_upvote = Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
+      @current_user_upvoted = user_upvote && !user_upvote.nullified
     end
   end
 

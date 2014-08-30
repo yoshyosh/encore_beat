@@ -22,4 +22,4 @@
                   = link_to submission_username(submission.user), username_path(submission.user.username)
                 - else
                   = submission_username(submission.user)
-              = link_to comment_count(submission), submission_path(submission.id), class: "song-comments-label grey"
+              = link_to comment_count(submission), submission_flat_name_path(submission.flat_slug), class: "song-comments-label grey"
