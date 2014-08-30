@@ -33,7 +33,8 @@ class SubmissionsController < ApplicationController
     }
 
     if current_user
-      @current_user_upvoted = !!Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
+      user_upvote = Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
+      @current_user_upvoted = user_upvote && !user_upvote.nullified
     end
   end
 
