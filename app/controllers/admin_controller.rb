@@ -7,6 +7,8 @@ class AdminController < ApplicationController
       .pending
       .order('created_at DESC')
       .group_by {|s| s.created_at.strftime('%a %B %d')}
+
+    @future_submissions = Submission.where('published_at = ?', Date.tomorrow).order('created_at DESC')
   end
 
   private

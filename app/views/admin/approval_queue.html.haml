@@ -1,6 +1,18 @@
 .admin-approvals
   .main-container-outer
     %h1.main-header-title.approval-title Admin Approval Queue
+    %h4.song-list-date-group= "Going Out Tomorrow #{Date.tomorrow}"
+    .main-content-container.songs-for-the-day-container
+      .main-content-inner-container
+        - @future_submissions.each do |submission|
+          .song
+            .song-details-container
+              %h3.song-list-title
+                = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
+              .song-submitter
+                = user_avatar_thumb_small(submission.user)
+                %p.song-submitter-name
+                  = link_to submission_username(submission.user), username_path(submission.user.username)
     - if @submissions.empty?
       No submissions to approve right now. Why not spread the word? :)
     - else
