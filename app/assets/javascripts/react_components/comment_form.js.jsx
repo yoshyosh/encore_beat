@@ -39,7 +39,13 @@ var CommentForm = React.createClass({
   },
 
   render: function() {
-    var avatarPath = this.props.user.avatar.thumb.url;
+    if (this.props.user.avatar.url) {
+      var avatarPath = this.props.user.avatar.thumb.url;
+    }
+    else {
+      var avatarPath = 'http://res.cloudinary.com/dhkz9zvs5/image/upload/c_fill,h_50,w_50/r_max/defaultAvatar_a8kvhz';
+    }
+    
     return (
       <div className="comment-input-container">
         <img className="user-avatar-thumb" src={ avatarPath } />
