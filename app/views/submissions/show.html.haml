@@ -10,8 +10,8 @@
               .arrow-up
           %p.vote-count{:'data-count-id' => @submission.id}
             = @submission.submission_count.upvotes
-        %h1.main-header-comment-title
-          = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank"
+        %h1.main-header-comment-title.song-title-link
+          = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank", :'data-submission-id' => @submission.id
         .song-submitter
           = user_avatar_thumb_small(@submission.user)
           .song-submitter-name
