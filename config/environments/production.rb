@@ -79,4 +79,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.react.max_renderers = 10
+  config.react.timeout = 20 #seconds
+  config.react.variant = :production
+  config.react.addons = true
 end

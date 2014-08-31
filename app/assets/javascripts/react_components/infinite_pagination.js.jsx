@@ -7,35 +7,46 @@ var InfinitePagination = React.createClass({
 
   handleClick: function (e) {
     e.preventDefault();
-    var page = this.props.current_page + 1;
+    var page = this.state.current_page + 1;
     var self = this;
-    var spinner = "<div class='spinner js-spinner'>" + "<div class='rect1'></div>" + "<div class='rect2'></div>" + "<div class='rect3'></div>" + "<div class='rect4'></div>" + "<div class='rect5'></div>" + "</div>";
 
-    $(e.target).html(spinner);
+    $('#paginate-trigger').toggle();
+    $('.spinner').toggle();
 
     $.ajax({
       url: '/',
       type: 'GET',
       data: {page: page},
       complete: function ( data ) {
-        $('.js-spinner').remove();
+        $('.spinner').toggle();
         $('#load-more-container').append(data.responseText);
+        $('#paginate-trigger').toggle();
         self.setState({current_page: page});
       }
     });
   },
 
   render: function () {
+    var spinner = (
+      <div className='spinner js-spinner'>
+        <div className='rect1'></div>
+        <div className='rect2'></div>
+        <div className='rect3'></div>
+        <div className='rect4'></div>
+        <div className='rect5'></div>
+      </div>)
+
     if (this.state.current_page === this.state.total_pages) {
-      var paginationTrigger = (<span />);
+      var paginationTrigger = (<span/>);
     }
     else {
       var paginationTrigger = (<a href='#' id='paginate-trigger' onClick={ this.handleClick }>Load more songs</a>);
     }
 
     return (
-      <div>
+      <div className='paginate-trigger-wrapper'>
         { paginationTrigger }
+        { spinner }
       </div>
     );
   }
