@@ -91,9 +91,11 @@ a {
 }
 
 .main-container-outer {
-  margin-top: 20px;
   padding: 0 20px;
   text-align: center;
+  z-index: 1;
+  position: relative;
+  margin-top: -30px;
 }
 
 .main-container {

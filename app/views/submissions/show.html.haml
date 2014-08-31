@@ -6,21 +6,22 @@
           = render partial: 'partials/upvote', locals: { submission: @submission }
           %p.vote-count{:'data-count-id' => @submission.id}
             = @submission.submission_count.upvotes
-        %h1.main-header-comment-title.song-title-link
-          = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank", :'data-submission-id' => @submission.id
-        .song-submitter
-          = user_avatar_thumb_small(@submission.user)
-          .song-submitter-name
-            %span.emphasize
-              - if @submission.user
-                = link_to submission_username(@submission.user), username_path(@submission.user.username)
-              - else
-                = submission_username(@submission.user)
-            %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
-        - if current_user.admin
-          .admin-approvals.admin-control
-            = link_to "Reject", submission_path(@submission, status: 2), {remote: true, :'data-submission-id' => @submission.id, class: 'js-reject-submission reject-submission', method: :put}
-            = link_to "Edit", edit_submission_path(@submission), class: 'edit-submission'
+        .submission-show-detail-container
+          %h1.main-header-comment-title.song-title-link
+            = link_to formatted_line_for_submission(@submission), @submission.url, target: "_blank", :'data-submission-id' => @submission.id
+          .song-submitter
+            = user_avatar_thumb_small(@submission.user)
+            .song-submitter-name
+              %span.emphasize
+                - if @submission.user
+                  = link_to submission_username(@submission.user), username_path(@submission.user.username)
+                - else
+                  = submission_username(@submission.user)
+              %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
+          - if current_user.admin
+            .admin-approvals.admin-control
+              = link_to "Reject", submission_path(@submission, status: 2), {remote: true, :'data-submission-id' => @submission.id, class: 'js-reject-submission reject-submission', method: :put}
+              = link_to "Edit", edit_submission_path(@submission), class: 'edit-submission'
     .comments-container
       %p.comment-count
         = comment_count(@submission)
