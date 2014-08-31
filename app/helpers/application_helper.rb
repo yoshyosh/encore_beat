@@ -56,4 +56,10 @@ module ApplicationHelper
   def user_since(user)
     user.nil? ? '' : "Since #{user.created_at.strftime('%b %Y')}"
   end
+
+  def user_upvoted_song?(user, song_id)
+    return false if user.upvotes.blank?
+
+    user.upvotes.any? {|upvote| !upvote.nullified && upvote.submission_id == song_id }
+  end
 end
