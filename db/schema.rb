@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824040131) do
+ActiveRecord::Schema.define(version: 20140829203831) do
 
   create_table "comments", force: true do |t|
     t.text     "body",          null: false
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 20140824040131) do
     t.integer  "comments",      default: 0
   end
 
-  add_index "submission_counts", ["upvotes"], name: "index_submission_counts_on_upvotes", using: :btree
-
   create_table "submissions", force: true do |t|
     t.string   "title",                    null: false
     t.string   "artist",                   null: false
@@ -61,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140824040131) do
     t.datetime "updated_at"
     t.integer  "status",       default: 0, null: false
     t.date     "published_at"
+    t.string   "flat_name",                null: false
   end
 
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
