@@ -11,14 +11,20 @@ var Comment = React.createClass({
   },
 
   render: function () {
-    var avatarPath = 'http://res.cloudinary.com/dhkz9zvs5/image/upload/c_fill,h_50,w_50/r_max/' + this.props.avatar;
     var userPath = '/user/' + this.props.commenter;
 
-    if (this.props.admin || this.props.current_user.username === this.props.commenter) {
-      var deleteComment = (<span className="admin-delete-comment" onClick={ this.handleDelete }>DELETE</span>)
+    if (this.props.avatar) {
+      var avatarPath = 'http://res.cloudinary.com/dhkz9zvs5/image/upload/c_fill,h_50,w_50/r_max/' + this.props.avatar;
     }
     else {
-      var deleteComment = (<span/>)
+      var avatarPath = 'http://res.cloudinary.com/dhkz9zvs5/image/upload/c_fill,h_50,w_50/r_max/defaultAvatar_a8kvhz.png';
+    }
+
+    if (this.props.admin || this.props.current_user.username === this.props.commenter) {
+      var deleteComment = (<span className="admin-delete-comment" onClick={ this.handleDelete }>DELETE</span>);
+    }
+    else {
+      var deleteComment = (<span/>);
     }
 
     return (
