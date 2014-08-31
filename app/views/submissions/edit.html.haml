@@ -1,0 +1,15 @@
+.main-container-outer
+  .main-content-container
+    .main-content-inner-container
+      %h1.main-header-title
+        Edit Submitted Song
+      = form_for @submission, method: :put, html: { class: 'form-container' } do |f|
+        .music-preview.js-show-spinner.js-music-preview-box
+        = text_field_tag :url, @submission.url, class: 'submit-input submit-input-url js-paste-music-previewer', placeholder: 'Enter YouTube or Soundcloud URL', autocomplete: 'off', autofocus: true
+        .text-field-container
+          = label :artist, 'Artist:', class: 'submit-label'
+          = text_field_tag :artist, @submission.artist, class: 'submit-input', placeholder: 'ex: Cosmic Gate ft. Emma Hewitt'
+        .text-field-container
+          = label :title, 'Title:', class: 'submit-label'
+          = text_field_tag :title, @submission.title, class: 'submit-input', placeholder: 'ex: Be Your Sound'
+        = f.submit 'Submit', id: 'submit-song-button', class: 'primary-action-button'

@@ -39,10 +39,20 @@ class SubmissionsController < ApplicationController
   end
 
   def edit
-    submission = Submission.find_by_id(params[:id])
+    redirect_to root_path unless current_user.admin
 
+    @submission = Submission.find_by_id(params[:id])
+  end
+
+  def update
+    submission = Submission.find_by_id(params[:id])
     submission.update_attributes(edit_params)
-    render :json => {}
+
+    if request.xhr?
+      render :json => {}
+    else
+      redirect_to approval_queue_path
+    end
   end
 
   private
@@ -52,6 +62,6 @@ class SubmissionsController < ApplicationController
   end
 
   def edit_params
-    params.permit(:status, :id, :published_at)
+    params.permit(:status, :id, :published_at, :url, :artist, :title)
   end
 end
