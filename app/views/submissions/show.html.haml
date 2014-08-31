@@ -18,5 +18,9 @@
                 = submission_username(@submission.user)
             %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
     .comments-container
-      %p.comment-count= comment_count(@submission)
+      %p.comment-count
+        = comment_count(@submission)
+        - if !current_user
+          = link_to 'Login to comment on this track!', login_path
+
       = react_component('CommentBox', {presenter: @presenter.to_json}, {prerender: true})
