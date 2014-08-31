@@ -6,8 +6,7 @@ class CommentsController < ApplicationController
     if @comment.save
       @submission = @comment.submission
       submission_count = @submission.submission_count
-      submission_count.comments += 1
-      submission_count.save
+      submission_count.increment_comments!
 
       if request.xhr?
         render :json => @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
@@ -21,6 +20,18 @@ class CommentsController < ApplicationController
         flash[:error] = "Something went wrong with posting your comment. Comments have a 1000-character maximum length."
         redirect_to submission_path(submission)
       end
+    end
+  end
+
+  def destroy
+    @comment = Comment.find_by_id(params[:comment_id])
+    @submission = @comment.submission if @comment
+
+    if @comment.destroy
+      count = @submission.submission_count
+      count.deduct_comments!
+
+      render :json => @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
     end
   end
 

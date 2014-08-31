@@ -10,22 +10,19 @@ class UpvotesController < ApplicationController
     if upvote_exists
       if is_upvoted
         # User upvoting a previously nullified upvote
-        count.upvotes += 1
-        count.save
+        count.increment_upvotes!
         upvote.nullified = false
         upvote.save
       else
         # User nullifying their upvote
-        count.upvotes -= 1
-        count.save
+        count.deduct_upvotes!
         upvote.nullified = true
         upvote.save
       end
     else
       # User upvoted, but the upvote record doesn't exist
       Upvote.create(submission_id: submission_id, user_id: current_user.id)
-      count.upvotes += 1
-      count.save
+      count.increment_upvotes!
     end
 
     render json: {}
