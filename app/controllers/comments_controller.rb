@@ -6,8 +6,7 @@ class CommentsController < ApplicationController
     if @comment.save
       @submission = @comment.submission
       submission_count = @submission.submission_count
-      submission_count.comments += 1
-      submission_count.save
+      submission_count.increment_comments!
 
       if request.xhr?
         render :json => @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
@@ -30,7 +29,8 @@ class CommentsController < ApplicationController
 
     if @comment.destroy
       count = @submission.submission_count
-      count.comments -= 1
+      count.deduct_comments!
+
       render :json => @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
     end
   end
