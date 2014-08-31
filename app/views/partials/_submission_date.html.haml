@@ -13,7 +13,7 @@
             %p.vote-count{:'data-count-id' => submission.id}
               = submission.submission_count.upvotes
           .song-details-container
-            %h3.song-list-title
+            %h3.song-list-title.song-title-link
               = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id
             .song-submitter
               = user_avatar_thumb_small(submission.user)

@@ -5,7 +5,7 @@ $(document).ready(function() {
     $(this).remove();
   });
 
-  $('.song-details-container').on('click', '.song-list-title a', function() {
+  $('body').on('click', '.song-title-link a', function() {
     var submission_id = $(this).attr('data-submission-id');
 
     $.ajax({
