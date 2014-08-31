@@ -1,4 +1,8 @@
 module ApplicationHelper
+  include TweetButton
+
+  TweetButton.default_tweet_button_options = {via: 'EncoreBeatCOM', count: 'none'}
+
   def formatted_line_for_submission(submission)
     "#{submission.artist} - #{submission.title}"
   end
@@ -7,7 +11,15 @@ module ApplicationHelper
     if date.today?
       "Today"
     else
-      "#{date.strftime('%a %B %d')}"
+      date.strftime('%a %B %d')
+    end
+  end
+
+  def humanize_date_with_numerics(date)
+    if date.today?
+      "Today"
+    else
+      date.strftime('%m-%d-%Y')
     end
   end
 
