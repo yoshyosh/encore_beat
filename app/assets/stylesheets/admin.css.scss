@@ -1,5 +1,5 @@
 .admin-control {
-  display: inline;
+  float: right;
 
   @include media($medium) {
     display: block;
@@ -31,5 +31,10 @@
 .admin-approvals {
   .song-details-container {
     margin-left: 0;
+  }
+
+  .admin-control {
+    display: inline;
+    float: none;
   }
 }

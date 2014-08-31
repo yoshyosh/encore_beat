@@ -17,6 +17,10 @@
               - else
                 = submission_username(@submission.user)
             %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
+        - if current_user.admin
+          .admin-approvals.admin-control
+            = link_to "Reject", submission_path(@submission, status: 2), {remote: true, :'data-submission-id' => @submission.id, class: 'js-reject-submission reject-submission', method: :put}
+            = link_to "Edit", edit_submission_path(@submission), class: 'edit-submission'
     .comments-container
       %p.comment-count
         = comment_count(@submission)
