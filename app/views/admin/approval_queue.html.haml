@@ -17,5 +17,10 @@
                     = user_avatar_thumb_small(submission.user)
                     %p.song-submitter-name
                       = link_to submission_username(submission.user), username_path(submission.user.username)
-                    = link_to "Approve", edit_submission_path(submission, status: 1, published_at: Date.today), {remote: true, :'data-submission-id' => submission.id, class: 'approve-submission'}
-                    = link_to "Reject", edit_submission_path(submission, status: 2), {remote: true, :'data-submission-id' => submission.id, class: 'reject-submission'}
+                    .admin-control
+                      %span Approve - Publish: (
+                      = link_to "Now", edit_submission_path(submission, status: 1, published_at: Date.today), {remote: true, :'data-submission-id' => submission.id, class: 'approve-submission'}
+                      %span /
+                      = link_to "Tomorrow", edit_submission_path(submission, status: 1, published_at: Date.tomorrow), {remote: true, :'data-submission-id' => submission.id, class: 'approve-submission'}
+                      %span ) or 
+                      = link_to "Reject", edit_submission_path(submission, status: 2), {remote: true, :'data-submission-id' => submission.id, class: 'reject-submission'}

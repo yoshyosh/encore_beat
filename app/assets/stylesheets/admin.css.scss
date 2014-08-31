@@ -1,0 +1,12 @@
+.admin-control {
+  display: inline;
+
+  @include media($medium) {
+    display: block;
+    margin: 10px 0;
+  }
+
+  a {
+    font-weight: 700;
+  }
+}

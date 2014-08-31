@@ -9,6 +9,8 @@
           = link_to username_path(current_user.username) do
             = user_avatar_thumb_small(current_user)
             = submission_username(current_user)
+          - if current_user.admin
+            = link_to "ADMIN", approval_queue_path
           = link_to "Submit Song", new_submission_path
           = link_to "Logout", session_path(current_user), method: :delete
         - else 
