@@ -35,12 +35,13 @@ var Upvote = React.createClass({
   },
 
   render: function() {
-    if (this.state.clicked) {
-      var upvote = (<div className="arrow-up clicked" onClick={ this.handleClick } />)
-    }
-    else {
-      var upvote = (<div className="arrow-up" onClick={ this.handleClick } />)
-    }
+    var cx = React.addons.classSet;
+    var arrowClasses = cx({
+      'arrow-up': true,
+      'clicked': this.state.clicked
+    });
+
+    var upvote = (<div className={ arrowClasses } onClick={ this.handleClick } />)
 
     return (
       <ReactCSSTransitionGroup transitionName="upvote">
