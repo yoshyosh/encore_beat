@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('body').on('click', '.arrow-up:not(.logged-out)', function() {
+  $('body').on('click', '.js-arrow-up', function() {
     var clicked = $(this).hasClass('clicked');
     var songId = $(this).attr('data-submission-id');
     var counter = $('.vote-count[data-count-id=' + songId + ']');
