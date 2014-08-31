@@ -34,4 +34,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.react.max_renderers = 10
+  config.react.timeout = 20 #seconds
+  config.react.variant = :development
+  config.react.addons = true
 end

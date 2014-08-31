@@ -6,11 +6,7 @@
       - @submissions[date].each do |submission|
         .song
           .upvote-container
-            - if current_user
-              = react_component('Upvote', {upvoted: @current_user_upvotes.any? {|upvote| !upvote.nullified && upvote.submission_id == submission.id }, song_id: submission.id}, :span)
-            - else
-              = link_to login_path(w: true) do
-                .arrow-up
+            = render partial: 'partials/upvote', locals: { submission: submission }
             %p.vote-count{:'data-count-id' => submission.id}
               = submission.submission_count.upvotes
           .song-details-container

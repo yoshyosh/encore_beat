@@ -3,11 +3,7 @@
     .hero-content
       .hero-content-inner
         .upvote-container
-          - if current_user
-            = react_component('Upvote', {upvoted: @current_user_upvoted, song_id: @submission.id}, :span)
-          - else
-            = link_to login_path(w: true) do
-              .arrow-up
+          = render partial: 'partials/upvote', locals: { submission: @submission }
           %p.vote-count{:'data-count-id' => @submission.id}
             = @submission.submission_count.upvotes
         %h1.main-header-comment-title.song-title-link
@@ -23,4 +19,4 @@
             %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
     .comments-container
       %p.comment-count= comment_count(@submission)
-      = react_component('CommentBox', {presenter: @presenter.to_json}, {:prerender => true})
+      = react_component('CommentBox', {presenter: @presenter.to_json}, {prerender: true})
