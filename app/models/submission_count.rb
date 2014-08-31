@@ -7,7 +7,7 @@ class SubmissionCount < ActiveRecord::Base
   end
 
   def increment_comments!
-    self.comments -= 1
+    self.comments += 1
     self.save
   end
 
