@@ -1,6 +1,6 @@
 class UpvotesController < ApplicationController
   def create
-    render status: 422 and return unless current_user && !request.xhr
+    render status: 422 and return unless current_user
     submission_id = params[:submission_id]
     is_upvoted = params[:upvoted] == "true"
     upvote = Upvote.where(submission_id: submission_id, user_id: current_user.id).first_or_initialize
