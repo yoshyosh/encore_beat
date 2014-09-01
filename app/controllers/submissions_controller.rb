@@ -7,7 +7,7 @@ class SubmissionsController < ApplicationController
     @submission = current_user.submissions.new(submission_params)
 
     if @submission.save
-      flash[:success] = "Your song was submitted, awaiting approval"
+      flash[:success] = "Thanks! Your song was submitted and is now awaiting approval."
       redirect_to root_path
     else
       flash.now[:error] = "Submissions need a URL (from YouTube or Soundcloud), Artist, and Title filled out."
