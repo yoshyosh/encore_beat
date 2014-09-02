@@ -1,5 +1,5 @@
 .flash {
-  color: #E26A6A;
+  color: $error;
   text-align: center;
 }
 
@@ -50,11 +50,11 @@
 }
 
 .error {
-  background: #4F535E;
+  background: $primary-fill;
 }
 
 .error-messages {
-  color: #F3324A;
+  color: $primary-accent;
 }
 
 .close-alert {
@@ -107,13 +107,13 @@ header.main-container-header {
       text-decoration: none;
     }
     a:hover {
-      color: #F3324A;
+      color: $primary-accent;
     }
     .navigation-inner {
       max-width: 960px;
       width: 100%;
       margin: 0 auto;
-      @include media($small){
+      @include media($small) {
         text-align: center;
       }
       @include media($medium) {
@@ -139,10 +139,10 @@ header.main-container-header {
 
       .beat {
         margin-left: -4px;
-        color: #F3324A;
+        color: $primary-accent;
 
         &:hover {
-          color: #F3324A;
+          color: $primary-accent;
         }
       }
 
@@ -238,7 +238,7 @@ footer.main-container-footer {
         text-decoration: none;
 
         &:hover {
-          color: #F3324A;
+          color: $primary-accent;
         }
       }
     }
@@ -250,7 +250,7 @@ footer.main-container-footer {
 }
 
 .grey, .de-emphasize {
-  color: #8D94A8;
+  color: $primary-soft;
 }
 
 .off-emphasize {

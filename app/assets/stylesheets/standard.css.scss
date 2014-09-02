@@ -31,7 +31,7 @@ body {
   line-height: 1;
   font-family: 'Noto Sans', sans-serif;
   background-color: #27282E;
-  color: #4F535E;
+  color: $primary-fill;
   padding-bottom: 40px;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -62,9 +62,9 @@ table {
 }
 
 a {
-  color: #4F535E;
+  color: $primary-fill;
   &:hover {
-    color: #F3324A;
+    color: $primary-accent;
   }
   &:active {
     color: #D52F44;
@@ -87,6 +87,11 @@ a {
 
   .arrow-up {
     margin: 6px 0 11px 7px;
+  }
+
+
+  .song-list-title a:visited {
+    color: $primary-soft;
   }
 }
 
@@ -115,7 +120,7 @@ a {
   height: 0; 
   border-left: 18px solid transparent;
   border-right: 18px solid transparent;
-  border-bottom: 18px solid #4F535E;
+  border-bottom: 18px solid $primary-fill;
   margin: 4px 0 11px 7px;
 
   &.clicked {
@@ -123,7 +128,7 @@ a {
   }
 
   &:hover {
-    border-bottom: 18px solid #F3324A;
+    border-bottom: 18px solid $primary-accent;
     cursor: pointer;
   }
 
@@ -131,14 +136,14 @@ a {
     margin: 6px 0 8px 11px;
     border-left: 14px solid transparent;
     border-right: 14px solid transparent;
-    border-bottom: 14px solid #4F535E;
+    border-bottom: 14px solid $primary-fill;
 
     &.clicked {
-      border-bottom: 14px solid #F3324A;
+      border-bottom: 14px solid $primary-accent;
     }
 
     &:hover {
-      border-bottom: 14px solid #F3324A;
+      border-bottom: 14px solid $primary-accent;
       cursor: pointer;
     }
   }
@@ -158,7 +163,7 @@ a {
 }
 
 .song-list-date-group {
-  color: #8A8D95;
+  color: $primary-soft;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
@@ -300,7 +305,7 @@ a {
   color: #333;
   font-size: 20px;
   border: none;
-  border-bottom: 2px solid #8A8D95;
+  border-bottom: 2px solid $primary-soft;
   margin-bottom: 30px;
   width: 100%;
   outline: none;
@@ -331,7 +336,7 @@ a {
   display: block;
   margin: 0 auto;
   border: none;
-  background: #F3324A;
+  background: $primary-accent;
   color: #fff;
   font-family: 'Avenir Next';
   padding: 10px 30px;
