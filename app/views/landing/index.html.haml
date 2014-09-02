@@ -3,4 +3,4 @@
   #load-more-container
   #paginate-container
     - if @submissions_dates
-      = react_component('InfinitePagination', {total_pages: @submissions_dates.total_pages, current_page: @submissions_dates.current_page})
+      = react_component('InfinitePagination', {total_pages: @submissions_dates.total_pages, current_page: @submissions_dates.current_page, path: '/'})
