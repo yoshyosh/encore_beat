@@ -18,6 +18,8 @@
                 - else
                   = submission_username(@submission.user)
               %span.de-emphasize= "submitted this " + humanize_date(@submission.created_at)
+          .preview-player
+            = link_to @submission.url, @submission.url
     .comments-container
       %p.comment-count
         = comment_count(@submission)
