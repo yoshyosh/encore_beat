@@ -20,6 +20,8 @@
                 - else
                   = submission_username(@submission.user)
               %span.de-emphasize= "posted " + humanize_date_with_numerics(@submission.created_at)
+          .preview-player
+            = link_to @submission.url, @submission.url
           - if current_user && current_user.admin
             .admin-approvals.admin-control
               = link_to "Reject", submission_path(@submission, status: 2), {remote: true, :'data-submission-id' => @submission.id, class: 'js-reject-submission reject-submission', method: :put}
