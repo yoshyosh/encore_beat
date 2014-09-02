@@ -1,0 +1,7 @@
+- @submissions.each do |submission|
+  .song{ :'data-submission-id' => submission.id }
+    .song-details-container
+      %h3.song-list-title
+        = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
+      .song-submitter
+        = link_to comment_count(submission), submission_flat_name_path(submission.flat_slug), class: "song-comments-label grey"

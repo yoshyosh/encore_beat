@@ -14,7 +14,7 @@ var InfinitePagination = React.createClass({
     $('.spinner').toggle();
 
     $.ajax({
-      url: '/',
+      url: this.props.path,
       type: 'GET',
       data: {page: page},
       complete: function ( data ) {

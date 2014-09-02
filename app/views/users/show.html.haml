@@ -1,11 +1,18 @@
-.user-edit
+.user
   .main-container-outer
-    .main-header-title
-    = cl_image_tag(@user.avatar, radius: :max, class: 'user-avatar')
-    %h2.main-header-subtitle
-      = @user.username
-    %p
-      = user_since(@user)
+    .user-bio
+      .main-header-title
+      = cl_image_tag(@user.avatar, radius: :max, class: 'user-avatar')
+      %h2.main-header-subtitle
+        = @user.username
+      %p= user_since(@user)
+      - if @user == current_user
+        %p= link_to 'Settings', edit_user_path(@user)
 
-    - if @user == current_user
-      %p= link_to 'Settings', edit_user_path(@user)
+    .main-content-container
+      .main-content-inner-container
+        %h4.song-list-date-group Submissions
+        = render partial: 'show_submissions'
+        #load-more-container
+        #paginate-container
+          = react_component('InfinitePagination', {total_pages: @submissions.total_pages, current_page: @submissions.current_page, path: "/users/#{@user.id}"})

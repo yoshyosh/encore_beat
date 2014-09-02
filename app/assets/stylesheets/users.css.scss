@@ -1,4 +1,4 @@
-.user-edit {
+.user {
   form {
     text-align: center;
   }
@@ -13,7 +13,7 @@
   .user-avatar {
     display: block;
     margin: auto;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .upload-avatar-button {
@@ -22,6 +22,31 @@
 
   h2 {
     margin: 10px 0;
+  }
+
+  .user-bio {
+    margin-bottom: 20px;
+
+    p {
+      color: #ccc;
+    }
+
+    a {
+      color: #ccc;
+
+      &:hover {
+        color: #4F535E;
+      }
+    }
+  }
+
+  #paginate-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .song-details-container {
+    margin-left: 20px;
   }
 }
 

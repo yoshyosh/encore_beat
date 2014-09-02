@@ -14,6 +14,7 @@ class Submission < ActiveRecord::Base
   before_save :flatten_name
 
   scope :pending, -> { where(status: STATUSES[:pending]) }
+  scope :published, -> { where('published_at is NOT NULL') }
 
   def spawn_count
     SubmissionCount.create(submission: self) unless submission_count
