@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_filter :authorize
-  before_filter :authorize_site_admin, only: :users
+  before_filter :authorize_site_admin, except: :approval_queue
 
   def index
   end
@@ -16,7 +16,21 @@ class AdminController < ApplicationController
   end
 
   def users
-    @users = User.order('created_at DESC').paginate(page: params[:page], :per_page => 5)
+    @users = User.order('created_at DESC').paginate(page: params[:page], :per_page => 50)
+  end
+
+  def submissions
+    @submissions = Submission
+      .includes(:user)
+      .includes(:submission_count)
+      .where('submissions.status = ?', Submission::STATUSES[:approved])
+      .order('published_at DESC')
+      .references(:submission_count)
+      .paginate(page: params[:page], :per_page => 50)
+
+    @total_clicks = Stats.global_total_clicks
+    @total_upvotes = Upvote.count
+    @total_comments = Comment.count
   end
 
   private

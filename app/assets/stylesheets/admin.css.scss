@@ -42,6 +42,7 @@
 .database-table-list {
   color: #222;
   width: 100%;
+  font-size: 12px;
 
   td, th {
     padding: 4px;
@@ -67,4 +68,8 @@
 
 .pagination {
   margin-top: 20px;
+}
+
+.admin-links li {
+  margin-bottom: 12px;
 }
