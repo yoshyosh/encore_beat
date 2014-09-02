@@ -1,5 +1,5 @@
 .flash {
-  color: #E26A6A;
+  color: $error;
   text-align: center;
 }
 
@@ -50,11 +50,11 @@
 }
 
 .error {
-  background: #4F535E;
+  background: $primary-fill;
 }
 
 .error-messages {
-  color: #F3324A;
+  color: $primary-accent;
 }
 
 .close-alert {
@@ -83,7 +83,7 @@ header.main-container-header {
   background-image: asset-url("headerCrowd.jpg", image);
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 110px;
+  padding-top: 90px;
   box-sizing: border-box;
   position: relative;
   z-index: 0;
@@ -96,10 +96,6 @@ header.main-container-header {
     width: 100%;
     color: #fff;
 
-    @include media($medium) {
-      top: 40px;
-    }
-
     a {
       color: #fff;
       margin-left: 12px;
@@ -107,13 +103,13 @@ header.main-container-header {
       text-decoration: none;
     }
     a:hover {
-      color: #F3324A;
+      color: $primary-accent;
     }
     .navigation-inner {
       max-width: 960px;
       width: 100%;
       margin: 0 auto;
-      @include media($small){
+      @include media($small) {
         text-align: center;
       }
       @include media($medium) {
@@ -139,21 +135,21 @@ header.main-container-header {
 
       .beat {
         margin-left: -4px;
-        color: #F3324A;
+        color: $primary-accent;
 
         &:hover {
-          color: #F3324A;
+          color: $primary-accent;
         }
       }
 
-      @include media($small){
+      @include media($small) {
         margin-bottom: 12px;
         float: none;
       }
     }
     .main-nav-options {
       float: right;
-      @include media($small){
+      @include media($small) {
         float: none;
       }
     }
@@ -181,12 +177,40 @@ header.main-container-header {
   }
 }
 
+.full-headline {
+  display: block;
+
+  @include media($medium) {
+    display: none;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+    padding: 0 20px;
+    color: #fff;
+  }
+}
+
+.truncated-headline {
+  display: none;
+
+  @include media($medium) {
+    display: block;
+  }
+}
+
 .main-header-subtitle {
   font-size: 24px;
-  line-height: 30px;
+  line-height: 32px;
   text-align: center;
   padding: 0 20px;
   color: #fff;
+
+  @include media($medium) {
+    font-size: 20px;
+  }
 
   @include media($small) {
     font-size: 18px;
@@ -238,7 +262,7 @@ footer.main-container-footer {
         text-decoration: none;
 
         &:hover {
-          color: #F3324A;
+          color: $primary-accent;
         }
       }
     }
@@ -250,7 +274,7 @@ footer.main-container-footer {
 }
 
 .grey, .de-emphasize {
-  color: #8D94A8;
+  color: $primary-soft;
 }
 
 .off-emphasize {
