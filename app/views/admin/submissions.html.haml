@@ -1,0 +1,32 @@
+.main-container-outer.admin
+  .main-content-container
+    .main-content-inner-container
+      %h1.main-header-title
+        Approved Submissions
+      %p
+        Total Clicks: #{@total_clicks}
+      %p
+        Total Upvotes: #{@total_upvotes}
+      %p
+        Total Comments: #{@total_comments}
+      %table.database-table-list
+        %tr 
+          %th ID
+          %th Artist
+          %th Title
+          %th Posted By
+          %th Clicks
+          %th Upvotes
+          %th Comments
+          %th Published
+        - @submissions.each do |submission|
+          %tr
+            %td= submission.id
+            %td= truncate(submission.artist, length: 15)
+            %td= truncate(submission.title, length: 25)
+            %td= submission_username(submission.user)
+            %td= submission.submission_count.clicks
+            %td= submission.submission_count.upvotes
+            %td= submission.submission_count.comments
+            %td= submission.published_at
+      = will_paginate @submissions

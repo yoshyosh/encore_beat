@@ -38,3 +38,38 @@
     float: none;
   }
 }
+
+.database-table-list {
+  color: #222;
+  width: 100%;
+  font-size: 12px;
+
+  td, th {
+    padding: 4px;
+  }
+
+  tr {
+    line-height: 30px;
+  }
+
+  tr:nth-child(2n) {
+    padding: 10px;
+    background-color: #ddd;
+  }
+
+  tr:hover {
+    background-color: #ccc;
+  }
+
+  tr:first-child:hover {
+    background-color: inherit;
+  }
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.admin-links li {
+  margin-bottom: 12px;
+}

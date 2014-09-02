@@ -1,0 +1,10 @@
+.main-container-outer.admin
+  .main-content-container
+    .main-content-inner-container
+      %h1.main-header-title
+        Admin Dashboard
+      %ul.admin-links
+        %li=link_to 'Approve/Reject Submissions', approval_queue_path
+        - if current_user.site_admin
+          %li=link_to 'List of Users', admin_users_path
+          %li=link_to 'List of Approved Submissions', admin_submissions_path
