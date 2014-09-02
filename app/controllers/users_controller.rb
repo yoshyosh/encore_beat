@@ -31,6 +31,7 @@ class UsersController < ApplicationController
       render :edit
     else
       flash[:success] = "You've successfully updated your account!"
+      session[:user_id] = @user.id unless current_user
       redirect_to root_path
     end
   end
