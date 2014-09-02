@@ -30,9 +30,8 @@
                     %p.song-submitter-name
                       = link_to submission_username(submission.user), username_path(submission.user.username)
                     .admin-control
-                      %span Approve - Publish: (
-                      = link_to "Now", edit_submission_path(submission, status: 1, published_at: Date.today), {remote: true, :'data-submission-id' => submission.id, class: 'approve-submission'}
-                      %span /
-                      = link_to "Tomorrow", edit_submission_path(submission, status: 1, published_at: Date.tomorrow), {remote: true, :'data-submission-id' => submission.id, class: 'approve-submission'}
-                      %span ) or 
-                      = link_to "Reject", edit_submission_path(submission, status: 2), {remote: true, :'data-submission-id' => submission.id, class: 'reject-submission'}
+                      %p
+                        = link_to "Publish Now", submission_path(submission, status: 1, published_at: Date.today), {remote: true, :'data-submission-id' => submission.id, class: 'js-approve-submission approve-submission', method: :put}
+                        = link_to "Publish Tomorrow", submission_path(submission, status: 1, published_at: Date.tomorrow), {remote: true, :'data-submission-id' => submission.id, class: 'js-approve-submission approve-submission', method: :put}
+                        = link_to "Reject", submission_path(submission, status: 2), {remote: true, :'data-submission-id' => submission.id, class: 'js-reject-submission reject-submission', method: :put}
+                        = link_to "Edit", edit_submission_path(submission), class: 'edit-submission'

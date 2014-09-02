@@ -1,0 +1,20 @@
+.main-container-outer.admin
+  .main-content-container
+    .main-content-inner-container
+      %h1.main-header-title
+        Users
+      %table.database-table-list
+        %tr 
+          %th ID
+          %th Username
+          %th Email
+          %th Signed Up
+        - @users.each do |user|
+          %tr
+            %td= user.id
+            %td
+              = user_avatar_thumb_small(user) 
+              = user.username
+            %td= user.email
+            %td= humanize_date_with_numerics(user.created_at)
+      = will_paginate @users

@@ -7,7 +7,7 @@ class SubmissionsController < ApplicationController
     @submission = current_user.submissions.new(submission_params)
 
     if @submission.save
-      flash[:success] = "Your song was submitted, awaiting approval"
+      flash[:success] = "Thanks! Your song was submitted and is now awaiting approval."
       redirect_to root_path
     else
       flash.now[:error] = "Submissions need a URL (from YouTube or Soundcloud), Artist, and Title filled out."
@@ -19,6 +19,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find_by_flat_name(params[:flat_name])
     redirect_to root_path if @submission.status == Submission::STATUSES[:rejected]
 
+    @meta_data = "#{@submission.artist} - #{@submission.title}"
     @comments = @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
 
     @presenter = {
@@ -39,10 +40,20 @@ class SubmissionsController < ApplicationController
   end
 
   def edit
-    submission = Submission.find_by_id(params[:id])
+    redirect_to root_path unless current_user.admin
 
+    @submission = Submission.find_by_id(params[:id])
+  end
+
+  def update
+    submission = Submission.find_by_id(params[:id])
     submission.update_attributes(edit_params)
-    render :json => {}
+
+    if request.xhr?
+      render :json => {}
+    else
+      redirect_to approval_queue_path
+    end
   end
 
   private
@@ -52,6 +63,6 @@ class SubmissionsController < ApplicationController
   end
 
   def edit_params
-    params.permit(:status, :id, :published_at)
+    params.permit(:status, :id, :published_at, :url, :artist, :title)
   end
 end

@@ -8,65 +8,20 @@ Rails.application.routes.draw do
   resources :upvotes
   resources :comments
   resources :submission_counts, only: :update
+  resources :admin, only: :index
 
   get 'user/:username' => 'users#show', as: 'username'
   get 'song/:flat_name' => 'submissions#show', as: 'submission_flat_name'
   get '/auth/twitter/callback', to: 'sessions#create', as: 'callback'
   get '/auth/failure', to: 'sessions#error', as: 'failure'
-  get '/admin/approval_queue', to: 'admin#approval_queue', as: 'approval_queue'
   get '/final_signup_step', to: 'users#final_signup_step', as: 'final_signup_step'
   get '/login', to: 'sessions#new', as: 'login'
   get '/signup', to: 'users#new', as: 'signup'
   get '/terms', to: 'landing#terms', as: 'terms'
   get '/faq', to: 'landing#faq', as: 'faq'
 
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  # admin pages
+  get '/admin/approval_queue', to: 'admin#approval_queue', as: 'approval_queue'
+  get '/admin/users', to: 'admin#users'
+  get '/admin/submissions', to: 'admin#submissions'
 end

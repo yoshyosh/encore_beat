@@ -25,7 +25,8 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find_by_id(params[:comment_id])
-    @submission = @comment.submission if @comment
+    authorize_comment_delete
+    @submission = @comment.submission
 
     if @comment.destroy
       count = @submission.submission_count
@@ -37,5 +38,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body, :submission_id)
+  end
+
+  def authorize_comment_delete
+    render status: 422 and return unless @comment && current_user && (current_user.admin || current_user == @comment.user)
   end
 end

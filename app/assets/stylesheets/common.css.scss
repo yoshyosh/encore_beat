@@ -187,6 +187,10 @@ header.main-container-header {
   text-align: center;
   padding: 0 20px;
   color: #fff;
+
+  @include media($small) {
+    font-size: 18px;
+  }
 }
 
 .main-header-description-text {
@@ -232,6 +236,10 @@ footer.main-container-footer {
       a {
         color: #fff;
         text-decoration: none;
+
+        &:hover {
+          color: #F3324A;
+        }
       }
     }
   }
@@ -256,4 +264,8 @@ footer.main-container-footer {
 
 .spinner {
   display: none;
+}
+
+.share {
+  float: right;
 }

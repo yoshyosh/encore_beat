@@ -1,5 +1,5 @@
 .admin-control {
-  display: inline;
+  float: right;
 
   @include media($medium) {
     display: block;
@@ -8,5 +8,68 @@
 
   a {
     font-weight: 700;
+    margin: 4px 10px 4px 0;
   }
+
+  p {
+    margin-bottom: 12px;
+  }
+
+  a.approve-submission {
+    @include button(simple, #26A65B, 12px);
+  }
+
+  a.reject-submission {
+    @include button(simple, #E26A6A, 12px);
+  }
+
+  a.edit-submission {
+    @include button(simple, #4294f0, 12px);
+  }
+}
+
+.admin-approvals {
+  .song-details-container {
+    margin-left: 0;
+  }
+
+  .admin-control {
+    display: inline;
+    float: none;
+  }
+}
+
+.database-table-list {
+  color: #222;
+  width: 100%;
+  font-size: 12px;
+
+  td, th {
+    padding: 4px;
+  }
+
+  tr {
+    line-height: 30px;
+  }
+
+  tr:nth-child(2n) {
+    padding: 10px;
+    background-color: #ddd;
+  }
+
+  tr:hover {
+    background-color: #ccc;
+  }
+
+  tr:first-child:hover {
+    background-color: inherit;
+  }
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.admin-links li {
+  margin-bottom: 12px;
 }

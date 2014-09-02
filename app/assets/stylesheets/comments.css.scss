@@ -28,6 +28,7 @@
   margin-bottom: 30px;
   border-bottom: 1px solid #C3C5CF;
   .hero-content-inner {
+    @include clearfix;
     padding: 30px;
 
     @include media($small) {

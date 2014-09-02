@@ -373,4 +373,10 @@ a {
   margin-bottom: 50px;
 }
 
+.share {
+  margin-left: 12px;
 
+  @include media($small) {
+    display: block;
+  }
+}
