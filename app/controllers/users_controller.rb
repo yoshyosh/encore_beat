@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:username]) || User.find_by_id(params[:id])
-    @submissions = Submission.published.includes(:submission_count).includes(:comments).where('user_id = ?', @user.id).paginate(page: params[:page], per_page: 10)
+    @submissions = Submission.published.includes(:submission_count).includes(:comments).where('user_id = ?', @user.id).order('published_at DESC').paginate(page: params[:page], per_page: 10)
 
     if request.xhr?
       respond_to do |format|
