@@ -12,6 +12,4 @@
         .text-field-container.hiddenView.js-show-field
           = label :title, 'Title:', class: 'submit-label'
           = text_field_tag :title, '', class: 'submit-input', placeholder: 'ex: Be Your Sound'
-        = f.submit 'Submit*', id: 'submit-song-button', class: 'primary-action-button'
-      %p.note
-        * Submissions are screened to ensure only quality songs are published to the front page
+        = f.submit 'Submit', id: 'submit-song-button', class: 'primary-action-button'
