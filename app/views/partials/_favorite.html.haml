@@ -1,0 +1,9 @@
+- if current_user
+  - if user_favorited_song?(current_user, submission.id)
+    = link_to favorites_path(user_id: current_user.id, submission_id: submission.id), method: :delete, remote: true, class: 'js-unfanvorite-trigger de-emphasize' do
+      = icon('star-o')
+      Unsave
+  - else
+    = link_to favorites_path(user_id: current_user.id, submission_id: submission.id), method: :post, remote: true, class: 'js-favorite-trigger de-emphasize' do
+      = icon('star')
+      Save

@@ -13,10 +13,15 @@
             %h3.song-list-title.song-title-link
               = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id
             .song-submitter
-              = user_avatar_thumb_small(submission.user)
-              %p.song-submitter-name.off-emphasize
+              %p.song-actions.off-emphasize
                 - if submission.user
-                  = link_to submission_username(submission.user), username_path(submission.user.username)
+                  = link_to username_path(submission.user.username), class: 'song-submitter-name' do
+                    = user_avatar_thumb_small(submission.user)
+                    = submission_username(submission.user)
                 - else
+                  = user_avatar_thumb_small(submission.user)
                   = submission_username(submission.user)
-              = link_to comment_count(submission), submission_flat_name_path(submission.flat_slug), class: "song-comments-label grey"
+                = render partial: 'partials/favorite', locals: { submission: submission }
+                = link_to submission_flat_name_path(submission.flat_slug), class: "song-comments-label grey" do
+                  = icon('comments')
+                  = comment_count(submission)
