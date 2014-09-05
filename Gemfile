@@ -23,6 +23,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'will_paginate', '~> 3.0'
 gem 'tweet-button'
+gem 'font-awesome-sass', '~> 4.2.0'
 
 group :production do
   gem 'rails_12factor'
