@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   resources :submissions
   resources :sessions
   resources :identities
-  resources :upvotes
+  resources :upvotes, only: :create
   resources :comments
   resources :submission_counts, only: :update
   resources :admin, only: :index
+  resources :favorites, only: :create, :destroy
 
   get 'user/:username' => 'users#show', as: 'username'
   get 'song/:flat_name' => 'submissions#show', as: 'submission_flat_name'
