@@ -12,7 +12,7 @@
           .song-details-container
             %h3.song-list-title.song-title-link
               = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id
-            .song-actions
+            .song-metainfo
               .song-submitter
                 - if submission.user
                   = link_to username_path(submission.user.username), class: 'song-submitter-name' do
@@ -21,7 +21,8 @@
                 - else
                   = user_avatar_thumb_small(submission.user)
                   = submission_username(submission.user)
-              = render partial: 'partials/favorite', locals: { submission: submission }
-              = link_to submission_flat_name_path(submission.flat_slug), class: "song-comments-label grey" do
-                = icon('comments')
-                = comment_count(submission)
+              .song-actions
+                = render partial: 'partials/favorite', locals: { submission: submission }
+                = link_to submission_flat_name_path(submission.flat_slug), class: "song-comments-label grey" do
+                  = icon('comments')
+                  = comment_count(submission)
