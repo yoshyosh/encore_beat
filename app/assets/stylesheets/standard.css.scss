@@ -408,3 +408,11 @@ a {
 .favorite-trigger {
   font-size: 14px;
 }
+
+a.js-unfavorite-trigger {
+  color: $primary-accent;
+
+  &:hover {
+    color: darken($primary-accent, 12%);
+  }
+}

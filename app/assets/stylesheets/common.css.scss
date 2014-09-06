@@ -149,6 +149,10 @@ header.main-container-header {
     }
     .main-nav-options {
       float: right;
+      i {
+        font-size: 20px;
+      }
+
       @include media($small) {
         float: none;
       }
