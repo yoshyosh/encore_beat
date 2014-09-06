@@ -1,18 +1,4 @@
 - @favorites.each do |favorite|
   .song{ :'data-favorite-id' => favorite.id }
     .song-details-container
-      %h3.song-list-title.song-title-link
-        = link_to formatted_line_for_submission(favorite.submission), favorite.submission.url, target: "_blank"
-      .song-actions.off-emphasize
-        .song-submitter
-          - if favorite.submission.user
-            = link_to username_path(favorite.submission.user.username), class: 'song-submitter-name' do
-              = user_avatar_thumb_small(favorite.submission.user)
-              = submission_username(favorite.submission.user)
-          - else
-            = user_avatar_thumb_small(favorite.submission.user)
-            = submission_username(favorite.submission.user)
-        = render partial: 'partials/favorite', locals: { submission: favorite.submission }
-        = link_to submission_flat_name_path(favorite.submission.flat_slug), class: "song-comments-label grey" do
-          = icon('comments')
-          = comment_count(favorite.submission)
+      = render partial: 'partials/submission_row', locals: { submission: favorite.submission }
