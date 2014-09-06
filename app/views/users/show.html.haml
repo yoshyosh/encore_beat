@@ -11,8 +11,8 @@
 
     .main-content-container
       .main-content-inner-container
-        %h4.song-list-date-group Submissions
-        = render partial: 'show_submissions'
+        %h4.song-list-date-group Favorites
+        = render partial: 'show_favorites'
         #load-more-container
         #paginate-container
-          = react_component('InfinitePagination', {total_pages: @submissions.total_pages, current_page: @submissions.current_page, path: "/users/#{@user.id}"})
+          = react_component('InfinitePagination', {total_pages: @favorites.total_pages, current_page: @favorites.current_page, path: "/users/#{@user.id}"})

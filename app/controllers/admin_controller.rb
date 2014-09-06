@@ -29,7 +29,7 @@ class AdminController < ApplicationController
       .paginate(page: params[:page], :per_page => 50)
 
     @total_clicks = Stats.global_total_clicks
-    @total_upvotes = Upvote.count
+    @total_upvotes = Upvote.where(nullified: false).count
     @total_comments = Comment.count
   end
 

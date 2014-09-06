@@ -4,6 +4,7 @@ class Submission < ActiveRecord::Base
 
   has_many :comments, -> { order 'created_at DESC' }, dependent: :destroy
   has_many :upvotes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_one :submission_count, dependent: :destroy
   belongs_to :user
 

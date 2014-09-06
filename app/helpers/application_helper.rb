@@ -74,4 +74,10 @@ module ApplicationHelper
 
     user.upvotes.any? {|upvote| !upvote.nullified && upvote.submission_id == song_id }
   end
+
+  def user_favorited_song?(user, song_id)
+    return false if user.favorites.blank?
+
+    user.favorites.any? {|favorite| favorite.submission_id == song_id }
+  end
 end

@@ -13,10 +13,6 @@ class LandingController < ApplicationController
     @submissions_dates = @submissions.keys.paginate(page: params[:page], :per_page => 5)
     @keep_headline = true
 
-    if current_user
-      @current_user_upvotes = current_user.upvotes
-    end
-
     if request.xhr?
       respond_to do |format|
         format.html {render :partial => 'partials/submission_date', :status => 200 }
