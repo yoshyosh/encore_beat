@@ -234,6 +234,10 @@ a {
   display: inline-block;
   font-size: 16px;
   line-height: 16px;
+
+  @include media($small) {
+    font-size: 14px;
+  }
 }
 
 .song-submitter-avatar {
@@ -245,36 +249,21 @@ a {
 
 .song-submitter-name {
   display: inline-block;
-
-  a {
-    text-decoration: none;
-  }
-
-  @include media($small) {
-    font-size: 12px;
-  }
+  margin-left: 0 !important;
 }
 
 .song-comments-label {
-  font-size: 14px;
   display: inline-block;
   margin-left: 4px;
-
-  @include media($small) {
-    font-size: 12px;
-  }
 }
 
-.song-actions {
+.song-metainfo {
+  font-size: 14px;
+
   a {
-    font-size: 14px;
     text-decoration: none;
     margin-left: 8px;
     color: $primary-fill;
-
-    &:first-child {
-      margin-left: 0;
-    }
 
     &:hover {
       color: $primary-accent;
@@ -282,6 +271,20 @@ a {
 
     i {
       font-size: 16px;
+    }
+  }
+
+  .song-actions {
+    display: inline;
+
+    @include media($small) {
+      margin-top: 8px;
+      display: block;
+      font-size: 12px;
+
+      a:first-child {
+        margin-left: 0;
+      }
     }
   }
 }
