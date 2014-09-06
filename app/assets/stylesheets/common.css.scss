@@ -243,6 +243,11 @@ footer.main-container-footer {
   margin: auto;
   text-align: center;
 
+  .fb-like {
+    vertical-align: top;
+    margin-left: 8px;
+  }
+
   .footer-links {
     li:first-child {
       padding-left: 0;

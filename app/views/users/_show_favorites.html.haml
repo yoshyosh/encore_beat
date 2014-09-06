@@ -1,7 +1,7 @@
 - @favorites.each do |favorite|
   .song{ :'data-favorite-id' => favorite.id }
     .song-details-container
-      %h3.song-list-title
+      %h3.song-list-title.song-title-link
         = link_to formatted_line_for_submission(favorite.submission), favorite.submission.url, target: "_blank"
       .song-actions.off-emphasize
         .song-submitter
