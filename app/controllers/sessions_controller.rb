@@ -12,6 +12,9 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to root_path
+    elsif @user && @user.identities.any?
+      flash.now[:error] = "You previously used Twitter to sign up, so you must also login with Twitter."
+      render :new
     else
       flash.now[:error] = "Invalid username/email or password combination"
       render :new
