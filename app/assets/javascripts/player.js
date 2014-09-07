@@ -119,8 +119,13 @@ $(document).ready(function(){
         var currentState = player.getPlayerState();
         if (currentState == 0) {
           loadNextSongInQueue();
-        } else if (currentState == 1 || 3) {
+        } else if (currentState == 1) {
           $(".js-hide-show-player").show();
+          $(".js-play-button").addClass("hidden-view");
+          $(".js-pause-button").removeClass("hidden-view");
+        } else if (currentState == 2) {
+          $(".js-pause-button").addClass("hidden-view");
+          $(".js-play-button").removeClass("hidden-view");
         }
       }
 
