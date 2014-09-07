@@ -202,6 +202,7 @@ header.main-container-header {
 
   @include media($medium) {
     display: block;
+    margin-top: 12px;
   }
 }
 
@@ -272,6 +273,12 @@ footer.main-container-footer {
 
         &:hover {
           color: $primary-accent;
+        }
+      }
+
+      &.copyright {
+        @include media($small) {
+          display: block;
         }
       }
     }
