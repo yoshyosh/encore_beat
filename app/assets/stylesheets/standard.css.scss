@@ -79,10 +79,6 @@ a {
   display: none;
 }
 
-.hidden-view {
-  display: none;
-}
-
 #main-container-homepage {
   .user-avatar-thumb {
     width: 20px;
@@ -119,6 +115,26 @@ a {
 
   @include media($small) {
     width: 35px;
+  }
+
+  a.favorite-trigger {
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 12px;
+
+    i {
+      font-size: 32px;
+    }
+
+    @include media($small) {
+      i {
+        font-size: 24px;
+      }
+
+      .longform-text {
+        display: none;
+      }
+    }
   }
 }
 
@@ -158,6 +174,7 @@ a {
 
 .vote-count {
   font-size: 20px;
+  margin-bottom: 20px;
 
   @include media($small) {
     font-size: 16px;

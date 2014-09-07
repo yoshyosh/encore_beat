@@ -6,6 +6,7 @@
           = render partial: 'partials/upvote', locals: { submission: @submission }
           %p.vote-count{:'data-count-id' => @submission.id}
             = @submission.submission_count.upvotes
+          = render partial: 'partials/favorite', locals: { submission: @submission }
         .share
           = tweet_button({text: "Listen to #{formatted_line_for_submission(@submission)} on EncoreBeat"})
         .submission-show-detail-container

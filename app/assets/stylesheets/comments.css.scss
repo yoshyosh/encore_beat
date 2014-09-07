@@ -60,6 +60,13 @@
     margin: 0;
     padding: 0 20px 20px 20px;
   }
+
+  .comment-count a {
+    @include media($small) {
+      display: block;
+      font-size: 14px;
+    }
+  }
 }
 
 .comment-input-container {
