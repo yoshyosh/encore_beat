@@ -27,6 +27,9 @@ $(document).ready(function(){
   var youtubePlayerLoaded = false;
   $(".js-get-player-link").on("click", function(){
     var linkUrl = $(this).attr("data-href");
+    //TODO: Breaks with duplicate links
+    var newPlayIndex = arrayOfSongs.indexOf(linkUrl);
+    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
     checkLinkSource(linkUrl);
   });
 
@@ -43,8 +46,6 @@ $(document).ready(function(){
     var domain = a.hostname.replace('www.', '');
     $(".js-player-source").removeClass("js-youtube-player-mode");
     $(".js-player-source").removeClass("js-soundcloud-player-mode");
-    var newPlayIndex = arrayOfSongs.indexOf(link);
-    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
     if (domain == "soundcloud.com") {
       // build soundcloud iframe
       $(".js-player-source").addClass("js-soundcloud-player-mode");
@@ -93,9 +94,9 @@ $(document).ready(function(){
           height: '115',
           width: '200',
           videoId: videoId,
-          // playerVars: {
-          //   controls: 0
-          // },
+          playerVars: {
+            controls: 0
+          },
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -155,6 +156,12 @@ $(document).ready(function(){
         loadNextSongInQueue();
         e.preventDefault();
       });
+
+      $(".js-youtube-player-mode .js-previous-button").off();
+      $(".js-youtube-player-mode .js-previous-button").on("click", function(e){
+        loadPreviousSongInQueue();
+        e.preventDefault();
+      });
     }
   }
 
@@ -183,8 +190,14 @@ $(document).ready(function(){
       //load in new song
       $(".js-soundcloud-player-mode .js-next-button").off();
       $(".js-soundcloud-player-mode .js-next-button").on("click", function(e){
-        console.log("in the next button event");
         loadNextSongInQueue();
+        e.preventDefault();
+      });
+
+      //load in previous song
+      $(".js-soundcloud-player-mode .js-previous-button").off();
+      $(".js-soundcloud-player-mode .js-previous-button").on("click", function(e){
+        loadPreviousSongInQueue();
         e.preventDefault();
       });
 
@@ -221,6 +234,9 @@ $(document).ready(function(){
 
   function hideYoutubePlayer(){
     $("iframe#player").hide();
+    if(player){
+      player.stopVideo();
+    }
   }
 
   function showYoutubePlayer(){
@@ -231,9 +247,31 @@ $(document).ready(function(){
     // Need to check for when we are on the last song
     //Check array if next song exists
     // If next song does not exist, go back to start of array
-    var newPlayIndex = parseInt($(".js-player-replace-target").attr("data-play-index")) + 1;
+    var currentPlayIndex = parseInt($(".js-player-replace-target").attr("data-play-index"));
+    var newPlayIndex;
+    if (currentPlayIndex + 1 >= arrayOfSongs.count) {
+      newPlayIndex = 0; //neutralize
+    } else {
+      newPlayIndex = currentPlayIndex + 1;
+    }
     var nextSongLink = arrayOfSongs[newPlayIndex];
-    console.log("new song link: " + newPlayIndex);
+    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
+    checkLinkSource(nextSongLink);
+  }
+
+  function loadPreviousSongInQueue(){
+    // Need to check for when we are on the last song
+    //Check array if next song exists
+    // If next song does not exist, go back to start of array
+    var currentPlayIndex = parseInt($(".js-player-replace-target").attr("data-play-index"));
+    var newPlayIndex;
+    if (currentPlayIndex > 0) {
+      newPlayIndex = currentPlayIndex - 1;
+    } else {
+      newPlayIndex = 0;
+    }
+    var nextSongLink = arrayOfSongs[newPlayIndex];
+    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
     checkLinkSource(nextSongLink);
   }
 
