@@ -1,6 +1,6 @@
 %h3.song-list-title.song-title-link
   = link_to formatted_line_for_submission(submission), "javascript:;", target: "_blank", :'data-submission-id' => submission.id, class: "js-get-player-link link-hide-mobile", :'data-href' => submission.url
-  = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id, class: "link-hide-desktop", :'data-href' => submission.url
+  = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id, class: "js-count-mobile-click link-hide-desktop", :'data-href' => submission.url
 .song-metainfo
   .song-submitter
     - if submission.user
