@@ -63,6 +63,13 @@ $(document).ready(function(){
     player.stopVideo();
   }
 
+  // Player controls
+  $("#play-button").on("click", function(){
+    player.playVideo();
+  });
 
+  $("#stop-button").on("click", function(){
+    player.stopVideo();
+  });
 
 });

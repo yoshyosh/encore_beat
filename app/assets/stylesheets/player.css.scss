@@ -30,6 +30,9 @@
 
 .playlist-player-container {
   position: fixed;
-  bottom: 20px;
+  bottom: 50px;
   right: 20px;
+  .playlist-player-controls {
+    margin-top: 12px;
+  }
 }

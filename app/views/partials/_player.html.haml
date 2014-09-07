@@ -1,2 +1,8 @@
 .playlist-player-container
-  #player
+  .playlist-player-inner
+    #player
+  .playlist-player-controls
+    = link_to "Play", "#", id: "play-button"
+    = link_to "Stop", "#", id: "stop-button"
+    = link_to "Previous", "#", id: "previous-button"
+    = link_to "Next", "#", id: "next-button"
