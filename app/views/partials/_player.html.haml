@@ -1,0 +1,12 @@
+.playlist-player-container.js-player-source.js-soundcloud-player-mode.js-youtube-player-mode
+  .playlist-player-inner.js-player-replace-target{ :'data-play-index' => 0 }
+    #player
+  .playlist-player-controls.js-hide-show-player
+    = link_to "#", id: "previous-button", class: "js-previous-button play-control-button" do
+      %i.fa.fa-step-backward
+    = link_to "#", id: "play-button", class: "js-play-button play-control-button hidden-view" do
+      %i.fa.fa-play
+    = link_to "#", id: "stop-button", class: "js-pause-button play-control-button" do
+      %i.fa.fa-pause
+    = link_to "#", id: "next-button", class: "js-next-button play-control-button" do
+      %i.fa.fa-step-forward

@@ -37,7 +37,10 @@ body {
   padding-bottom: 40px;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
+<<<<<<< HEAD
+=======
   -moz-osx-font-smoothing: grayscale;
+>>>>>>> master
   position: relative;
 }
 p {
@@ -76,6 +79,10 @@ a {
 }
 
 .hiddenView {
+  display: none;
+}
+
+.hidden-view {
   display: none;
 }
 
@@ -254,6 +261,17 @@ a {
     @include media($small) {
       font-size: 16px;
       line-height: 24px;
+    }
+  }
+  .link-hide-desktop {
+    display: none;
+    @include media($small) {
+      display: block;
+    }
+  }
+  .link-hide-mobile {
+    @include media($small) {
+      display: none;
     }
   }
 }
