@@ -12,6 +12,6 @@
       = submission_username(submission.user)
   .song-actions
     = render partial: 'partials/favorite', locals: { submission: submission }
-    = link_to submission_flat_name_path(submission.flat_slug), class: "song-comments-label grey" do
+    = link_to submission_flat_name_path(submission.flat_slug), target: '_blank', class: "song-comments-label grey" do
       = icon('comments')
       = comment_count(submission)
