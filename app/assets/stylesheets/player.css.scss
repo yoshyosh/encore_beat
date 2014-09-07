@@ -32,6 +32,9 @@
   position: fixed;
   bottom: 0px;
   right: 15px;
+  @include media($small) {
+    display: none;
+  }
   .playlist-player-controls {
     margin-top: 12px;
     height: 46px;
