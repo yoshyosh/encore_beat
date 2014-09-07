@@ -233,6 +233,17 @@ a {
       line-height: 24px;
     }
   }
+  .link-hide-desktop {
+    display: none;
+    @include media($small) {
+      display: block;
+    }
+  }
+  .link-hide-mobile {
+    @include media($small) {
+      display: none;
+    }
+  }
 }
 
 .song-submitter {
