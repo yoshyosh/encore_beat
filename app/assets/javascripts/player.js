@@ -22,6 +22,17 @@ $(document).ready(function(){
     });
   }
 
+  $(function(){
+    $(document).keyup(function (event) {
+      if (event.keyCode == 32) {
+        if ($(".js-play-button").hasClass("hidden-view")) {
+          $(".js-pause-button").click();
+        } else if ($(".js-pause-button").hasClass("hidden-view")) {
+          $(".js-play-button").click();
+        }
+      }
+    });
+  })
 
   // Iframe real time player
   var youtubePlayerLoaded = false;
