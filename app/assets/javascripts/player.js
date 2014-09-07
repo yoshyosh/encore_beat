@@ -30,12 +30,22 @@ $(document).ready(function(){
     checkLinkSource(linkUrl);
   });
 
+  //create array of songs
+  var arrayOfSongs = [];
+  $(".js-get-player-link").each(function(i, obj){
+    var songLink = $(obj).data("href");
+    arrayOfSongs.push(songLink);
+  });
+
   function checkLinkSource(link){
     var a = document.createElement('a');
     a.href = link;
     var domain = a.hostname.replace('www.', '');
     $(".js-player-source").removeClass("js-youtube-player-mode");
     $(".js-player-source").removeClass("js-soundcloud-player-mode");
+    var newPlayIndex = arrayOfSongs.indexOf(link);
+    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
+    console.log(newPlayIndex);
     if (domain == "soundcloud.com") {
       // build soundcloud iframe
       $(".js-player-source").addClass("js-soundcloud-player-mode");
@@ -109,12 +119,13 @@ $(document).ready(function(){
         var currentState = player.getPlayerState();
         console.log(currentState);
         if (currentState == 0) {
-          loadNextSong();
+          loadNextSongInQueue();
         }
 
       }
 
     } else {
+      // If we already loaded youtube and we want to put in anotehr link we can juse use the loadVideoById method
       loadNextSong(videoId);
     }
 
@@ -122,10 +133,6 @@ $(document).ready(function(){
     turnOnYoutubePlayerControls();
 
     function loadNextSong(){
-      //Check array if next song exists
-      // If next song does not exist, go back to start of array
-      // also if player exists in dom just load video, otherwise recreate a new player iframe to replace soundclouds
-      // we will need to store state on the container rather than the player because of this
       player.loadVideoById(videoId);
     }
 
@@ -144,7 +151,7 @@ $(document).ready(function(){
 
       $(".js-youtube-player-mode .js-next-button").off();
       $(".js-youtube-player-mode .js-next-button").on("click", function(e){
-        loadNextSong();
+        loadNextSongInQueue();
         e.preventDefault();
       });
     }
@@ -157,7 +164,6 @@ $(document).ready(function(){
     var initialSongFrame = createSoundcloudIframe(link);
     hideYoutubePlayer();
     $(".js-player-replace-target").append(initialSongFrame);
-    var nextSongLink = "https://soundcloud.com/anjunadeep/16-bit-lolitas-deep-in-my-soul-1";
 
     var widgetIframe = document.getElementById('sc-widget'),
             widget   = SC.Widget(widgetIframe);
@@ -180,14 +186,15 @@ $(document).ready(function(){
     
     //song ended
     widget.bind(SC.Widget.Events.FINISH, function(){
-        loadNextScSong(nextSongLink);
+        loadNextSongInQueue();
     });
 
       //load in new song
       $(".js-soundcloud-player-mode .js-next-button").off();
       $(".js-soundcloud-player-mode .js-next-button").on("click", function(e){
-          loadNextScSong(nextSongLink);
-          e.preventDefault();
+        console.log("in the next button event");
+        loadNextSongInQueue();
+        e.preventDefault();
       });
 
       //pause song
@@ -203,11 +210,6 @@ $(document).ready(function(){
           widget.play();
           e.preventDefault();
       });
-          
-      function loadNextScSong(songUrl){
-         var autoPlayUrl = songUrl + "&auto_play=true";
-         widget.load(autoPlayUrl);
-      }
 
   }
 
@@ -217,7 +219,7 @@ $(document).ready(function(){
     var songLinkPrefix = "https://w.soundcloud.com/player/?url=";
     songFrame.src = songLinkPrefix + link + "&auto_play=true";
     songFrame.width = 200;
-    songFrame.height = 166;
+    songFrame.height = 115;
     songFrame.scrolling = "no";
     songFrame.style["border"] = "none";
     songFrame.id = "sc-widget";
@@ -230,6 +232,16 @@ $(document).ready(function(){
 
   function showYoutubePlayer(){
     $("iframe#player").show();
+  }
+
+  function loadNextSongInQueue(){
+    // Need to check for when we are on the last song
+    //Check array if next song exists
+    // If next song does not exist, go back to start of array
+    var newPlayIndex = parseInt($(".js-player-replace-target").attr("data-play-index")) + 1;
+    var nextSongLink = arrayOfSongs[newPlayIndex];
+    console.log("new song link: " + newPlayIndex);
+    checkLinkSource(nextSongLink);
   }
 
 });
