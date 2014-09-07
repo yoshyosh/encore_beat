@@ -124,7 +124,7 @@ a {
   margin: 4px 0 11px 7px;
 
   &.clicked {
-    border-bottom: 18px solid #E23147;
+    border-bottom: 18px solid $primary-accent-alt;
   }
 
   &:hover {
@@ -423,4 +423,12 @@ a {
 
 .favorite-trigger {
   font-size: 14px;
+}
+
+a.js-unfavorite-trigger {
+  color: $primary-accent-alt;
+
+  &:hover {
+    color: darken($primary-accent-alt, 12%);
+  }
 }

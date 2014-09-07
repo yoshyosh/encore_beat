@@ -5,7 +5,7 @@
         Submit Song
       = form_for @submission, method: :post, html: { class: 'form-container' } do |f|
         .music-preview.js-show-spinner.js-music-preview-box
-        = text_field_tag :url, '', class: 'submit-input submit-input-url js-paste-music-previewer', placeholder: 'Enter YouTube or Soundcloud URL', autocomplete: 'off', autofocus: true
+        = text_field_tag :url, '', class: 'submit-input submit-input-url js-paste-music-previewer', placeholder: 'Paste in YouTube or Soundcloud URL', autocomplete: 'off', autofocus: true
         .text-field-container.hiddenView.js-show-field
           = label :artist, 'Artist:', class: 'submit-label'
           = text_field_tag :artist, '', class: 'submit-input', placeholder: 'ex: Cosmic Gate ft. Emma Hewitt'

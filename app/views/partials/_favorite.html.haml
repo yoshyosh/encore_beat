@@ -1,8 +1,8 @@
 - if current_user
   - if user_favorited_song?(current_user, submission.id)
     = link_to favorites_path, class: 'js-unfavorite-trigger favorite-trigger', :'data-submission-id' => submission.id  do
-      = icon('star-o')
-      Unfavorite
+      = icon('star')
+      Favorited
   - else
     = link_to favorites_path, class: 'js-favorite-trigger favorite-trigger', :'data-submission-id' => submission.id  do
       = icon('star')
