@@ -32,16 +32,22 @@ $(document).ready(function(){
   // 3. This function creates an <iframe> (and YouTube player)
   //    after the API code downloads.
   var player;
-  window.onYouTubeIframeAPIReady = function(){
-    player = new YT.Player('player', {
-      height: '115',
-      width: '200',
-      videoId: 'M7lc1UVf-VE',
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
+  loadYoutubeIframe();
+  function loadYoutubeIframe(videoId){
+    window.onYouTubeIframeAPIReady = function(){
+      player = new YT.Player('player', {
+        height: '115',
+        width: '200',
+        videoId: 'M7lc1UVf-VE',
+        playerVars: {
+          controls: 0
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
   }
 
   // 4. The API will call this function when the video player is ready.
@@ -54,6 +60,7 @@ $(document).ready(function(){
   //    the player should play for six seconds and then stop.
   var done = false;
   function onPlayerStateChange(event) {
+    // Check here whether to show play or pause button
     if (event.data == YT.PlayerState.PLAYING && !done) {
       setTimeout(stopVideo, 6000);
       done = true;
