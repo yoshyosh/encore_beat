@@ -23,7 +23,7 @@ $(document).ready(function(){
   }
 
   $(function(){
-    $(document).keyup(function (event) {
+    $(document).keydown(function (event) {
       if (event.keyCode == 32) {
         if ($(".js-play-button").hasClass("hidden-view")) {
           $(".js-pause-button").click();
@@ -31,6 +31,7 @@ $(document).ready(function(){
           $(".js-play-button").click();
         }
       }
+      event.preventDefault();
     });
   })
 
