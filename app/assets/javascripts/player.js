@@ -22,91 +22,145 @@ $(document).ready(function(){
     });
   }
 
+
   // Iframe real time player
+  var youtubePlayerLoaded = false;
+  $(".js-get-player-link").on("click", function(){
+    var linkUrl = $(this).attr("data-href");
+    checkLinkSource(linkUrl);
+  });
 
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  function checkLinkSource(link){
+    var a = document.createElement('a');
+    a.href = link;
+    var domain = a.hostname.replace('www.', '');
+    $(".js-player-source").removeClass("js-youtube-player-mode");
+    $(".js-player-source").removeClass("js-soundcloud-player-mode");
+    if (domain == "soundcloud.com") {
+      // build soundcloud iframe
+      $(".js-player-source").addClass("js-soundcloud-player-mode");
+      buildSoundCloudFrame(link);
+    } else if (domain == "youtube.com" || domain == "youtu.be") {
+      // get the short code of this
+      $(".js-player-source").addClass("js-youtube-player-mode");
+      var shortCode = getYoutubeShortCode(link);
+      // Show youtube iframe
+      // build youtube iframe
+      $("#sc-widget").remove();
+      showYoutubePlayer();
+      loadYoutubeIframe(shortCode);
+    }
+  }
 
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
+  function getYoutubeShortCode(link) {
+    var a = document.createElement('a');
+    a.href = link;
+    var domain = a.hostname.replace('www.', '');
+    var shortURL;
+    if (domain == "youtube.com") {
+      shortURL = link.split("?v=")[1];
+    } else {
+      shortURL = link.split("/")[1];
+    }
+    return shortURL;
+  }
+
+  // Youtube player
   var player;
-  var arrayOfSongIds = ["J6sRmvwSHQA", "J6sRmvwSHQA", "J6sRmvwSHQA"];
-
-  //loadYoutubeIframe();
   function loadYoutubeIframe(videoId){
-    window.onYouTubeIframeAPIReady = function(){
-      player = new YT.Player('player', {
-        height: '115',
-        width: '200',
-        videoId: 'M7lc1UVf-VE',
-        // playerVars: {
-        //   controls: 0
-        // },
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
+    if (!youtubePlayerLoaded) {
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      youtubePlayerLoaded = true;
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+
+      window.onYouTubeIframeAPIReady = function(){
+        console.log("on youtube iframe api ready loaded");
+        player = new YT.Player('player', {
+          height: '115',
+          width: '200',
+          videoId: videoId,
+          // playerVars: {
+          //   controls: 0
+          // },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+      
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      function onPlayerStateChange(event) {
+        // Check here whether to show play or pause button
+        // -1 = unstarted
+        // 0 = ended
+        // 1 = playing
+        // 2 = paused
+        // 3 = buffering
+        var currentState = player.getPlayerState();
+        console.log(currentState);
+        if (currentState == 0) {
+          loadNextSong();
         }
+
+      }
+
+    } else {
+      loadNextSong(videoId);
+    }
+
+    // Player controls
+    turnOnYoutubePlayerControls();
+
+    function loadNextSong(){
+      //Check array if next song exists
+      // If next song does not exist, go back to start of array
+      // also if player exists in dom just load video, otherwise recreate a new player iframe to replace soundclouds
+      // we will need to store state on the container rather than the player because of this
+      player.loadVideoById(videoId);
+    }
+
+    function turnOnYoutubePlayerControls(){
+      $(".js-youtube-player-mode .js-play-button").off();
+      $(".js-youtube-player-mode .js-play-button").on("click", function(e){
+        player.playVideo();
+        e.preventDefault();
+      });
+
+      $(".js-youtube-player-mode .js-pause-button").off();
+      $(".js-youtube-player-mode .js-pause-button").on("click", function(e){
+        player.pauseVideo();
+        e.preventDefault();
+      });
+
+      $(".js-youtube-player-mode .js-next-button").off();
+      $(".js-youtube-player-mode .js-next-button").on("click", function(e){
+        loadNextSong();
+        e.preventDefault();
       });
     }
-    //Set current id on player
   }
 
-  // 4. The API will call this function when the video player is ready.
-  function onPlayerReady(event) {
-    event.target.playVideo();
-  }
 
-  function onPlayerStateChange(event) {
-    // Check here whether to show play or pause button
-    // -1 = unstarted
-    // 0 = ended
-    // 1 = playing
-    // 2 = paused
-    // 3 = buffering
-    var currentState = player.getPlayerState();
-    console.log(currentState);
-    if (currentState == 0) {
-      loadNextSong();
-    }
-
-  }
-
-  // Player controls
-  // $("#play-button").on("click", function(){
-  //   player.playVideo();
-  // });
-
-  // $("#stop-button").on("click", function(){
-  //   player.pauseVideo();
-  // });
-
-  // $("#next-button").on("click", function(){
-  //   loadNextSong();
-  // });
-
-  function loadNextSong(){
-    //Check array if next song exists
-    // If next song does not exist, go back to start of array
-    // also if player exists in dom just load video, otherwise recreate a new player iframe to replace soundclouds
-    // we will need to store state on the container rather than the player because of this
-    player.loadVideoById("J6sRmvwSHQA");
-  }
 
   // Sound cloud player
-      var songFrame = document.createElement('iframe');
-    songFrame.src = "https://w.soundcloud.com/player/?url=https://soundcloud.com/dvbbs/dvbbs-joey-dale-deja-vu-ft-delora-available-september-19&auto_play=true";
-    songFrame.width = 200;
-    songFrame.height = 166;
-    songFrame.scrolling = "no";
-    songFrame.style["border"] = "none";
-    songFrame.id = "sc-widget";
-
-    $("#player").html(songFrame);
+  function buildSoundCloudFrame(link){
+    var initialSongFrame = createSoundcloudIframe(link);
+    hideYoutubePlayer();
+    $(".js-player-replace-target").append(initialSongFrame);
+    var nextSongLink = "https://soundcloud.com/anjunadeep/16-bit-lolitas-deep-in-my-soul-1";
 
     var widgetIframe = document.getElementById('sc-widget'),
-            widget       = SC.Widget(widgetIframe);
+            widget   = SC.Widget(widgetIframe);
     
     widget.bind(SC.Widget.Events.READY, function() {
           widget.bind(SC.Widget.Events.PLAY, function() {
@@ -126,26 +180,56 @@ $(document).ready(function(){
     
     //song ended
     widget.bind(SC.Widget.Events.FINISH, function(){
-        loadNextScSong();
+        loadNextScSong(nextSongLink);
     });
 
-  //load in new song
-  $(".js-sc-next-button").on("click", function(){
-      loadNextScSong();
-  });
+      //load in new song
+      $(".js-soundcloud-player-mode .js-next-button").off();
+      $(".js-soundcloud-player-mode .js-next-button").on("click", function(e){
+          loadNextScSong(nextSongLink);
+          e.preventDefault();
+      });
 
-  //pause song
-  $(".js-sc-pause-button").on("click", function(){
-      widget.pause();
-  });
+      //pause song
+      $(".js-soundcloud-player-mode .js-pause-button").off();
+      $(".js-soundcloud-player-mode .js-pause-button").on("click", function(e){
+          widget.pause();
+          e.preventDefault();
+      });
 
-  //play song
-  $(".js-sc-play-button").on("click", function(){
-      widget.play();
-  });
-      
-  function loadNextScSong(){
-     widget.load("https://soundcloud.com/anjunadeep/16-bit-lolitas-deep-in-my-soul-1&auto_play=true");
+      //play song
+      $(".js-soundcloud-player-mode .js-play-button").off();
+      $(".js-soundcloud-player-mode .js-play-button").on("click", function(e){
+          widget.play();
+          e.preventDefault();
+      });
+          
+      function loadNextScSong(songUrl){
+         var autoPlayUrl = songUrl + "&auto_play=true";
+         widget.load(autoPlayUrl);
+      }
+
+  }
+
+
+  function createSoundcloudIframe(link){
+    var songFrame = document.createElement('iframe');
+    var songLinkPrefix = "https://w.soundcloud.com/player/?url=";
+    songFrame.src = songLinkPrefix + link + "&auto_play=true";
+    songFrame.width = 200;
+    songFrame.height = 166;
+    songFrame.scrolling = "no";
+    songFrame.style["border"] = "none";
+    songFrame.id = "sc-widget";
+    return songFrame;
+  }
+
+  function hideYoutubePlayer(){
+    $("iframe#player").hide();
+  }
+
+  function showYoutubePlayer(){
+    $("iframe#player").show();
   }
 
 });
