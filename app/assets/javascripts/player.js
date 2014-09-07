@@ -30,7 +30,7 @@ $(document).ready(function(){
     checkLinkSource(linkUrl);
   });
 
-  //create array of songs
+  //create array of songs, this needs to be refreshed/improved as we load more in the pagination stage
   var arrayOfSongs = [];
   $(".js-get-player-link").each(function(i, obj){
     var songLink = $(obj).data("href");
@@ -45,11 +45,10 @@ $(document).ready(function(){
     $(".js-player-source").removeClass("js-soundcloud-player-mode");
     var newPlayIndex = arrayOfSongs.indexOf(link);
     $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
-    console.log(newPlayIndex);
     if (domain == "soundcloud.com") {
       // build soundcloud iframe
       $(".js-player-source").addClass("js-soundcloud-player-mode");
-      buildSoundCloudFrame(link);
+      loadSoundCloudFrame(link);
     } else if (domain == "youtube.com" || domain == "youtu.be") {
       // get the short code of this
       $(".js-player-source").addClass("js-youtube-player-mode");
@@ -117,15 +116,15 @@ $(document).ready(function(){
         // 2 = paused
         // 3 = buffering
         var currentState = player.getPlayerState();
-        console.log(currentState);
         if (currentState == 0) {
           loadNextSongInQueue();
+        } else if (currentState == 1 || 3) {
+          $(".js-hide-show-player").show();
         }
-
       }
 
     } else {
-      // If we already loaded youtube and we want to put in anotehr link we can juse use the loadVideoById method
+      // If we already loaded youtube and we want to put in another link, we can just use the loadVideoById method
       loadNextSong(videoId);
     }
 
@@ -140,12 +139,14 @@ $(document).ready(function(){
       $(".js-youtube-player-mode .js-play-button").off();
       $(".js-youtube-player-mode .js-play-button").on("click", function(e){
         player.playVideo();
+        togglePlayPause();
         e.preventDefault();
       });
 
       $(".js-youtube-player-mode .js-pause-button").off();
       $(".js-youtube-player-mode .js-pause-button").on("click", function(e){
         player.pauseVideo();
+        togglePlayPause();
         e.preventDefault();
       });
 
@@ -160,7 +161,7 @@ $(document).ready(function(){
 
 
   // Sound cloud player
-  function buildSoundCloudFrame(link){
+  function loadSoundCloudFrame(link){
     var initialSongFrame = createSoundcloudIframe(link);
     hideYoutubePlayer();
     $(".js-player-replace-target").append(initialSongFrame);
@@ -170,18 +171,8 @@ $(document).ready(function(){
     
     widget.bind(SC.Widget.Events.READY, function() {
           widget.bind(SC.Widget.Events.PLAY, function() {
-            // get information about currently playing sound
-            widget.getCurrentSound(function(currentSound) {
-              //alert('sound ' + currentSound.get('') + 'began to play');
-            });
+            $(".js-hide-show-player").show();
           });
-          // get current level of volume
-          widget.getVolume(function(volume) {
-            console.log('current volume value is ' + volume);
-          });
-          // set new volume level
-          widget.setVolume(50);
-          // get the value of the current position
     });
     
     //song ended
@@ -201,6 +192,7 @@ $(document).ready(function(){
       $(".js-soundcloud-player-mode .js-pause-button").off();
       $(".js-soundcloud-player-mode .js-pause-button").on("click", function(e){
           widget.pause();
+          togglePlayPause();
           e.preventDefault();
       });
 
@@ -208,6 +200,7 @@ $(document).ready(function(){
       $(".js-soundcloud-player-mode .js-play-button").off();
       $(".js-soundcloud-player-mode .js-play-button").on("click", function(e){
           widget.play();
+          togglePlayPause();
           e.preventDefault();
       });
 
@@ -242,6 +235,16 @@ $(document).ready(function(){
     var nextSongLink = arrayOfSongs[newPlayIndex];
     console.log("new song link: " + newPlayIndex);
     checkLinkSource(nextSongLink);
+  }
+
+  function togglePlayPause(){
+    if( $(".js-pause-button").hasClass("hidden-view") ) {
+      $(".js-play-button").addClass("hidden-view");
+      $(".js-pause-button").removeClass("hidden-view");
+    } else {
+      $(".js-play-button").removeClass("hidden-view");
+      $(".js-pause-button").addClass("hidden-view");
+    }
   }
 
 });

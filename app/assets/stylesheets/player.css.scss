@@ -30,9 +30,30 @@
 
 .playlist-player-container {
   position: fixed;
-  bottom: 50px;
-  right: 20px;
+  bottom: 0px;
+  right: 15px;
   .playlist-player-controls {
     margin-top: 12px;
+    height: 46px;
+    background: #121318;
+    width: 254px;
+    line-height: 46px;
+    text-align: left;
+    padding-left: 10px;
+    display: none;
+    box-sizing: border-box;
+    .play-control-button {
+      text-decoration: none;
+      font-size: 20px;
+      color: #f0f0f0;
+      height: 46px;
+      width: 30px;
+      display: inline-block;
+      text-align: center;
+    }
+    .hidden-view {
+      display: none;
+    }
   }
+
 }
