@@ -21,6 +21,8 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  font-style: normal;
+  font-variant: normal;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -35,6 +37,10 @@ body {
   padding-bottom: 40px;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
+<<<<<<< HEAD
+=======
+  -moz-osx-font-smoothing: grayscale;
+>>>>>>> master
   position: relative;
 }
 p {
@@ -113,6 +119,30 @@ a {
   width: 50px;
   text-align: center;
   margin-right: 12px;
+
+  @include media($small) {
+    width: 35px;
+  }
+
+  a.favorite-trigger {
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 12px;
+
+    i {
+      font-size: 32px;
+    }
+
+    @include media($small) {
+      i {
+        font-size: 24px;
+      }
+
+      .longform-text {
+        display: none;
+      }
+    }
+  }
 }
 
 .arrow-up {
@@ -121,7 +151,7 @@ a {
   border-left: 18px solid transparent;
   border-right: 18px solid transparent;
   border-bottom: 18px solid $primary-fill;
-  margin: 4px 0 11px 7px;
+  margin: 5px 0px 9px 7px;
 
   &.clicked {
     border-bottom: 18px solid $primary-accent-alt;
@@ -133,7 +163,7 @@ a {
   }
 
   @include media($small) {
-    margin: 6px 0 8px 11px;
+    margin: 7px 0px 8px 3px;
     border-left: 14px solid transparent;
     border-right: 14px solid transparent;
     border-bottom: 14px solid $primary-fill;
@@ -149,13 +179,9 @@ a {
   }
 }
 
-.upvote-container {
-  float: left;
-  width: 50px
-}
-
 .vote-count {
   font-size: 20px;
+  margin-bottom: 20px;
 
   @include media($small) {
     font-size: 16px;
@@ -217,6 +243,10 @@ a {
 
 .song-details-container {
   margin-left: 62px;
+
+  @include media($small) {
+    margin-left: 47px;
+  }
 }
 
 .song-list-title {
@@ -252,7 +282,7 @@ a {
   line-height: 16px;
 
   @include media($small) {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
@@ -266,6 +296,12 @@ a {
 .song-submitter-name {
   display: inline-block;
   margin-left: 0 !important;
+
+  @include media($small) {
+    .longform-text {
+      display: none;
+    }
+  }
 }
 
 .song-comments-label {
@@ -295,11 +331,10 @@ a {
 
     @include media($small) {
       margin-top: 8px;
-      display: block;
       font-size: 12px;
 
-      a:first-child {
-        margin-left: 0;
+      .longform-text {
+        display: none;
       }
     }
   }
@@ -423,6 +458,10 @@ a {
 
 .favorite-trigger {
   font-size: 14px;
+
+  @include media($small) {
+    font-size: 12px;
+  }
 }
 
 a.js-unfavorite-trigger {

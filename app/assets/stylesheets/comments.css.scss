@@ -14,6 +14,10 @@
 
 .submission-show-detail-container {
   margin-left: 62px;
+
+  @include media($small) {
+    margin-left: 47px;
+  }
 }
 
 .comment-content-container {
@@ -55,6 +59,13 @@
   @include media($small) {
     margin: 0;
     padding: 0 20px 20px 20px;
+  }
+
+  .comment-count a {
+    @include media($small) {
+      display: block;
+      font-size: 14px;
+    }
   }
 }
 

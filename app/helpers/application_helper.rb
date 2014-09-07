@@ -61,8 +61,9 @@ module ApplicationHelper
 
   def comment_count(submission)
     count = submission.submission_count.comments
+    count_parts = pluralize(count, 'Comment').split
 
-    "#{pluralize(count, 'Comment')}"
+    "#{count_parts[0]} <span class='longform-text'>#{count_parts[1]}</span>".html_safe
   end
 
   def user_since(user)
