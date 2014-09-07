@@ -278,6 +278,12 @@ a {
 .song-submitter-name {
   display: inline-block;
   margin-left: 0 !important;
+
+  @include media($small) {
+    .longform-text {
+      display: none;
+    }
+  }
 }
 
 .song-comments-label {

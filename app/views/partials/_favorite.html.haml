@@ -8,6 +8,6 @@
       = icon('star')
       %span.longform-text Favorite
 - else
-  = link_to login_path(w: true) do
+  = link_to login_path(w: true), class: 'favorite-trigger' do
     = icon('star')
     %span.longform-text Favorite
