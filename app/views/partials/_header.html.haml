@@ -8,15 +8,19 @@
         - if current_user && !@hide_nav
           = link_to username_path(current_user.username) do
             = user_avatar_thumb_small(current_user)
-            = submission_username(current_user)
+            My Favorites
+          = link_to new_submission_path do
+            = icon('plus-circle')
+            Submit Song
           - if current_user.admin && current_user.site_admin
             = link_to "Admin", admin_index_path
           - elsif current_user.admin
             = link_to "Admin", approval_queue_path
-          = link_to "Submit Song", new_submission_path
           = link_to "Logout", session_path(current_user), method: :delete
         - else 
-          = link_to "Submit Song", signup_path(w: true)
+          = link_to signup_path(w: true) do
+            = icon('plus-circle')
+            Submit Song
           = link_to "Signup", signup_path
           = link_to "Login", login_path
   .main-container-header-overlay
