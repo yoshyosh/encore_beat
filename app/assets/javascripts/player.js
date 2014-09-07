@@ -25,12 +25,18 @@ $(document).ready(function(){
 
   // Iframe real time player
   var youtubePlayerLoaded = false;
+
   $(".js-get-player-link").on("click", function(){
     var linkUrl = $(this).attr("data-href");
     //TODO: Breaks with duplicate links
     var newPlayIndex = arrayOfSongs.indexOf(linkUrl);
     $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
     checkLinkSource(linkUrl);
+    var submission_id = $(this).attr('data-submission-id');
+    $.ajax({
+      url: '/submission_counts/' + submission_id,
+      type: 'put'
+    });
   });
 
   //create array of songs, this needs to be refreshed/improved as we load more in the pagination stage
