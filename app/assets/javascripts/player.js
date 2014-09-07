@@ -171,6 +171,7 @@ $(document).ready(function(){
   function loadSoundCloudFrame(link){
     var initialSongFrame = createSoundcloudIframe(link);
     hideYoutubePlayer();
+    $("#sc-widget").remove();
     $(".js-player-replace-target").append(initialSongFrame);
 
     var widgetIframe = document.getElementById('sc-widget'),
@@ -179,6 +180,12 @@ $(document).ready(function(){
     widget.bind(SC.Widget.Events.READY, function() {
           widget.bind(SC.Widget.Events.PLAY, function() {
             $(".js-hide-show-player").show();
+            $(".js-play-button").addClass("hidden-view");
+            $(".js-pause-button").removeClass("hidden-view");
+          });
+          widget.bind(SC.Widget.Events.PAUSE, function() {
+            $(".js-pause-button").addClass("hidden-view");
+            $(".js-play-button").removeClass("hidden-view");
           });
     });
     
