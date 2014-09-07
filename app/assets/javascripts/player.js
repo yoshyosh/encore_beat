@@ -30,7 +30,7 @@ $(document).ready(function(){
         } else if ($(".js-pause-button").hasClass("hidden-view")) {
           $(".js-play-button").click();
         }
-      event.preventDefault();
+        event.preventDefault();
       } else {
         return false;
       }
