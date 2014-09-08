@@ -1,0 +1,20 @@
+.main-container-outer.admin
+  .main-content-container
+    .main-content-inner-container
+      %h1.main-header-title
+        Rejected Submissions
+      %table.database-table-list
+        %tr 
+          %th ID
+          %th Artist
+          %th Title
+          %th Posted By
+          %th When
+        - @submissions.each do |submission|
+          %tr
+            %td= submission.id
+            %td= truncate(submission.artist, length: 15)
+            %td= truncate(submission.title, length: 25)
+            %td= "#{submission_username(submission.user)} - #{submission.user.email}"
+            %td= submission.created_at.to_date
+      = will_paginate @submissions

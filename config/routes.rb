@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   get '/admin/approval_queue', to: 'admin#approval_queue', as: 'approval_queue'
   get '/admin/users', to: 'admin#users'
   get '/admin/submissions', to: 'admin#submissions'
+  get '/admin/rejects', to: 'admin#rejects'
 end
