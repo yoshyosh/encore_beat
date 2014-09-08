@@ -23,7 +23,7 @@ $(document).ready(function(){
   }
 
   $(function(){
-    $(document).keyup(function (event) {
+    $(document).keydown(function (event) {
       if (event.keyCode == 32) {
         if ($(".js-play-button").hasClass("hidden-view")) {
           $(".js-pause-button").click();
@@ -33,6 +33,12 @@ $(document).ready(function(){
       }
     });
   })
+
+  // $(document).keydown(function(e) {
+  //     if(e.keyCode == 32) {
+  //         return false;
+  //     }
+  // });
 
   // Iframe real time player
   var youtubePlayerLoaded = false;
@@ -86,8 +92,8 @@ $(document).ready(function(){
     var shortURL;
     if (domain == "youtube.com") {
       shortURL = link.split("?v=")[1];
-    } else {
-      shortURL = link.split("/")[1];
+    } else if (domain == "youtu.be") {
+      shortURL = link.split("/")[3];
     }
     return shortURL;
   }
