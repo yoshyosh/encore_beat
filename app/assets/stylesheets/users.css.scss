@@ -11,7 +11,8 @@
   }
 
   .user-avatar {
-    display: block;
+    display: inline-block;
+    vertical-align: top;
     margin: auto;
     margin-bottom: 20px;
   }
@@ -26,6 +27,22 @@
 
   .user-bio {
     margin-bottom: 20px;
+
+    .user-details {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 20px;
+
+      i {
+        font-size: 20px;
+        margin: 10px 0;
+        color: #4099ff;
+
+        &:hover {
+          color: #3C90F1;
+        }
+      }
+    }
 
     p {
       color: #ccc;

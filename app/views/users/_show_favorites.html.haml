@@ -1,4 +1,4 @@
-- @favorites.each do |favorite|
-  .song{ :'data-favorite-id' => favorite.id }
+- @favorite_submissions.each do |submission|
+  .song{ :'data-favorite-id' => submission.id }
     .song-details-container
-      = render partial: 'partials/submission_row', locals: { submission: favorite.submission }
+      = render partial: 'partials/submission_row', locals: { submission: submission }
