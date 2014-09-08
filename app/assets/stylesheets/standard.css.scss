@@ -413,12 +413,22 @@ a {
   padding: 10px 30px;
   font-size: 24px;
   outline: none;
+
   &:hover {
     cursor: pointer;
     background: #E23147;
   }
+
   &:active {
     background: #D52F44;
+  }
+
+  &:disabled {
+    background: #8A8D95;
+
+    &:hover {
+      cursor: default;
+    }
   }
 }
 

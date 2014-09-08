@@ -9,8 +9,8 @@
         %p= user_since(@user)
         - if @user == current_user
           %p= link_to 'Edit Profile', edit_user_path(@user)
-        - if @user.identities.any?
-          = link_to "#{User::TWITTER_PATH}#{@user.identities.first.username}", target: '_blank' do
+        - if @user.twitter_username
+          = link_to "#{User::TWITTER_PATH}#{@user.twitter_username}", target: '_blank' do
             = icon('twitter')
 
     .main-content-container

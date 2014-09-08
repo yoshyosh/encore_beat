@@ -15,6 +15,7 @@
     vertical-align: top;
     margin: auto;
     margin-bottom: 20px;
+    margin-right: 20px;
   }
 
   .upload-avatar-button {
@@ -31,7 +32,6 @@
     .user-details {
       display: inline-block;
       vertical-align: top;
-      margin-left: 20px;
 
       i {
         font-size: 20px;
@@ -64,6 +64,19 @@
 
   .song-details-container {
     margin-left: 20px;
+  }
+
+  .form-container {
+    .primary-action-button {
+      margin-top: 20px;
+    }
+
+    .password-helper {
+      color: $error;
+      display: block;
+      height: 20px;
+
+    }
   }
 }
 
