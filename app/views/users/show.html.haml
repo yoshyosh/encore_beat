@@ -16,3 +16,4 @@
         #load-more-container
         #paginate-container
           = react_component('InfinitePagination', {total_pages: @favorites.total_pages, current_page: @favorites.current_page, path: "/users/#{@user.id}"})
+        = render 'partials/player'
