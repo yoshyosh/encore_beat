@@ -15,7 +15,6 @@
     vertical-align: top;
     margin: auto;
     margin-bottom: 20px;
-    margin-right: 20px;
   }
 
   .upload-avatar-button {
@@ -28,6 +27,10 @@
 
   .user-bio {
     margin-bottom: 20px;
+
+    .user-avatar {
+      margin-right: 20px;
+    }
 
     .user-details {
       display: inline-block;

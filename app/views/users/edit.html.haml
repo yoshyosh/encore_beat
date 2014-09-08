@@ -17,11 +17,11 @@
           - if @user.identities.blank?
             %p.label-header Change Twitter Name (optional)
             = text_field_tag :twitter_username, @user.twitter_username, placeholder: "e.g. EncoreBeatCOM", class: 'submit-input vertical'
-          %p.label-header Change Password (optional)
           - if @user.identities.any?
-            %p You're logged in via Twitter.
-            %p You don't have, or need, a password on encorebeat.com
+            %p.label-header Trying to change your password?
+            %p Because you signed up via Twitter, your account at EncoreBeat does not have a password associated with it.
           - else
+            %p.label-header Change Password (optional)
             = label :password, 'Password: (at least 5 characters)', class: 'submit-label'
             = password_field_tag :password, '', id: 'password', placeholder: "Password", class: 'submit-input vertical'
             = label :password_confirmation, 'Confirm Password:', class: 'submit-label'
