@@ -17,6 +17,26 @@ class Submission < ActiveRecord::Base
   scope :pending, -> { where(status: STATUSES[:pending]) }
   scope :published, -> { where('published_at is NOT NULL') }
 
+  def is_duplicate?
+    submission = Submission.find_by_url(url)
+
+    return true if submission && submission.persisted?
+
+    if url =~ /youtu.be/
+      vendor_id = url.split('/').last
+      submission = Submission.find_by_url("https://www.youtube.com/watch?v=#{vendor_id}")
+
+      return true if submission
+    elsif url =~ /youtube/
+      vendor_id = url.split('=').last
+      submission = Submission.find_by_url("http://youtu.be/#{vendor_id}")
+
+      return true if submission
+    end
+
+    false
+  end
+
   def spawn_count
     SubmissionCount.create(submission: self) unless submission_count
   end
