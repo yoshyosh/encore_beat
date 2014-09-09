@@ -1,15 +1,36 @@
 .main-container-outer
   .main-content-container
     .main-content-inner-container
-      %h1.main-header-title
-        Submit Song
-      = form_for @submission, method: :post, html: { class: 'form-container' } do |f|
-        .music-preview.js-show-spinner.js-music-preview-box
-        = text_field_tag :url, '', class: 'submit-input submit-input-url js-paste-music-previewer', placeholder: 'Paste in YouTube or Soundcloud URL', autocomplete: 'off', autofocus: true
-        .text-field-container.hiddenView.js-show-field
-          = label :artist, 'Artist:', class: 'submit-label'
-          = text_field_tag :artist, '', class: 'submit-input', placeholder: 'ex: Cosmic Gate ft. Emma Hewitt'
-        .text-field-container.hiddenView.js-show-field
-          = label :title, 'Title:', class: 'submit-label'
-          = text_field_tag :title, '', class: 'submit-input', placeholder: 'ex: Be Your Sound'
-        = f.submit 'Submit', id: 'submit-song-button', class: 'primary-action-button'
+      .song-submission
+        %h1.main-header-title
+          Submit Song
+        %p.approval-criteria-helper
+          If this is your first time submitting, please take a look at our 
+          = link_to 'approval criteria', '#', class: 'approval-criteria-link'
+          first
+        .approval-criteria
+          %p Not all submissions are published to the front page. In order to ensure quality at EncoreBeat, we typically approve songs that are:
+
+          %ul
+            %li
+              = icon('check')
+              New - released within the past 30 days
+            %li
+              = icon('check')
+              Relevant - electronic dance music that has not been posted previously
+            %li
+              = icon('check')
+              Amazing - songs that people will love
+
+          %p Approved submissions may take up to a few days to be published. Thanks for helping us guide the quality direction of EncoreBeat!
+
+        = form_for @submission, method: :post, html: { class: 'form-container' } do |f|
+          .music-preview.js-show-spinner.js-music-preview-box
+          = text_field_tag :url, '', class: 'submit-input submit-input-url js-paste-music-previewer', placeholder: 'Paste in YouTube or Soundcloud URL', autocomplete: 'off', autofocus: true
+          .text-field-container.hiddenView.js-show-field
+            = label :artist, 'Artist:', class: 'submit-label'
+            = text_field_tag :artist, '', class: 'submit-input', placeholder: 'ex: Cosmic Gate ft. Emma Hewitt'
+          .text-field-container.hiddenView.js-show-field
+            = label :title, 'Title:', class: 'submit-label'
+            = text_field_tag :title, '', class: 'submit-input', placeholder: 'ex: Be Your Sound'
+          = f.submit 'Submit', id: 'submit-song-button', class: 'primary-action-button'
