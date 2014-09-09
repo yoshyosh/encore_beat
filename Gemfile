@@ -24,6 +24,8 @@ gem 'cloudinary'
 gem 'will_paginate', '~> 3.0'
 gem 'tweet-button'
 gem 'font-awesome-sass', '~> 4.2.0'
+gem 'thin'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'
