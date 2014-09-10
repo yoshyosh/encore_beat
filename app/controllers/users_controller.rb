@@ -41,6 +41,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:username]) || User.find_by_id(params[:id])
+
+    if !@user
+      flash[:error] = "User not found, sorry!"
+      redirect_to root_path and return
+    end
+
     @favorite_submissions = 
       Submission
       .joins(:favorites)

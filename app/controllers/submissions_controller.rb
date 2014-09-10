@@ -22,7 +22,11 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find_by_flat_name(params[:flat_name])
-    redirect_to root_path if @submission.status == Submission::STATUSES[:rejected]
+
+    if !@submission || @submission.status == Submission::STATUSES[:rejected]
+      flash[:error] = "Song not found, sorry!"
+      redirect_to root_path and return
+    end
 
     @meta_data = "#{@submission.artist} - #{@submission.title}"
     @comments = @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
