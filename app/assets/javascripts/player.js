@@ -24,11 +24,17 @@ $(document).ready(function(){
 
   // Iframe real time player
   var youtubePlayerLoaded = false;
+  var arrayOfSongs = [];
+  buildArrayOfSongs();
 
-  $(".js-get-player-link").on("click", function(){
+  $(".main-container-outer").on("click", ".js-get-player-link", function(){
     var linkUrl = $(this).attr("data-href");
     //TODO: Breaks with duplicate links
     var newPlayIndex = arrayOfSongs.indexOf(linkUrl);
+    if (!(newPlayIndex > 0)) {
+      buildArrayOfSongs();
+      newPlayIndex = arrayOfSongs.indexOf(linkUrl);
+    }
     $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
     checkLinkSource(linkUrl);
     var submission_id = $(this).attr('data-submission-id');
@@ -39,11 +45,14 @@ $(document).ready(function(){
   });
 
   //create array of songs, this needs to be refreshed/improved as we load more in the pagination stage
-  var arrayOfSongs = [];
-  $(".js-get-player-link").each(function(i, obj){
-    var songLink = $(obj).data("href");
-    arrayOfSongs.push(songLink);
-  });
+  
+  function buildArrayOfSongs(){
+    arrayOfSongs = [];
+    $(".js-get-player-link").each(function(i, obj){
+      var songLink = $(obj).data("href");
+      arrayOfSongs.push(songLink);
+    });
+  }
 
   function checkLinkSource(link){
     var a = document.createElement('a');
