@@ -22,21 +22,6 @@ $(document).ready(function(){
     });
   }
 
-  $(function(){
-    $(document).keydown(function (event) {
-      if (event.keyCode == 32) {
-        if ($(".js-play-button").hasClass("hidden-view")) {
-          $(".js-pause-button").click();
-        } else if ($(".js-pause-button").hasClass("hidden-view")) {
-          $(".js-play-button").click();
-        }
-        event.preventDefault();
-      } else {
-        return false;
-      }
-    });
-  })
-
   // Iframe real time player
   var youtubePlayerLoaded = false;
 
