@@ -22,28 +22,32 @@ $(document).ready(function(){
     });
   }
 
-  $(function(){
-    $(document).keydown(function (event) {
-      if (event.keyCode == 32) {
-        if ($(".js-play-button").hasClass("hidden-view")) {
-          $(".js-pause-button").click();
-        } else if ($(".js-pause-button").hasClass("hidden-view")) {
-          $(".js-play-button").click();
-        }
-        event.preventDefault();
-      } else {
-        return false;
-      }
-    });
-  })
-
   // Iframe real time player
   var youtubePlayerLoaded = false;
 
-  $(".js-get-player-link").on("click", function(){
+  // $(".js-get-player-link").on("click", function(){
+  //   var linkUrl = $(this).attr("data-href");
+  //   //TODO: Breaks with duplicate links
+  //   var newPlayIndex = arrayOfSongs.indexOf(linkUrl);
+  //   $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
+  //   checkLinkSource(linkUrl);
+  //   var submission_id = $(this).attr('data-submission-id');
+  //   $.ajax({
+  //     url: '/submission_counts/' + submission_id,
+  //     type: 'put'
+  //   });
+  // });
+  var arrayOfSongs = [];
+  buildArrayOfSongs();
+
+  $(".main-container-outer").on("click", ".js-get-player-link", function(){
     var linkUrl = $(this).attr("data-href");
     //TODO: Breaks with duplicate links
     var newPlayIndex = arrayOfSongs.indexOf(linkUrl);
+    if (!(newPlayIndex > 0)) {
+      buildArrayOfSongs();
+      newPlayIndex = arrayOfSongs.indexOf(linkUrl);
+    }
     $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
     checkLinkSource(linkUrl);
     var submission_id = $(this).attr('data-submission-id');
@@ -54,11 +58,14 @@ $(document).ready(function(){
   });
 
   //create array of songs, this needs to be refreshed/improved as we load more in the pagination stage
-  var arrayOfSongs = [];
-  $(".js-get-player-link").each(function(i, obj){
-    var songLink = $(obj).data("href");
-    arrayOfSongs.push(songLink);
-  });
+  
+  function buildArrayOfSongs(){
+    arrayOfSongs = [];
+    $(".js-get-player-link").each(function(i, obj){
+      var songLink = $(obj).data("href");
+      arrayOfSongs.push(songLink);
+    });
+  }
 
   function checkLinkSource(link){
     var a = document.createElement('a');
