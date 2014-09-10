@@ -33,6 +33,14 @@ class AdminController < ApplicationController
     @total_comments = Comment.count
   end
 
+  def rejects
+    @submissions = Submission
+      .includes(:user)
+      .where('submissions.status = ?', Submission::STATUSES[:rejected])
+      .order('submissions.created_at DESC')
+      .paginate(page: params[:page], :per_page => 50)
+  end
+
   private
 
   def authorize

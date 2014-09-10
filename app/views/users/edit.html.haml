@@ -14,9 +14,17 @@
           = hidden_field_tag :avatar_cache
           = file_field_tag :avatar, class: "upload-avatar-button js-get-file-name", onchange: "addFileNameToPage();"
           %p.avatar-added-text.js-add-filename.js-hide-avatar-added-text{onclick: "hideFileNameHolder();"}
-          %p.label-header Change Password (optional)
-          = label :password, 'Password: (at least 5 characters)', class: 'submit-label'
-          = password_field :password, '', id: 'password', placeholder: "Password", class: 'submit-input vertical'
-          = label :password_confirmation, 'Confirm Password:', class: 'submit-label'
-          = password_field :password_confirmation, '', id: 'password_confirmation', placeholder: "Confirm Password", class: 'submit-input vertical'
+          - if @user.identities.blank?
+            %p.label-header Change Twitter Name (optional)
+            = text_field_tag :twitter_username, @user.twitter_username, placeholder: "e.g. EncoreBeatCOM", class: 'submit-input vertical'
+          - if @user.identities.any?
+            %p.label-header Trying to change your password?
+            %p Because you signed up via Twitter, your account at EncoreBeat does not have a password associated with it.
+          - else
+            %p.label-header Change Password (optional)
+            = label :password, 'Password: (at least 5 characters)', class: 'submit-label'
+            = password_field_tag :password, '', id: 'password', placeholder: "Password", class: 'submit-input vertical'
+            = label :password_confirmation, 'Confirm Password:', class: 'submit-label'
+            = password_field_tag :password_confirmation, '', id: 'password_confirmation', placeholder: "Confirm Password", class: 'submit-input vertical'
+            .password-helper
           = f.submit 'Update', class: "primary-action-button"

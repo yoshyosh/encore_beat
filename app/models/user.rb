@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   USERNAME_REGEXP = /\A[a-zA-Z0-9_-]{3,16}\z/
   DEFAULT_USER_IMAGE_PATH = 'defaultAvatar_a8kvhz.png'
   DEFAULT_USER_IMAGE_PATH_SMALL = 'defaultAvatar_a8kvhz_small_r6xc2f.png'
+  TWITTER_PATH = 'https://twitter.com/'
 
   has_many :submissions
   has_many :upvotes, dependent: :destroy

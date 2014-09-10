@@ -11,7 +11,8 @@
   }
 
   .user-avatar {
-    display: block;
+    display: inline-block;
+    vertical-align: top;
     margin: auto;
     margin-bottom: 20px;
   }
@@ -26,6 +27,25 @@
 
   .user-bio {
     margin-bottom: 20px;
+
+    .user-avatar {
+      margin-right: 20px;
+    }
+
+    .user-details {
+      display: inline-block;
+      vertical-align: top;
+
+      i {
+        font-size: 20px;
+        margin: 10px 0;
+        color: #4099ff;
+
+        &:hover {
+          color: #3C90F1;
+        }
+      }
+    }
 
     p {
       color: #ccc;
@@ -47,6 +67,19 @@
 
   .song-details-container {
     margin-left: 20px;
+  }
+
+  .form-container {
+    .primary-action-button {
+      margin-top: 20px;
+    }
+
+    .password-helper {
+      color: $error;
+      display: block;
+      height: 20px;
+
+    }
   }
 }
 

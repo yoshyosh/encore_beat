@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905055425) do
+ActiveRecord::Schema.define(version: 20140908082343) do
 
   create_table "comments", force: true do |t|
     t.text     "body",          null: false
@@ -85,14 +85,15 @@ ActiveRecord::Schema.define(version: 20140905055425) do
   add_index "upvotes", ["user_id"], name: "index_upvotes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "username",                        null: false
+    t.string   "username",                         null: false
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",           default: false
-    t.string   "password_digest",                 null: false
+    t.boolean  "admin",            default: false
+    t.string   "password_digest",                  null: false
     t.string   "avatar"
-    t.boolean  "site_admin",      default: false
+    t.boolean  "site_admin",       default: false
+    t.string   "twitter_username"
   end
 
 end

@@ -23,6 +23,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by_id(params[:id])
+    twitter_username = params[:twitter_username]
+    twitter_username.gsub!('@', '') if twitter_username
+
     @user.update_attributes(user_params)
 
     if @user.errors.any? && params[:final_signup_step]
@@ -38,7 +41,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:username]) || User.find_by_id(params[:id])
-    @favorites = @user.favorites.includes(:submission).order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @favorite_submissions = 
+      Submission
+      .joins(:favorites)
+      .includes(:user)
+      .includes(:submission_count)
+      .where(favorites: {user_id: @user.id})
+      .order('created_at DESC')
+      .paginate(page: params[:page], per_page: 10)
 
     if request.xhr?
       respond_to do |format|
@@ -54,6 +64,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:username, :email, :password, :avatar, :avatar_cache)
+    params.permit(:username, :email, :password, :avatar, :avatar_cache, :twitter_username)
   end
 end

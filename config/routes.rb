@@ -20,9 +20,11 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new', as: 'signup'
   get '/terms', to: 'landing#terms', as: 'terms'
   get '/faq', to: 'landing#faq', as: 'faq'
+  get '/contact', to: 'landing#contact', as: 'contact'
 
   # admin pages
   get '/admin/approval_queue', to: 'admin#approval_queue', as: 'approval_queue'
   get '/admin/users', to: 'admin#users'
   get '/admin/submissions', to: 'admin#submissions'
+  get '/admin/rejects', to: 'admin#rejects'
 end

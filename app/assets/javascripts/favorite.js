@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('body').on('click', '.js-favorite-trigger', function(e) {
     e.preventDefault();
-    $(this).html('<i class="fa fa-star"></i> <span class="longform-text">Favorited</span>');
+    $(this).html('<i class="fa fa-minus"></i> Playlist');
     $(this).addClass('js-unfavorite-trigger');
     $(this).removeClass('js-favorite-trigger');
 
@@ -14,7 +14,7 @@ $(document).ready(function(){
 
   $('body').on('click', '.js-unfavorite-trigger', function(e) {
     e.preventDefault();
-    $(this).html('<i class="fa fa-star-o"></i> <span class="longform-text">Favorite</span>');
+    $(this).html('<i class="fa fa-plus"></i> Playlist');
     $(this).addClass('js-favorite-trigger');
     $(this).removeClass('js-unfavorite-trigger');
 

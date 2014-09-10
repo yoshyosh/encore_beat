@@ -6,6 +6,11 @@ class SubmissionsController < ApplicationController
   def create
     @submission = current_user.submissions.new(submission_params)
 
+    if @submission.is_duplicate?
+      flash.now[:error] = "Sorry, this song has already been submitted. Try another song!"
+      render :new and return
+    end
+
     if @submission.save
       flash[:success] = "Thanks! Your song was submitted and is now awaiting approval."
       redirect_to root_path
