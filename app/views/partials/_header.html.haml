@@ -19,10 +19,10 @@
           = link_to "Logout", session_path(current_user), method: :delete
         - else 
           = link_to signup_path(w: true) do
-            = icon('plus-circle')
+            My Playlist
+          = link_to signup_path(w: true) do
             Submit Song
-          = link_to "Signup", signup_path
-          = link_to "Login", login_path
+          = link_to "Login", login_path, class: 'emphasize'
   .main-container-header-overlay
   - if @keep_headline || !current_user
     .full-headline
