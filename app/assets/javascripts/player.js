@@ -22,31 +22,54 @@ $(document).ready(function(){
     });
   }
 
-  $(function(){
-    $(document).keydown(function (event) {
-      if (event.keyCode == 32) {
-        if ($(".js-play-button").hasClass("hidden-view")) {
-          $(".js-pause-button").click();
-        } else if ($(".js-pause-button").hasClass("hidden-view")) {
-          $(".js-play-button").click();
-        }
-      event.preventDefault();
-      } else {
-        return false;
-      }
-    });
-  })
+  // Global Generic Player control actions on click
+  $(".js-onclick-player-upvote-button").on("click", function(e){
+    setCurrentSongPlayingBackgroundColorActive();
+    e.preventDefault();
+  });
+
+  $(".js-onclick-player-playlist-button").on("click", function(e){
+    alert("hello there");
+    e.preventDefault();
+  });
+
+  // $(function(){
+  //   $(document).keydown(function (event) {
+  //     if (event.keyCode == 32) {
+  //       if ($(".js-play-button").hasClass("hidden-view")) {
+  //         $(".js-pause-button").click();
+  //       } else if ($(".js-pause-button").hasClass("hidden-view")) {
+  //         $(".js-play-button").click();
+  //       }
+  //     event.preventDefault();
+  //     } else {
+  //       return false;
+  //     }
+  //   });
+  // })
 
   // Iframe real time player
   var youtubePlayerLoaded = false;
 
   $(".js-get-player-link").on("click", function(){
     var linkUrl = $(this).attr("data-href");
-    //TODO: Breaks with duplicate links
-    var newPlayIndex = arrayOfSongs.indexOf(linkUrl);
-    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
-    checkLinkSource(linkUrl);
     var submission_id = $(this).attr('data-submission-id');
+    setCurrentSongPlayingId(submission_id);
+    var newPlayIndex;
+    var loopCount = 0;
+    //TODO: Breaks with duplicate links
+    for (var songObject in arrayOfSongs){
+      if(songObject["songLink"] == linkUrl){
+        newPlayIndex = loopCount;
+        return;
+      }
+      loopCount += 1;
+    }
+    // Sets current play index so we know what songs to play before and after in the array
+    $(".js-player-replace-target").attr("data-play-index", newPlayIndex); //TODO: Move this into one play in checkLinkSource
+    //Build id hash and pass that
+    checkLinkSource(linkUrl);
+    
     $.ajax({
       url: '/submission_counts/' + submission_id,
       type: 'put'
@@ -57,7 +80,11 @@ $(document).ready(function(){
   var arrayOfSongs = [];
   $(".js-get-player-link").each(function(i, obj){
     var songLink = $(obj).data("href");
-    arrayOfSongs.push(songLink);
+    var songSubmissionId = $(obj).data("submission-id");
+    var songLinkWithId = {};
+    songLinkWithId["songLink"] = songLink;
+    songLinkWithId["submissionId"] = songSubmissionId;
+    arrayOfSongs.push(songLinkWithId);
   });
 
   function checkLinkSource(link){
@@ -66,6 +93,11 @@ $(document).ready(function(){
     var domain = a.hostname.replace('www.', '');
     $(".js-player-source").removeClass("js-youtube-player-mode");
     $(".js-player-source").removeClass("js-soundcloud-player-mode");
+    var currentPlayingIndex = $(".js-player-current-submission-index").attr("data-play-index");
+    var currentPlayingSubmissionId = arrayOfSongs[currentPlayingIndex].submissionId;
+    setCurrentSongPlayingId(currentPlayingSubmissionId);
+    setCurrentSongPlayingBackgroundColorActive();
+
     if (domain == "soundcloud.com") {
       // build soundcloud iframe
       $(".js-player-source").addClass("js-soundcloud-player-mode");
@@ -286,7 +318,7 @@ $(document).ready(function(){
     } else {
       newPlayIndex = currentPlayIndex + 1;
     }
-    var nextSongLink = arrayOfSongs[newPlayIndex];
+    var nextSongLink = arrayOfSongs[newPlayIndex].songLink;
     $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
     checkLinkSource(nextSongLink);
   }
@@ -302,7 +334,7 @@ $(document).ready(function(){
     } else {
       newPlayIndex = 0;
     }
-    var nextSongLink = arrayOfSongs[newPlayIndex];
+    var nextSongLink = arrayOfSongs[newPlayIndex].songLink;
     $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
     checkLinkSource(nextSongLink);
   }
@@ -315,6 +347,20 @@ $(document).ready(function(){
       $(".js-play-button").removeClass("hidden-view");
       $(".js-pause-button").addClass("hidden-view");
     }
+  }
+
+  function setCurrentSongPlayingId(submission_id){
+    $(".js-player-current-submission-index").attr("data-current-song-id", submission_id);
+  }
+
+  function setCurrentSongPlayingBackgroundColorActive() {
+    removeActiveSongBackground();
+    var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
+    $('[data-submission-id="' + songId + '"]').closest(".song").addClass("song-active");
+  }
+
+  function removeActiveSongBackground(){
+    $(".song-active").removeClass("song-active");
   }
 
 });

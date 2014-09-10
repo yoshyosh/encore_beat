@@ -35,6 +35,9 @@
   @include media($small) {
     display: none;
   }
+  .playlist-player-inner {
+    text-align: center;
+  }
   .playlist-player-controls {
     margin-top: 12px;
     height: 46px;
@@ -43,6 +46,7 @@
     line-height: 46px;
     text-align: left;
     padding-left: 10px;
+    overflow: hidden;
     display: none;
     box-sizing: border-box;
     .play-control-button {
@@ -53,6 +57,41 @@
       width: 30px;
       display: inline-block;
       text-align: center;
+      float: left;
+      &:hover {
+        color: $primary-accent;
+      }
+    }
+    .next-button {
+      margin-right: 10px;
+    }
+    .player-upvote-button {
+      text-decoration: none;
+      display: inline-block;
+      line-height: 44px;
+      margin-right: 12px;
+      cursor: pointer;
+      height: 46px;
+      width: auto;
+      .fa-caret-up {
+        font-size: 24px;
+        vertical-align: middle;
+        display: inline-block;
+        margin-top: -2px;
+      }
+      span {
+        font-size: 12px;
+      }
+    }
+    .player-add-playlist-button {
+        text-decoration: none;
+        width: auto;
+        .fa-plus {
+          vertical-align: middle;
+        }
+        span {
+          font-size: 12px;
+        }
     }
     .hidden-view {
       display: none;
