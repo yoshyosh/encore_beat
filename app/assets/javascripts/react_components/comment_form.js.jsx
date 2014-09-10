@@ -32,7 +32,7 @@ var CommentForm = React.createClass({
 
     // scroll to comment
     $('html,body').animate({
-       scrollTop: $('.comment').offset().top;
+       scrollTop: $('.comment').offset().top
     });
   },
 
