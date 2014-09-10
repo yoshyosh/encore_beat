@@ -20,14 +20,20 @@ var CommentForm = React.createClass({
     var formData = $(this.refs.form.getDOMNode()).serialize();
     this.props.onCommentSubmit( formData, this.props.form.action );
 
-    // reset form
-    this.refs.body.getDOMNode().value = "";
-
     // increment comment count
     var count = $('.comment-count')
     var countParts = count.text().split(" ")
     var newCount = parseInt(countParts[0]) + 1
     count.text(newCount + " Comments")
+
+    // reset form
+    this.refs.body.getDOMNode().value = "";
+    this.setState({ text: '' });
+
+    // scroll to comment
+    $('html,body').animate({
+       scrollTop: $('.comment').offset().top;
+    });
   },
 
   handleCharacterLimit: function() {
