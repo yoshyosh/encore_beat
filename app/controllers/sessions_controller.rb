@@ -37,7 +37,6 @@ class SessionsController < ApplicationController
 
       if existing_identity
         @user = existing_identity.user
-        binding.pry
         render 'users/final_signup_step' and return unless @user && @user.username
 
         session[:user_id] = @user.id
