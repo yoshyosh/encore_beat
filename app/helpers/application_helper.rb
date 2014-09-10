@@ -54,8 +54,10 @@ module ApplicationHelper
   def submission_username(user)
     if user.nil?
       "Deleted User"
-    else
+    elsif user.username
       user.username
+    else
+      'Pending User'
     end
   end
 

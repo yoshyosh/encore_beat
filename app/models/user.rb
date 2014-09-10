@@ -18,10 +18,13 @@ class User < ActiveRecord::Base
   validates :username, format: { with: USERNAME_REGEXP }
   validates :username, length: { minimum: 3 }
   validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_presence_of :username
+  validates_presence_of :username, if: :non_identitied_user?
   validates :password, :length => { minimum: 4 }, unless: 'password_digest.present?'
 
   has_secure_password
   mount_uploader :avatar, UserAvatarUploader
+
+  def non_identitied_user?
+    identities.blank?
+  end
 end
