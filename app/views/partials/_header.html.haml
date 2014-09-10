@@ -8,7 +8,7 @@
         - if current_user && !@hide_nav
           = link_to username_path(current_user.username) do
             = user_avatar_thumb_small(current_user)
-            My Favorites
+            My Playlist
           = link_to new_submission_path do
             = icon('plus-circle')
             Submit Song

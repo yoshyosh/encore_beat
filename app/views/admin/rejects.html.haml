@@ -1,0 +1,22 @@
+.main-container-outer.admin.admin-approvals
+  .main-content-container
+    .main-content-inner-container
+      %h1.main-header-title
+        Rejected Submissions
+      %table.database-table-list
+        %tr 
+          %th ID
+          %th URL
+          %th Artist - Title
+          %th Posted By
+          %th When
+          %th Move to Pending
+        - @submissions.each do |submission|
+          %tr.song{ :'data-submission-id' => submission.id }
+            %td= submission.id
+            %td= link_to "URL", submission.url, target: '_blank'
+            %td= "#{truncate(submission.artist, length: 15)} - #{truncate(submission.title, length: 25)}"
+            %td= link_to submission_username(submission.user), "mailto:#{submission.user.email}"
+            %td= submission.created_at.to_date
+            %td= link_to "Move Back", submission_path(submission, status: 0), {remote: true, :'data-submission-id' => submission.id, class: 'js-approve-submission approve-submission', method: :put}
+      = will_paginate @submissions

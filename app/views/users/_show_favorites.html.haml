@@ -1,4 +1,7 @@
-- @favorites.each do |favorite|
-  .song{ :'data-favorite-id' => favorite.id }
-    .song-details-container
-      = render partial: 'partials/submission_row', locals: { submission: favorite.submission }
+- if @favorite_submissions.any?
+  - @favorite_submissions.each do |submission|
+    .song{ :'data-favorite-id' => submission.id }
+      .song-details-container
+        = render partial: 'partials/submission_row', locals: { submission: submission }
+- else
+  No songs added to playlist.

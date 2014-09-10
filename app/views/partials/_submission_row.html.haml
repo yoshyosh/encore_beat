@@ -1,5 +1,5 @@
 %h3.song-list-title.song-title-link
-  = link_to formatted_line_for_submission(submission), "javascript:;", target: "_blank", :'data-submission-id' => submission.id, class: "js-get-player-link link-hide-mobile", :'data-href' => submission.url
+  = link_to formatted_line_for_submission(submission), submission.url, remote: true, :'data-submission-id' => submission.id, class: "js-get-player-link link-hide-mobile", :'data-href' => submission.url
   = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id, class: "js-count-mobile-click link-hide-desktop", :'data-href' => submission.url
 .song-metainfo
   .song-submitter
@@ -12,6 +12,6 @@
       = submission_username(submission.user)
   .song-actions
     = render partial: 'partials/favorite', locals: { submission: submission }
-    = link_to submission_flat_name_path(submission.flat_slug), class: "song-comments-label grey" do
+    = link_to submission_flat_name_path(submission.flat_slug), target: '_blank', class: "song-comments-label grey" do
       = icon('comments')
       = comment_count(submission)

@@ -7,7 +7,7 @@ class Identity < ActiveRecord::Base
     public_id = "#{nickname}_#{UserAvatarUploader::PUBLIC_ID_SUFFIX}"
     avatar = Cloudinary::Uploader.upload(photo, public_id: public_id)
 
-    user = User.new(username: SecureRandom.hex(4), password: SecureRandom.uuid)
+    user = User.new(username: SecureRandom.hex(4), password: SecureRandom.uuid, twitter_username: nickname)
     user.remote_avatar_url = avatar['url']
     user.save(validate: false)
 

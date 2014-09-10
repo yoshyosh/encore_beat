@@ -333,6 +333,10 @@ a {
       margin-top: 8px;
       font-size: 12px;
 
+      i {
+        font-size: 14px;
+      }
+
       .longform-text {
         display: none;
       }
@@ -412,12 +416,22 @@ a {
   padding: 10px 30px;
   font-size: 24px;
   outline: none;
+
   &:hover {
     cursor: pointer;
     background: #E23147;
   }
+
   &:active {
     background: #D52F44;
+  }
+
+  &:disabled {
+    background: #8A8D95;
+
+    &:hover {
+      cursor: default;
+    }
   }
 }
 
@@ -469,5 +483,34 @@ a.js-unfavorite-trigger {
 
   &:hover {
     color: darken($primary-accent-alt, 12%);
+  }
+}
+
+.song-submission {
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  p, ul {
+    margin-bottom: 12px;
+  }
+
+  li {
+    list-style: none;
+    margin-bottom: 6px;
+
+    @include media($small) {
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+
+  .approval-criteria-helper {
+    text-align: center;
+  }
+
+  .approval-criteria {
+    padding: 0 20px;
+    display: none;
   }
 }

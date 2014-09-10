@@ -33,41 +33,24 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
-  // $(function(){
-  //   $(document).keydown(function (event) {
-  //     if (event.keyCode == 32) {
-  //       if ($(".js-play-button").hasClass("hidden-view")) {
-  //         $(".js-pause-button").click();
-  //       } else if ($(".js-pause-button").hasClass("hidden-view")) {
-  //         $(".js-play-button").click();
-  //       }
-  //     event.preventDefault();
-  //     } else {
-  //       return false;
-  //     }
-  //   });
-  // })
-
   // Iframe real time player
   var youtubePlayerLoaded = false;
+  var arrayOfSongs = [];
+  buildArrayOfSongs();
 
-  $(".js-get-player-link").on("click", function(){
+  $(".main-container-outer").on("click", ".js-get-player-link", function(){
     var linkUrl = $(this).attr("data-href");
     var submission_id = $(this).attr('data-submission-id');
     setCurrentSongPlayingId(submission_id);
-    var newPlayIndex;
-    var loopCount = 0;
-    //TODO: Breaks with duplicate links
-    for (var songObject in arrayOfSongs){
-      if(songObject["songLink"] == linkUrl){
-        newPlayIndex = loopCount;
-        return;
-      }
-      loopCount += 1;
+    var newPlayIndex = getSongToPlayIndex(linkUrl);
+
+    // Checks if newPlayIndex doesnt exist then rebuilds the array to refresh it
+    if (!(newPlayIndex > 0)) {
+      buildArrayOfSongs();
+      newPlayIndex = getSongToPlayIndex(linkUrl);
     }
-    // Sets current play index so we know what songs to play before and after in the array
-    $(".js-player-replace-target").attr("data-play-index", newPlayIndex); //TODO: Move this into one play in checkLinkSource
-    //Build id hash and pass that
+    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
+
     checkLinkSource(linkUrl);
     
     $.ajax({
@@ -76,16 +59,30 @@ $(document).ready(function(){
     });
   });
 
+  function getSongToPlayIndex(link){
+    var songToPlayIndex;
+    var songArrayLength = arrayOfSongs.length;
+    for (var i = 0; i < songArrayLength; i++){
+      if(arrayOfSongs[i]["songLink"] == link){
+        songToPlayIndex = i;
+        break;
+      }
+      return songToPlayIndex;
+    }
+  }
+  
   //create array of songs, this needs to be refreshed/improved as we load more in the pagination stage
-  var arrayOfSongs = [];
-  $(".js-get-player-link").each(function(i, obj){
-    var songLink = $(obj).data("href");
-    var songSubmissionId = $(obj).data("submission-id");
-    var songLinkWithId = {};
-    songLinkWithId["songLink"] = songLink;
-    songLinkWithId["submissionId"] = songSubmissionId;
-    arrayOfSongs.push(songLinkWithId);
-  });
+  function buildArrayOfSongs(){
+    arrayOfSongs = [];
+    $(".js-get-player-link").each(function(i, obj){
+      var songLink = $(obj).data("href");
+      var songSubmissionId = $(obj).data("submission-id");
+      var songLinkWithId = {};
+      songLinkWithId["songLink"] = songLink;
+      songLinkWithId["submissionId"] = songSubmissionId;
+      arrayOfSongs.push(songLinkWithId);
+    });
+  }
 
   function checkLinkSource(link){
     var a = document.createElement('a');
