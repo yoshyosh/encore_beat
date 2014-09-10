@@ -5,7 +5,7 @@
     .main-content-container.songs-for-the-day-container
       .main-content-inner-container
         - @future_submissions.each do |submission|
-          .song
+          .song{ :'data-submission-id' => submission.id }
             .song-details-container
               %h3.song-list-title
                 = link_to formatted_line_for_submission(submission), submission.url, target: "_blank"
@@ -13,6 +13,11 @@
                 = user_avatar_thumb_small(submission.user)
                 %p.song-submitter-name
                   = link_to submission_username(submission.user), username_path(submission.user.username)
+                .admin-control
+                  %p
+                    = link_to "Move Back", submission_path(submission, status: 0, published_at: ''), {remote: true, :'data-submission-id' => submission.id, class: 'js-reject-submission reject-submission', method: :put}
+                    = link_to "Edit", edit_submission_path(submission), class: 'edit-submission'
+
     - if @submissions.empty?
       No submissions to approve right now. Why not spread the word? :)
     - else
