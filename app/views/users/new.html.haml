@@ -1,10 +1,12 @@
 .main-container-outer
   .main-content-container
     .main-content-inner-container
-      .main-header-title.condense Join the community to start submitting your favorite songs!
+      .main-header-title Sign up in seconds to add songs to your playlist and interact with the community!
 
       = form_tag '/auth/twitter', method: 'get', class: "twitter-form" do
-        %button.signup-twitter-button= "Sign Up via Twitter"
+        %button.signup-twitter-button
+          = icon('twitter')
+          = "Sign Up via Twitter"
 
       %h3.callout
         Or Sign Up below:

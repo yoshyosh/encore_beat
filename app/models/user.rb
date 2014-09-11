@@ -15,13 +15,16 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_uniqueness_of :email, if: 'email.present?'
   validates :email, format: { with: EMAIL_REGEXP }, if: 'email.present?'
-  validates :username, format: { with: USERNAME_REGEXP }
-  validates :username, length: { minimum: 3 }
+  validates :username, format: { with: USERNAME_REGEXP }, if: 'username.present?'
+  validates :username, length: { minimum: 3 }, if: 'username.present?'
   validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_presence_of :username
+  validates_presence_of :username, if: :non_identitied_user?
   validates :password, :length => { minimum: 4 }, unless: 'password_digest.present?'
 
   has_secure_password
   mount_uploader :avatar, UserAvatarUploader
+
+  def non_identitied_user?
+    identities.blank?
+  end
 end

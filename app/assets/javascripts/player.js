@@ -11,7 +11,6 @@ $(document).ready(function(){
     });
     var track_url = url + '?maxheight=166';
     SC.oEmbed(track_url, { auto_play: false }, function(oEmbed) {
-      console.log('oEmbed response: ' + oEmbed.html);
       $('.preview-player').html(oEmbed.html);
     });
   } else {
@@ -138,7 +137,6 @@ $(document).ready(function(){
       //    after the API code downloads.
 
       window.onYouTubeIframeAPIReady = function(){
-        console.log("on youtube iframe api ready loaded");
         player = new YT.Player('player', {
           height: '115',
           width: '200',

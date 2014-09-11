@@ -2,10 +2,8 @@
   .main-content-container
     .main-content-inner-container
       %h1.main-header-title Just one last step
-      - if @user.identities.any?
-        %p.main-header-description-text We need your email to finalize your account.
-      - else
-        %p.main-header-description-text Add a photo before you begin commenting and submitting songs!
+      - if @user.identities.blank?
+        %p.main-header-description-text Welcome to the EncoreBeat community. Add a photo before you begin commenting and submitting songs!
       = form_for @user, html: { class: 'form-container', multipart: true } do |f|
         - if @user.errors.any?
           .error-messages
@@ -16,10 +14,11 @@
         - if @user.identities.any?
           .text-field-container
             = label :username, 'Username:', class: "submit-label"
-            = text_field_tag :username, '', placeholder: 'Choose your username', value: @user.identities.first.username, class: 'submit-input'
+            = text_field_tag :username, '', placeholder: 'Choose your username', value: @user.identities.first.username, class: 'submit-input', autofocus: true
           .text-field-container
             = label :email, 'Email:', class: "submit-label"
             = text_field_tag :email, '', placeholder: 'Email', spellcheck: false, class: 'submit-input'
+            %p.callout Email not required. If provided, we only use it for helpful, non-evil reasons, such as alerts when your submissions are published to the front page.
         - else
           = hidden_field_tag :avatar_cache
           = file_field_tag :avatar, class: "upload-avatar-button js-get-file-name", onchange: "addFileNameToPage();"

@@ -92,10 +92,6 @@ a {
   .spinner > div {
     background-color: #FAFAFF;
   }
-
-  .song-list-title a:visited {
-    color: $primary-soft;
-  }
 }
 
 .main-container-outer {
@@ -257,6 +253,11 @@ a {
     line-height: 30px;
     margin-bottom: 12px;
     text-decoration: none;
+    color: #3a3a3a;
+
+    &:hover {
+      color: $primary-accent;
+    }
 
     @include media($small) {
       font-size: 16px;
@@ -315,7 +316,7 @@ a {
   a {
     text-decoration: none;
     margin-left: 8px;
-    color: $primary-fill;
+    color: #666;
 
     &:hover {
       color: $primary-accent;
@@ -372,6 +373,10 @@ a {
     @include media($small) {
       font-size: 16px;
     }
+  }
+
+  .callout {
+    margin-bottom: 30px;
   }
 }
 .submit-input {

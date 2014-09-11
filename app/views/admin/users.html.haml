@@ -13,9 +13,9 @@
           %tr
             %td= user.id
             %td
-              = link_to username_path(user.username), class: 'song-submitter-name' do
+              = link_to username_path(submission_username(user)), class: 'song-submitter-name' do
                 = user_avatar_thumb_small(user) 
-                = user.username
+                = submission_username(user)
             %td= user.email
             %td= humanize_date_with_numerics(user.created_at)
       = will_paginate @users
