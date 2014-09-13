@@ -23,12 +23,25 @@ $(document).ready(function(){
 
   // Global Generic Player control actions on click
   $(".js-onclick-player-upvote-button").on("click", function(e){
-    setCurrentSongPlayingBackgroundColorActive();
+    if($(this).hasClass("player-upvote-active")){
+      $(this).removeClass("player-upvote-active");
+      playerRemoveUpvoteCurrentPlayingSong();
+    } else {
+      $(this).addClass("player-upvote-active");
+      playerUpvoteCurrentPlayingSong();
+    }
+    //When new song loads we always clear active state then set it based on song
     e.preventDefault();
   });
 
   $(".js-onclick-player-playlist-button").on("click", function(e){
-    alert("hello there");
+    if($(this).hasClass("player-playlist-active")){
+      $(this).removeClass("player-playlist-active");
+      playerUnplaylistCurrentPlayingSong();
+    } else {
+      $(this).addClass("player-playlist-active");
+      playerPlaylistCurrentPlayingSong();
+    }
     e.preventDefault();
   });
 
@@ -48,7 +61,7 @@ $(document).ready(function(){
       buildArrayOfSongs();
       newPlayIndex = getSongToPlayIndex(linkUrl);
     }
-    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
+    $(".js-player-replace-target").attr("data-playing-index", newPlayIndex);
 
     checkLinkSource(linkUrl);
     
@@ -64,9 +77,9 @@ $(document).ready(function(){
     for (var i = 0; i < songArrayLength; i++){
       if(arrayOfSongs[i]["songLink"] == link){
         songToPlayIndex = i;
-        break;
+        console.log("songToPlayIndex: " + songToPlayIndex);
+        return songToPlayIndex;
       }
-      return songToPlayIndex;
     }
   }
   
@@ -89,11 +102,12 @@ $(document).ready(function(){
     var domain = a.hostname.replace('www.', '');
     $(".js-player-source").removeClass("js-youtube-player-mode");
     $(".js-player-source").removeClass("js-soundcloud-player-mode");
-    var currentPlayingIndex = $(".js-player-current-submission-index").attr("data-play-index");
+    var currentPlayingIndex = $(".js-player-current-submission-index").attr("data-playing-index");
     var currentPlayingSubmissionId = arrayOfSongs[currentPlayingIndex].submissionId;
     setCurrentSongPlayingId(currentPlayingSubmissionId);
     setCurrentSongPlayingBackgroundColorActive();
-
+    // Check and set upvote and playlist state based on song
+    setPlayerActionStates();
     if (domain == "soundcloud.com") {
       // build soundcloud iframe
       $(".js-player-source").addClass("js-soundcloud-player-mode");
@@ -306,7 +320,7 @@ $(document).ready(function(){
     // Need to check for when we are on the last song
     //Check array if next song exists
     // If next song does not exist, go back to start of array
-    var currentPlayIndex = parseInt($(".js-player-replace-target").attr("data-play-index"));
+    var currentPlayIndex = parseInt($(".js-player-replace-target").attr("data-playing-index"));
     var newPlayIndex;
     if (currentPlayIndex + 1 >= arrayOfSongs.count) {
       newPlayIndex = 0; //neutralize
@@ -314,7 +328,7 @@ $(document).ready(function(){
       newPlayIndex = currentPlayIndex + 1;
     }
     var nextSongLink = arrayOfSongs[newPlayIndex].songLink;
-    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
+    $(".js-player-replace-target").attr("data-playing-index", newPlayIndex);
     checkLinkSource(nextSongLink);
   }
 
@@ -322,7 +336,7 @@ $(document).ready(function(){
     // Need to check for when we are on the last song
     //Check array if next song exists
     // If next song does not exist, go back to start of array
-    var currentPlayIndex = parseInt($(".js-player-replace-target").attr("data-play-index"));
+    var currentPlayIndex = parseInt($(".js-player-replace-target").attr("data-playing-index"));
     var newPlayIndex;
     if (currentPlayIndex > 0) {
       newPlayIndex = currentPlayIndex - 1;
@@ -330,7 +344,7 @@ $(document).ready(function(){
       newPlayIndex = 0;
     }
     var nextSongLink = arrayOfSongs[newPlayIndex].songLink;
-    $(".js-player-replace-target").attr("data-play-index", newPlayIndex);
+    $(".js-player-replace-target").attr("data-playing-index", newPlayIndex);
     checkLinkSource(nextSongLink);
   }
 
@@ -356,6 +370,56 @@ $(document).ready(function(){
 
   function removeActiveSongBackground(){
     $(".song-active").removeClass("song-active");
+  }
+
+  function playerUpvoteCurrentPlayingSong(){
+    var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
+    $('[data-submission-id="' + songId + '"]').closest(".js-arrow-up").click();
+    $('[data-submission-id="' + songId + '"]').closest(".js-submission-link").attr("data-user-upvoted", "true");
+  }
+
+  function playerRemoveUpvoteCurrentPlayingSong(){
+    var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
+    $('[data-submission-id="' + songId + '"]').closest(".js-arrow-up").click();
+    $('[data-submission-id="' + songId + '"]').closest(".js-submission-link").attr("data-user-upvoted", "false");
+  }
+
+  function playerPlaylistCurrentPlayingSong() {
+    var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
+    $('[data-submission-id="' + songId + '"]').closest(".js-favorite-trigger").click();
+    $('[data-submission-id="' + songId + '"]').closest(".js-submission-link").attr("data-user-favorited", "true");
+    $(".js-player-playlist-icon").removeClass("fa-plus").addClass("fa-minus");
+    $(".js-player-playlist-icon").addClass("player-playlist-icon-vertical-align");
+  }
+
+  function playerUnplaylistCurrentPlayingSong(){
+    var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
+    $('[data-submission-id="' + songId + '"]').closest(".js-unfavorite-trigger").click();
+    $('[data-submission-id="' + songId + '"]').closest(".js-submission-link").attr("data-user-favorited", "false");
+    $(".js-player-playlist-icon").removeClass("fa-minus").addClass("fa-plus");
+    $(".js-player-playlist-icon").removeClass("player-playlist-icon-vertical-align");
+  }
+
+  function setPlayerActionStates(){
+    resetPlayerActionStates();
+    var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
+    var songWasUpvoted = $('[data-submission-id="' + songId + '"]').closest(".js-submission-link").attr("data-user-upvoted");
+    if (songWasUpvoted == "true") {
+      $(".js-onclick-player-upvote-button").addClass("player-upvote-active");
+    }
+
+    var songWasPlaylisted = $('[data-submission-id="' + songId + '"]').closest(".js-submission-link").attr("data-user-favorited");
+    if (songWasPlaylisted == "true") {
+      $(".js-onclick-player-playlist-button").addClass("player-playlist-active");
+      $(".js-player-playlist-icon").removeClass("fa-plus").addClass("fa-minus");
+      $(".js-player-playlist-icon").addClass("player-playlist-icon-vertical-align");
+    }
+  }
+
+  function resetPlayerActionStates(){
+    $(".player-upvote-active").removeClass("player-upvote-active");
+    $(".player-playlist-active").removeClass("player-playlist-active");
+    $(".js-onclick-player-playlist-button").find(".js-player-playlist-icon").removeClass("fa-minus").removeClass("fa-plus").addClass("fa-plus");
   }
 
 });

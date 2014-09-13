@@ -8,10 +8,14 @@ $(document).ready(function(){
     if (clicked) {
       // state has not yet updated, so we use the inverse. Deduct if state is "currently" clicked
       counter.text(currentCount - 1);
+      $(this).closest(".js-submission-link").attr("data-user-upvoted", "false");
+      $(".js-onclick-player-upvote-button").removeClass("player-upvote-active");
       $(this).removeClass('clicked');
     }
     else {
       counter.text(currentCount + 1)
+      $(this).closest(".js-submission-link").attr("data-user-upvoted", "true");
+      $(".js-onclick-player-upvote-button").addClass("player-upvote-active");
       $(this).addClass('clicked');
     }
 

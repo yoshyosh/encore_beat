@@ -1,5 +1,5 @@
 .playlist-player-container.js-player-source.js-soundcloud-player-mode.js-youtube-player-mode
-  .playlist-player-inner.js-player-replace-target.js-player-current-submission-index{ :'data-play-index' => 0 }
+  .playlist-player-inner.js-player-replace-target.js-player-current-submission-index{ :'data-playing-index' => 0 }
     #player
   .playlist-player-controls.js-hide-show-player
     = link_to "#", id: "previous-button", class: "previous-button js-previous-button play-control-button" do
@@ -11,8 +11,8 @@
     = link_to "#", id: "next-button", class: "next-button js-next-button play-control-button" do
       %i.fa.fa-step-forward
     = link_to "#", class: "player-upvote-button play-control-button js-onclick-player-upvote-button" do
-      %i.fa.fa-caret-up
+      %i.fa.fa-caret-up.js-player-upvote-icon
       %span Upvote
     = link_to "#", class: "player-add-playlist-button play-control-button js-onclick-player-playlist-button" do
-      %i.fa.fa-plus
+      %i.fa.fa-plus.js-player-playlist-icon
       %span Playlist

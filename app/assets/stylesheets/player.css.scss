@@ -83,6 +83,15 @@
         font-size: 12px;
       }
     }
+    .player-upvote-active {
+      color: $primary-accent;
+    }
+    .player-playlist-active {
+      color: $primary-accent;
+    }
+    .player-playlist-icon-vertical-align {
+      vertical-align: -3px;
+    }
     .player-add-playlist-button {
         text-decoration: none;
         width: auto;
