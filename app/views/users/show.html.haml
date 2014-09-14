@@ -19,7 +19,4 @@
           = succeed "'s Playlist" do
             = @user.username
         = render partial: 'show_favorites'
-        #load-more-container
-        #paginate-container
-          = react_component('InfinitePagination', {total_pages: @favorite_submissions.total_pages, current_page: @favorite_submissions.current_page, path: "/users/#{@user.id}"})
         = render 'partials/player'
