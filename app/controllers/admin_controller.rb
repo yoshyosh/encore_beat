@@ -23,6 +23,7 @@ class AdminController < ApplicationController
     @submissions = Submission
       .includes(:user)
       .includes(:submission_count)
+      .includes(:favorites)
       .where('submissions.status = ?', Submission::STATUSES[:approved])
       .order('published_at DESC')
       .references(:submission_count)

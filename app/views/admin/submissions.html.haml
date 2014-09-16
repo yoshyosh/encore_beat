@@ -16,8 +16,9 @@
           %th Title
           %th Posted By
           %th Clicks
-          %th Upvotes
-          %th Comments
+          %th Ups
+          %th= icon('comments')
+          %th PLs
           %th Published
         - @submissions.each do |submission|
           %tr
@@ -28,5 +29,6 @@
             %td= submission.submission_count.clicks
             %td= submission.submission_count.upvotes
             %td= submission.submission_count.comments
+            %td= submission.favorites.count
             %td= submission.published_at
       = will_paginate @submissions
