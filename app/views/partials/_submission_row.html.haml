@@ -1,6 +1,7 @@
 %h3.song-list-title.song-title-link
-  = link_to formatted_line_for_submission(submission), submission.url, remote: true, :'data-submission-id' => submission.id, :'data-user-upvoted' => user_logged_in_and_upvoted?(current_user, submission.id), :'data-user-favorited' => user_logged_in_and_favorited?(current_user, submission.id), class: "js-get-player-link js-submission-link link-hide-mobile", :'data-href' => submission.url
-  = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id, class: "js-count-mobile-click link-hide-desktop", :'data-href' => submission.url
+  = link_to formatted_line_for_submission(submission), submission.url, remote: true, :'data-submission-id' => submission.id, :'data-user-upvoted' => user_logged_in_and_upvoted?(current_user, submission.id), :'data-user-favorited' => user_logged_in_and_favorited?(current_user, submission.id), class: "js-get-player-link js-submission-link", :'data-href' => submission.url
+  / link-hide-mobile
+  / = link_to formatted_line_for_submission(submission), submission.url, target: "_blank", :'data-submission-id' => submission.id, :'data-user-upvoted' => user_logged_in_and_upvoted?(current_user, submission.id), :'data-user-favorited' => user_logged_in_and_favorited?(current_user, submission.id), class: "js-count-mobile-click link-hide-desktop", :'data-href' => submission.url
 .song-metainfo
   .song-submitter
     - if submission.user

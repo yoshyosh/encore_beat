@@ -33,7 +33,11 @@
   bottom: 0px;
   right: 15px;
   @include media($small) {
-    display: none;
+    _display: none;
+    background: #27282E;
+    width: 100%;
+    padding-top: 20px;
+    right: 0;
   }
   .playlist-player-inner {
     text-align: center;
@@ -49,6 +53,9 @@
     overflow: hidden;
     display: none;
     box-sizing: border-box;
+    @include media($small) {
+      width: 100%;
+    }
     .play-control-button {
       text-decoration: none;
       font-size: 20px;
@@ -58,6 +65,9 @@
       display: inline-block;
       text-align: center;
       float: left;
+      @include media($small) {
+        margin-right: 30px;
+      }
       &:hover {
         color: $primary-accent;
       }
@@ -73,6 +83,9 @@
       cursor: pointer;
       height: 46px;
       width: auto;
+      @include media($small) {
+        float: right;
+      }
       .fa-caret-up {
         font-size: 24px;
         vertical-align: middle;
@@ -95,6 +108,9 @@
     .player-add-playlist-button {
         text-decoration: none;
         width: auto;
+        @include media($small) {
+          float: right;
+        }
         .fa-plus {
           vertical-align: middle;
         }

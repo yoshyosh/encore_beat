@@ -4,9 +4,9 @@
   .playlist-player-controls.js-hide-show-player
     = link_to "#", id: "previous-button", class: "previous-button js-previous-button play-control-button" do
       %i.fa.fa-step-backward
-    = link_to "#", id: "play-button", class: "play-button js-play-button play-control-button hidden-view" do
+    = link_to "#", id: "play-button", class: "play-button js-play-button play-control-button" do
       %i.fa.fa-play
-    = link_to "#", id: "stop-button", class: "pause-button js-pause-button play-control-button" do
+    = link_to "#", id: "stop-button", class: "pause-button js-pause-button play-control-button hidden-view" do
       %i.fa.fa-pause
     = link_to "#", id: "next-button", class: "next-button js-next-button play-control-button" do
       %i.fa.fa-step-forward

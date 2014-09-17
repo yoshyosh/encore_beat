@@ -64,11 +64,6 @@ $(document).ready(function(){
     $(".js-player-replace-target").attr("data-playing-index", newPlayIndex);
 
     checkLinkSource(linkUrl);
-    
-    $.ajax({
-      url: '/submission_counts/' + submission_id,
-      type: 'put'
-    });
   });
 
   function getSongToPlayIndex(link){
@@ -108,6 +103,10 @@ $(document).ready(function(){
     setCurrentSongPlayingBackgroundColorActive();
     // Check and set upvote and playlist state based on song
     setPlayerActionStates();
+    $.ajax({
+      url: '/submission_counts/' + currentPlayingSubmissionId,
+      type: 'put'
+    });
     if (domain == "soundcloud.com") {
       // build soundcloud iframe
       $(".js-player-source").addClass("js-soundcloud-player-mode");
