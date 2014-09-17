@@ -22,6 +22,7 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find_by_flat_name(params[:flat_name])
+    @keep_headline = true
 
     if !@submission || @submission.status == Submission::STATUSES[:rejected]
       flash[:error] = "Song not found, sorry!"
