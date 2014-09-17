@@ -11,8 +11,8 @@ var CommentForm = React.createClass({
 
     // validate
     if (!body) return false;
-    if ($('#commentTextarea').val().length > 2000) {
-      alert("Sorry, your comment must be less than 2000 characters.");
+    if ($('#commentTextarea').val().length > 1000) {
+      alert("Sorry, your comment must be less than 1000 characters.");
       return false;
     }
 

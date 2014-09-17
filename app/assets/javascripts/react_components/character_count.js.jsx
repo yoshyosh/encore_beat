@@ -6,7 +6,7 @@ var CharacterCount = React.createClass({
 
     return (
       <span className="character-count">
-        { length } / 2000 characters
+        { length } / 1000 characters
       </span>
     );
   }
