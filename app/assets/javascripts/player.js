@@ -384,6 +384,7 @@ $(document).ready(function(){
   }
 
   function setCurrentSongPlayingMiniToPause(){
+    resetMiniPlayingControls();
     var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
     $('[data-submission-id="' + songId + '"]').find(".js-mini-song-control").removeClass("fa-play-circle").addClass("fa-pause").addClass("song-mini-pause");
   }
@@ -391,6 +392,10 @@ $(document).ready(function(){
   function setCurrentSongPlayingMiniToPlay(){
     var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
     $('[data-submission-id="' + songId + '"]').find(".js-mini-song-control").removeClass("fa-pause").removeClass("song-mini-pause").addClass("fa-play-circle");
+  }
+
+  function resetMiniPlayingControls(){
+    $(".js-mini-song-control").removeClass("fa-pause").removeClass("song-mini-pause").addClass("fa-play-circle");
   }
 
   function removeActiveSongBackground(){
