@@ -53,8 +53,7 @@ class UsersController < ApplicationController
       .includes(:user)
       .includes(:submission_count)
       .where(favorites: {user_id: @user.id})
-      .order('created_at DESC')
-      .paginate(page: params[:page], per_page: 10)
+      .order('favorites.created_at DESC')
 
     if request.xhr?
       respond_to do |format|
