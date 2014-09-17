@@ -83,7 +83,7 @@ function getYoutubeShortCode(link) {
 	if (domain == "youtube.com") {
 		shortURL = link.split("?v=")[1];
 	} else {
-		shortURL = link.split("/")[1];
+		shortURL = link.split("/")[3];
 	}
 	return shortURL;
 }

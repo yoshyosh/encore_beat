@@ -22,7 +22,7 @@ $(document).ready(function(){
   }
 
   // Global Generic Player control actions on click
-  $(".js-onclick-player-upvote-button").on("click", function(e){
+  $(".main-container-outer").on("click", ".js-onclick-player-upvote-button", function(e){
     if($(this).hasClass("player-upvote-active")){
       $(this).removeClass("player-upvote-active");
       playerRemoveUpvoteCurrentPlayingSong();
@@ -34,7 +34,7 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
-  $(".js-onclick-player-playlist-button").on("click", function(e){
+  $(".main-container-outer").on("click", ".js-onclick-player-playlist-button", function(e){
     if($(this).hasClass("player-playlist-active")){
       $(this).removeClass("player-playlist-active");
       playerUnplaylistCurrentPlayingSong();
@@ -135,8 +135,8 @@ $(document).ready(function(){
     var shortURL;
     if (domain == "youtube.com") {
       shortURL = link.split("?v=")[1];
-    } else {
-      shortURL = link.split("/")[1];
+    } else if (domain == "youtu.be"){
+      shortURL = link.split("/")[3];
     }
     return shortURL;
   }
