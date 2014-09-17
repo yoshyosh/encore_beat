@@ -51,19 +51,27 @@ $(document).ready(function(){
   buildArrayOfSongs();
 
   $(".main-container-outer").on("click", ".js-get-player-link", function(){
-    var linkUrl = $(this).attr("data-href");
-    var submission_id = $(this).attr('data-submission-id');
-    setCurrentSongPlayingId(submission_id);
-    var newPlayIndex = getSongToPlayIndex(linkUrl);
+    if ($(this).closest(".song").hasClass("song-active")){
+      if($(this).find(".js-mini-song-control").hasClass("fa-pause")){
+        $(".js-pause-button").click();
+      } else {
+        $(".js-play-button").click();
+      }
+    } else {
+      var linkUrl = $(this).attr("data-href");
+      var submission_id = $(this).attr('data-submission-id');
+      setCurrentSongPlayingId(submission_id);
+      var newPlayIndex = getSongToPlayIndex(linkUrl);
 
-    // Checks if newPlayIndex doesnt exist then rebuilds the array to refresh it
-    if (!(newPlayIndex > 0)) {
-      buildArrayOfSongs();
-      newPlayIndex = getSongToPlayIndex(linkUrl);
+      // Checks if newPlayIndex doesnt exist then rebuilds the array to refresh it
+      if (!(newPlayIndex > 0)) {
+        buildArrayOfSongs();
+        newPlayIndex = getSongToPlayIndex(linkUrl);
+      }
+      $(".js-player-replace-target").attr("data-playing-index", newPlayIndex);
+
+      checkLinkSource(linkUrl);
     }
-    $(".js-player-replace-target").attr("data-playing-index", newPlayIndex);
-
-    checkLinkSource(linkUrl);
   });
 
   function loadFirstSetOfSongs(){
@@ -77,7 +85,6 @@ $(document).ready(function(){
     for (var i = 0; i < songArrayLength; i++){
       if(arrayOfSongs[i]["songLink"] == link){
         songToPlayIndex = i;
-        console.log("songToPlayIndex: " + songToPlayIndex);
         return songToPlayIndex;
       }
     }
@@ -106,6 +113,7 @@ $(document).ready(function(){
     var currentPlayingSubmissionId = arrayOfSongs[currentPlayingIndex].submissionId;
     setCurrentSongPlayingId(currentPlayingSubmissionId);
     setCurrentSongPlayingBackgroundColorActive();
+    setCurrentSongPlayingMiniToPause();
     // Check and set upvote and playlist state based on song
     setPlayerActionStates();
     $.ajax({
@@ -357,9 +365,11 @@ $(document).ready(function(){
     if( $(".js-pause-button").hasClass("hidden-view") ) {
       $(".js-play-button").addClass("hidden-view");
       $(".js-pause-button").removeClass("hidden-view");
+      setCurrentSongPlayingMiniToPause();
     } else {
       $(".js-play-button").removeClass("hidden-view");
       $(".js-pause-button").addClass("hidden-view");
+      setCurrentSongPlayingMiniToPlay();
     }
   }
 
@@ -371,6 +381,16 @@ $(document).ready(function(){
     removeActiveSongBackground();
     var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
     $('[data-submission-id="' + songId + '"]').closest(".song").addClass("song-active");
+  }
+
+  function setCurrentSongPlayingMiniToPause(){
+    var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
+    $('[data-submission-id="' + songId + '"]').find(".js-mini-song-control").removeClass("fa-play-circle").addClass("fa-pause").addClass("song-mini-pause");
+  }
+
+  function setCurrentSongPlayingMiniToPlay(){
+    var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
+    $('[data-submission-id="' + songId + '"]').find(".js-mini-song-control").removeClass("fa-pause").removeClass("song-mini-pause").addClass("fa-play-circle");
   }
 
   function removeActiveSongBackground(){
