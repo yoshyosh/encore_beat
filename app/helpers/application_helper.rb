@@ -83,4 +83,29 @@ module ApplicationHelper
 
     user.favorites.any? {|favorite| favorite.submission_id == song_id }
   end
+
+  def user_logged_in_and_upvoted?(user, song_id)
+    if user
+      if user.upvotes.any? {|upvote| !upvote.nullified && upvote.submission_id == song_id }
+        "true"
+      else
+        "false"
+      end
+    else 
+      "false"
+    end
+  end
+
+  def user_logged_in_and_favorited?(user, song_id)
+    if user
+      if user.favorites.any? {|favorite| favorite.submission_id == song_id }
+        "true"
+      else
+        "false"
+      end
+    else 
+      "false"
+    end
+  end
+
 end

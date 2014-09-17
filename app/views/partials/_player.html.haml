@@ -1,12 +1,18 @@
 .playlist-player-container.js-player-source.js-soundcloud-player-mode.js-youtube-player-mode
-  .playlist-player-inner.js-player-replace-target{ :'data-play-index' => 0 }
+  .playlist-player-inner.js-player-replace-target.js-player-current-submission-index{ :'data-playing-index' => 0 }
     #player
   .playlist-player-controls.js-hide-show-player
-    = link_to "#", id: "previous-button", class: "js-previous-button play-control-button" do
+    = link_to "#", id: "previous-button", class: "previous-button js-previous-button play-control-button" do
       %i.fa.fa-step-backward
-    = link_to "#", id: "play-button", class: "js-play-button play-control-button hidden-view" do
+    = link_to "#", id: "play-button", class: "play-button js-play-button play-control-button" do
       %i.fa.fa-play
-    = link_to "#", id: "stop-button", class: "js-pause-button play-control-button" do
+    = link_to "#", id: "stop-button", class: "pause-button js-pause-button play-control-button hidden-view" do
       %i.fa.fa-pause
-    = link_to "#", id: "next-button", class: "js-next-button play-control-button" do
+    = link_to "#", id: "next-button", class: "next-button js-next-button play-control-button" do
       %i.fa.fa-step-forward
+    = link_to "#", class: "player-upvote-button play-control-button js-onclick-player-upvote-button" do
+      %i.fa.fa-caret-up.js-player-upvote-icon
+      %span Upvote
+    = link_to "#", class: "player-add-playlist-button play-control-button js-onclick-player-playlist-button" do
+      %i.fa.fa-plus.js-player-playlist-icon
+      %span Playlist
