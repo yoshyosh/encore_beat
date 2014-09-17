@@ -66,6 +66,11 @@ $(document).ready(function(){
     checkLinkSource(linkUrl);
   });
 
+  function loadFirstSetOfSongs(){
+    var firstSongLink = arrayOfSongs[0];
+
+  }
+
   function getSongToPlayIndex(link){
     var songToPlayIndex;
     var songArrayLength = arrayOfSongs.length;
@@ -166,6 +171,7 @@ $(document).ready(function(){
       
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
+        // Check global state if this is first load video, dont auto play, otherwise go for it.
         event.target.playVideo();
       }
 
@@ -374,6 +380,9 @@ $(document).ready(function(){
   function playerUpvoteCurrentPlayingSong(){
     var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
     $('[data-submission-id="' + songId + '"]').closest(".js-arrow-up").click();
+    if ($(".js-loggedout-arrow-up").length > 0){
+      $(".js-loggedout-arrow-up")[0].click(); //For logged out case
+    }
     $('[data-submission-id="' + songId + '"]').closest(".js-submission-link").attr("data-user-upvoted", "true");
   }
 
@@ -386,6 +395,9 @@ $(document).ready(function(){
   function playerPlaylistCurrentPlayingSong() {
     var songId = $(".js-player-current-submission-index").attr("data-current-song-id");
     $('[data-submission-id="' + songId + '"]').closest(".js-favorite-trigger").click();
+    if ($(".js-loggedout-favorite-trigger").length > 0){
+      $(".js-loggedout-favorite-trigger")[0].click(); //For logged out case
+    }
     $('[data-submission-id="' + songId + '"]').closest(".js-submission-link").attr("data-user-favorited", "true");
     $(".js-player-playlist-icon").removeClass("fa-plus").addClass("fa-minus");
     $(".js-player-playlist-icon").addClass("player-playlist-icon-vertical-align");
