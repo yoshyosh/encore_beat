@@ -259,10 +259,14 @@ $(document).ready(function(){
     widget.bind(SC.Widget.Events.READY, function() {
           widget.bind(SC.Widget.Events.PLAY, function() {
             $(".js-hide-show-player").show();
-            togglePlayPause();
+            $(".js-play-button").addClass("hidden-view");
+            $(".js-pause-button").removeClass("hidden-view");
+            setCurrentSongPlayingMiniToPause();
           });
           widget.bind(SC.Widget.Events.PAUSE, function() {
-            togglePlayPause();
+            $(".js-pause-button").addClass("hidden-view");
+            $(".js-play-button").removeClass("hidden-view");
+            setCurrentSongPlayingMiniToPlay();
           });
     });
     
