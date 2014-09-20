@@ -33,7 +33,7 @@
   bottom: 0px;
   right: 15px;
   @include media($small) {
-    display: none;
+    _display: none;
     background: #27282E;
     width: 100%;
     padding-top: 20px;

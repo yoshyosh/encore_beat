@@ -269,7 +269,8 @@ $(document).ready(function(){
             $(".js-play-button").removeClass("hidden-view");
             setCurrentSongPlayingMiniToPlay();
           });
-          widget.play();
+          $(".js-play-button").click();
+          //widget.play();
     });
     
     //song ended
