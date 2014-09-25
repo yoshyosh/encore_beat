@@ -194,6 +194,7 @@ $(document).ready(function(){
         if (currentState == 0) {
           loadNextSongInQueue();
         } else if (currentState == 1) {
+          player.playVideo();
           $(".js-hide-show-player").show();
           $(".js-play-button").addClass("hidden-view");
           $(".js-pause-button").removeClass("hidden-view");
@@ -268,6 +269,7 @@ $(document).ready(function(){
             $(".js-play-button").removeClass("hidden-view");
             setCurrentSongPlayingMiniToPlay();
           });
+          widget.play();
     });
     
     //song ended
@@ -311,7 +313,7 @@ $(document).ready(function(){
   function createSoundcloudIframe(link){
     var songFrame = document.createElement('iframe');
     var songLinkPrefix = "https://w.soundcloud.com/player/?url=";
-    songFrame.src = songLinkPrefix + link + "&auto_play=true";
+    songFrame.src = songLinkPrefix + link + "&auto_play=false";
     songFrame.width = 200;
     songFrame.height = 115;
     songFrame.scrolling = "no";
