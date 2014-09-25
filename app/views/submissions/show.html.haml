@@ -29,6 +29,16 @@
             .admin-approvals.admin-control
               = link_to "Reject", submission_path(@submission, status: 2), {remote: true, :'data-submission-id' => @submission.id, class: 'js-reject-submission reject-submission', method: :put}
               = link_to "Edit", edit_submission_path(@submission), class: 'edit-submission'
+            .admin-info
+              Upvoters: 
+              - @upvoters.each do |user|
+                = "#{user.username}, "
+              %br
+              Playlisters:
+              - @playlisters.each do |user|
+                = "#{user.username}, "
+
+
     .comments-container
       %p.comment-count
         = comment_count(@submission)

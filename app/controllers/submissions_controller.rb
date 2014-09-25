@@ -47,6 +47,11 @@ class SubmissionsController < ApplicationController
       user_upvote = Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
       @current_user_upvoted = user_upvote && !user_upvote.nullified
     end
+
+    if current_user.site_admin
+      @upvoters = User.where("id in (?)", Upvote.where(submission_id: @submission.id).map(&:user_id))
+      @playlisters = User.where("id in (?)", Favorite.where(submission_id: @submission.id).map(&:user_id))
+    end
   end
 
   def edit
