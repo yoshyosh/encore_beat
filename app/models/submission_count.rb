@@ -24,4 +24,14 @@ class SubmissionCount < ActiveRecord::Base
     self.upvotes += 1
     self.save
   end
+
+  def deduct_favorites!
+    self.favorites -= 1
+    self.save
+  end
+
+  def increment_favorites!
+    self.favorites += 1
+    self.save
+  end
 end
