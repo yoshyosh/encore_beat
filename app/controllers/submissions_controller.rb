@@ -21,10 +21,18 @@ class SubmissionsController < ApplicationController
   end
 
   def show
-    @submission = Submission.find_by_flat_name(params[:flat_name])
+    flat_name = params[:flat_name]
+    @submission = Submission.find_by_flat_name(flat_name)
     @keep_headline = true
 
-    if !@submission || @submission.status == Submission::STATUSES[:rejected]
+    if @submission.nil?
+      # Fallback for flat name searching due to legacy schema - "123-foo-bar will match any foo-bar"
+      @submission = Submission.where("flat_name LIKE (?)", "%#{flat_name}")
+
+      @submission = @submission.first if @submission
+    end
+
+    if @submission.nil? || @submission.status != Submission::STATUSES[:approved]
       flash[:error] = "Song not found, sorry!"
       redirect_to root_path and return
     end
