@@ -6,9 +6,7 @@ class SubscriptionsController < ApplicationController
       if response[:success].present?
         cookies[:newsletter_signed_up] = true
 
-        respond_to do |format|
-          format.html { render partial: 'partials/social_media', status: 200 }
-        end
+        render js: {}
       elsif response[:error].present?
         respond_to do |format|
           format.js { render json: {message: response[:error]}, status: 422 }
@@ -20,7 +18,7 @@ class SubscriptionsController < ApplicationController
       end
     else
       cookies[:newsletter_signed_up] = true
-      flash[:success] = "You've successfully been subscribed. Thank you and enjoy the beats!"
+      flash[:success] = "Thanks for subscribing, enjoy the beats!"
       redirect_to root_path and return
     end
   end
