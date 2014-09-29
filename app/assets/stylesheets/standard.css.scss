@@ -107,6 +107,12 @@ a {
   margin: 0 auto;
 }
 
+.main-side-container {
+  position: fixed;
+  bottom: 0px;
+  right: 15px;
+}
+
 .upvote-container {
   float: left;
   width: 50px;

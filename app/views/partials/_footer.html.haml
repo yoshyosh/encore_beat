@@ -1,5 +1,6 @@
 %footer.main-container-footer
-  = render partial: 'partials/social_media'
+  .social_media_footer_container
+    = render partial: 'partials/social_media'
   %ul.footer-links
     - if current_user && !@hide_nav
       %li= link_to 'Logout', session_path(current_user), method: :delete

@@ -1,0 +1,20 @@
+.social_media_side_container {
+  width: 254px;
+  padding: 20px 0;
+  background: #27282E;
+  @include media($medium) {
+    display: none;
+  }
+}
+
+.social_media_callout_title {
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, .7);
+}
+
+.social_media_footer_container {
+  display: none;
+  @include media($medium) {
+    display: block;
+  }
+}
