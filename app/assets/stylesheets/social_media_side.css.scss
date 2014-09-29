@@ -1,7 +1,7 @@
 .social_media_side_container {
   width: 254px;
   padding: 20px 0;
-  background: #27282E;
+  background: rgba(39, 40, 46, .7);
   @include media($container-max) {
     display: none;
   }
