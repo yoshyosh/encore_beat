@@ -1,6 +1,7 @@
 require 'will_paginate/array'
 class LandingController < ApplicationController
   def index
+    setup_newsletter_callout
     @submissions = 
       Submission
       .includes(:user)
@@ -27,5 +28,18 @@ class LandingController < ApplicationController
   end
 
   def contact
+  end
+
+  private
+
+  def setup_newsletter_callout
+    @newsletter_form_presenter = {
+      clicked: false,
+      form: {
+        action: subscriptions_path,
+        csrf_param: request_forgery_protection_token,
+        csrf_token: form_authenticity_token
+      }
+    }
   end
 end

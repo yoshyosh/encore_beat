@@ -309,3 +309,47 @@ footer.main-container-footer {
 .share {
   float: right;
 }
+
+.newsletter-callout {
+  padding: 20px !important;
+  text-align: center;
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  p, form {
+    display: inline;
+
+    @include media($medium) {
+      display: block;
+    }
+  }
+
+  input[type="email"] {
+    height: 35px;
+    padding: 3px 6px;
+    font-size: 14px;
+    vertical-align: middle;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .newsletter-subscribe {
+    display: inline;
+    font-size: 14px;
+    padding: 8px 16px;
+    vertical-align: middle;
+  }
+
+  .newsletter-success {
+    display: none;
+
+    p {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+}
