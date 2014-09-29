@@ -1,9 +1,11 @@
-.main-content-container
-  .main-content-inner-container.songs-for-the-day-container.newsletter-callout
-    .newsletter-presubscribe
-      %p Send the best new music to your email every week: 
-      = form_tag subscriptions_path, method: :post, class: 'js-newsletter-signup-form' do
-        = email_field_tag :email, nil, placeholder: 'Your email', required: 'required'
-        = submit_tag 'Subscribe', class: 'primary-action-button newsletter-subscribe'
-    .newsletter-success
-      = render partial: 'partials/newsletter_success'
+- if show_newsletter_callout?
+  .main-content-container
+    .main-content-inner-container.songs-for-the-day-container.newsletter-callout
+      .newsletter-presubscribe
+        %p Send the best new music to your email every week: 
+        = form_tag subscriptions_path, method: :post, class: 'js-newsletter-signup-form' do
+          = email_field_tag :email, nil, placeholder: 'Your email', required: 'required'
+          = submit_tag 'Subscribe', class: 'primary-action-button newsletter-subscribe'
+      .newsletter-errors
+      .newsletter-success
+        = render partial: 'partials/newsletter_success'

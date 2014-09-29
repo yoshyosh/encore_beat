@@ -108,4 +108,7 @@ module ApplicationHelper
     end
   end
 
+  def show_newsletter_callout?
+    !current_user && !cookies[:newsletter_signed_up]
+  end
 end
