@@ -21,10 +21,18 @@ class SubmissionsController < ApplicationController
   end
 
   def show
-    @submission = Submission.find_by_flat_name(params[:flat_name])
+    flat_name = params[:flat_name]
+    @submission = Submission.find_by_flat_name(flat_name)
     @keep_headline = true
 
-    if !@submission || @submission.status == Submission::STATUSES[:rejected]
+    if @submission.nil?
+      # Fallback for flat name searching due to legacy schema - "123-foo-bar will match any foo-bar"
+      @submission = Submission.where("flat_name LIKE (?)", "%#{flat_name}")
+
+      @submission = @submission.first if @submission
+    end
+
+    if @submission.nil? || @submission.status != Submission::STATUSES[:approved]
       flash[:error] = "Song not found, sorry!"
       redirect_to root_path and return
     end
@@ -46,6 +54,11 @@ class SubmissionsController < ApplicationController
     if current_user
       user_upvote = Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
       @current_user_upvoted = user_upvote && !user_upvote.nullified
+
+      if current_user.site_admin
+        @upvoters = User.where("id in (?)", Upvote.where(submission_id: @submission.id).map(&:user_id))
+        @playlisters = User.where("id in (?)", Favorite.where(submission_id: @submission.id).map(&:user_id))
+      end
     end
   end
 

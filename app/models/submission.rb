@@ -46,6 +46,10 @@ class Submission < ActiveRecord::Base
   end
 
   def flat_slug
-    "#{id}-#{artist}-#{title}".parameterize
+    if self.status == 1
+      "#{artist}-#{title}".parameterize
+    else
+      "#{Time.now.to_i}-pending".parameterize
+    end
   end
 end
