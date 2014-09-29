@@ -2,7 +2,7 @@
   width: 254px;
   padding: 20px 0;
   background: #27282E;
-  @include media($medium) {
+  @include media($container-max) {
     display: none;
   }
 }
@@ -14,7 +14,7 @@
 
 .social_media_footer_container {
   display: none;
-  @include media($medium) {
+  @include media($container-max) {
     display: block;
   }
 }
