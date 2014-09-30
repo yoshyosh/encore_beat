@@ -1,7 +1,9 @@
 .main-container-outer#main-container-homepage
   = render 'partials/newsletter_callout'
   = render 'partials/submission_date'
-  = render 'partials/player'
+  .main-side-container
+    = render 'partials/social_media_side'
+    = render 'partials/player'
   #load-more-container
   #paginate-container
     - if @submissions_dates
