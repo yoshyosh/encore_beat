@@ -107,6 +107,12 @@ a {
   margin: 0 auto;
 }
 
+.main-side-container {
+  position: fixed;
+  bottom: 0px;
+  right: 15px;
+}
+
 .upvote-container {
   float: left;
   width: 50px;
@@ -195,25 +201,26 @@ a {
   margin: 0px auto 0;
   text-align: left;
   background: #FAFAFF;
-  .main-content-inner-container {
-    padding: 30px;
-    .main-header-title {
-      font-size: 26px;
-      line-height: 32px;
-      text-align: center;
+}
 
-      &.condense {
-        max-width: 500px;
-        margin: auto;
-      }
-    }
-    .song:last-child {
-      margin-bottom: 0;
-    }
+.main-content-inner-container {
+  padding: 30px;
+  .main-header-title {
+    font-size: 26px;
+    line-height: 32px;
+    text-align: center;
 
-    @include media($small) {
-      padding: 20px;
+    &.condense {
+      max-width: 500px;
+      margin: auto;
     }
+  }
+  .song:last-child {
+    margin-bottom: 0;
+  }
+
+  @include media($small) {
+    padding: 20px;
   }
 }
 

@@ -26,6 +26,7 @@ gem 'tweet-button'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'thin'
 gem 'newrelic_rpm'
+gem 'mailchimp-api', require: 'mailchimp'
 
 group :production do
   gem 'rails_12factor'
