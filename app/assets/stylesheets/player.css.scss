@@ -1,7 +1,7 @@
 .preview-player {
   margin-top: 24px;
   a {
-    color: #FAFAFF;
+    color: $off-white;
   }
   iframe {
     @include media($small) {
