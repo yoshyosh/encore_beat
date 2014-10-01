@@ -184,25 +184,12 @@ header.main-container-header {
 .full-headline {
   display: block;
 
-  @include media($medium) {
-    display: none;
-  }
-
   h3 {
     font-size: 18px;
     line-height: 32px;
     text-align: center;
     padding: 0 20px;
     color: #fff;
-  }
-}
-
-.truncated-headline {
-  display: none;
-
-  @include media($medium) {
-    display: block;
-    margin-top: 12px;
   }
 }
 
