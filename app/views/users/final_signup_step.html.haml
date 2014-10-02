@@ -18,10 +18,13 @@
           .text-field-container
             = label :email, 'Email:', class: "submit-label"
             = text_field_tag :email, '', placeholder: 'Email', spellcheck: false, class: 'submit-input'
-            %p.callout Email not required. If provided, we only use it for helpful, non-evil reasons, such as alerts when your submissions are published to the front page.
+            %p.callout Email not required. If provided, we use it for helpful, non-evil reasons, such as notifications on your submissions.
         - else
           = hidden_field_tag :avatar_cache
           = file_field_tag :avatar, class: "upload-avatar-button js-get-file-name", onchange: "addFileNameToPage();"
           %p.avatar-added-text.js-add-filename.js-hide-avatar-added-text{onclick: "hideFileNameHolder();"}
 
         = f.submit 'Signup', class: 'primary-action-button'
+        %p.agreement 
+          By clicking 'Signup', you agree to our
+          = link_to 'Terms of Service', terms_path
