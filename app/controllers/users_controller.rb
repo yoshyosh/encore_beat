@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      MailchimpApi.subscribe_user!(@user.email)
       session[:user_id] = @user.id
       render :final_signup_step
     else
