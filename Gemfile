@@ -27,6 +27,7 @@ gem 'font-awesome-sass', '~> 4.2.0'
 gem 'thin'
 gem 'newrelic_rpm'
 gem 'mailchimp-api', require: 'mailchimp'
+gem 'intercom-rails', '~> 0.2.26'
 
 group :production do
   gem 'rails_12factor'
