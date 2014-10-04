@@ -1,5 +1,7 @@
 - @submissions_dates.each do |date|
   - next if date == Date.tomorrow
+  - if date == Date.yesterday
+    = render 'partials/newsletter_callout'
   %h4.song-list-date-group= humanize_date(date)
   .main-content-container.songs-for-the-day-container
     .main-content-inner-container
