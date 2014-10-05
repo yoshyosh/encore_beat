@@ -28,6 +28,7 @@ gem 'thin'
 gem 'newrelic_rpm'
 gem 'mailchimp-api', require: 'mailchimp'
 gem 'intercom-rails', '~> 0.2.26'
+gem 'faraday'
 
 group :production do
   gem 'rails_12factor'
