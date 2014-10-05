@@ -24,8 +24,12 @@ Rails.application.routes.draw do
   get '/contact', to: 'landing#contact', as: 'contact'
 
   # admin pages
-  get '/admin/approval_queue', to: 'admin#approval_queue', as: 'approval_queue'
-  get '/admin/users', to: 'admin#users'
-  get '/admin/submissions', to: 'admin#submissions'
-  get '/admin/rejects', to: 'admin#rejects'
+  scope '/admin' do
+    get 'approval_queue', to: 'admin#approval_queue', as: 'approval_queue'
+    get 'users', to: 'admin#users', as: 'admin_users'
+    get 'submissions', to: 'admin#submissions', as: 'admin_submissions'
+    get 'rejects', to: 'admin#rejects', as: 'admin_rejects'
+    resources :top_hits, only: [:index, :create]
+  end
+
 end

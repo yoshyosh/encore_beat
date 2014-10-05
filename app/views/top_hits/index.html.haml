@@ -1,0 +1,30 @@
+.main-container-outer.admin
+  .main-content-container
+    .main-content-inner-container
+      %h1.main-header-title Top Hits Generator
+      %br
+      %p 1. Input a start date
+      %p 2. Input an end date
+      %p 3. Input the number of results to return
+      %p 4. Receive results as a URL to a gist
+      %br
+      %br
+
+      = form_tag top_hits_path, method: :post do
+        = label_tag :start_date, 'Start Date'
+        = date_field_tag :start_date
+        %br
+        = label_tag :end_date, 'End Date'
+        = date_field_tag :end_date
+        %br
+        = label_tag :results, '# of Results'
+        = number_field_tag :results, 10, label: "# of Results"
+        %br
+        %br
+        = submit_tag 'Generate!'
+      %br
+      %p.flash
+        - if flash[:success]
+          = link_to flash[:success], flash[:success]
+        - if flash[:error]
+          = flash[:error]
