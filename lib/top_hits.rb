@@ -7,7 +7,7 @@ module TopHits
 
     submissions = Submission.
     includes(:submission_count).
-    where('submissions.created_at > ? AND submissions.created_at < ?', start_date, end_date).
+    where('submissions.published_at > ? AND submissions.published_at < ?', start_date, end_date).
     order('submission_counts.upvotes DESC').
     limit(num_results)
 
@@ -19,11 +19,11 @@ module TopHits
       upvotes = submission.submission_count.upvotes
       publish_date = submission.published_at
 
-      markdown += """
-        ### #{index + 1}. #{submission.artist} - #{submission.title}
-        #{upvotes} Upvotes on #{publish_date.strftime(%m-%d)}
+      markdown.concat("#### #{index + 1}. #{submission.artist} - #{submission.title} \n").concat("#{upvotes} Upvotes on #{publish_date.strftime('%b %d')} \n\n")
 
-      """
+      binding.pry
     end
+
+    GistApi.create!(markdown)
   end
 end
