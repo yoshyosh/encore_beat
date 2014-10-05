@@ -7,7 +7,7 @@ module GistApi
       faraday.adapter  Faraday.default_adapter
     end
 
-    query_as_hash = { 
+    json_query = { 
       :"description" => "EB admin-generated gist",
       :"public" => false,
       :"files" => {
@@ -15,17 +15,13 @@ module GistApi
           :"content" => contents
         }
       }
-    }
+    }.to_json
 
-    response = conn.post '/gists', query_as_hash.to_json do |req|
+    response = conn.post '/gists', json_query do |req|
       req.options[:timeout] = 20
       req.options[:open_timeout] = 20
     end
 
-    if response.status == 400
-      false
-    else
-      JSON.parse(response.body)["html_url"]
-    end
+    JSON.parse(response.body) && JSON.parse(response.body)["html_url"]
   end
 end
