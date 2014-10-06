@@ -42,12 +42,6 @@ class AdminController < ApplicationController
       .paginate(page: params[:page], :per_page => 50)
   end
 
-  def top_hits
-  end
-
-  def top_hits_generate
-  end
-
   private
 
   def authorize
