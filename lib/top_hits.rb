@@ -1,6 +1,6 @@
 module TopHits
   # Currently used to send to Gist to create markdown gists
-  def self.generate_in_gist!(start_date = Date.yesterday - 7, end_date = Date.yesterday, num_results = 10)
+  def self.generate_in_gist!(start_date, end_date, num_results = 10)
     return false if start_date.blank? || end_date.blank?
 
     submissions = Submission.
