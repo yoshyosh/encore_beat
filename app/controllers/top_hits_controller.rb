@@ -1,4 +1,6 @@
 class TopHitsController < ApplicationController
+  before_filter :authorize_site_admin
+
   def index
   end
 
@@ -12,5 +14,9 @@ class TopHitsController < ApplicationController
     end
 
     render :index
+  end
+
+  def authorize_site_admin
+    redirect_to root_path unless current_user && current_user.site_admin
   end
 end
