@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/terms', to: 'landing#terms', as: 'terms'
   get '/faq', to: 'landing#faq', as: 'faq'
   get '/contact', to: 'landing#contact', as: 'contact'
+  get '/top-10-edm-songs/:slug' => 'highlights#show', as: 'highlight_slug'
 
   # admin pages
   scope '/admin' do

@@ -1,0 +1,34 @@
+.highlights
+  .main-container-outer
+    .main-content-container
+      .main-content-inner-container
+        %h1 Top 10 EDM Songs of the Week
+        %h2.de-emphasize= "#{@highlight.weekly_start_date.strftime('%B %d')} to #{@highlight.date.strftime('%B %d')}, #{@highlight.date.year}"
+
+        - unless current_user
+          %p
+            Click any
+            = icon('play-circle')
+            to start listening
+
+        %h4.song-list-date-group
+        - @highlight.submissions.each_with_index do |submission, index|
+          .song{ :'data-favorite-id' => submission.id }
+            .upvote-container
+              %h4.rankings
+                = succeed '.' do
+                  = index + 1
+            .song-details-container
+              = render partial: 'partials/submission_row', locals: { submission: submission }
+    %br
+    .highlights-additional-actions
+      = link_to root_path, class: 'home-callout' do
+        - if current_user
+          Back to
+        - else
+          Listen to 
+        today's newest tracks
+        %span.arrow →
+    .main-side-container
+      = render 'partials/social_media_side'
+      = render 'partials/player'

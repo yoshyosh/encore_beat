@@ -155,8 +155,19 @@ header.main-container-header {
     }
     .main-nav-options {
       float: right;
+
+      .submit-link {
+        @include media($small) {
+          display: none;
+        }
+      }
+
       i {
         font-size: 20px;
+      }
+
+      .fa-list-ol {
+        font-size: 16px;
       }
 
       @include media($small) {
