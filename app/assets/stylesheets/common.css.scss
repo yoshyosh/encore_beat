@@ -106,10 +106,16 @@ header.main-container-header {
       margin-left: 12px;
       display: inline-block;
       text-decoration: none;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:hover {
+        color: $primary-accent;
+      }
     }
-    a:hover {
-      color: $primary-accent;
-    }
+
     .navigation-inner {
       max-width: 960px;
       width: 100%;
@@ -226,7 +232,7 @@ header.main-container-header {
   }
 
   @include media($small) {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
