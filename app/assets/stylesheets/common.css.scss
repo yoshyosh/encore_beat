@@ -365,6 +365,10 @@ footer.main-container-footer {
     height: 28px;
     vertical-align: middle;
     -webkit-appearance: none;
+
+    @include media($small) {
+      padding: 4px 12px;
+    }
   }
 
   .newsletter-errors {

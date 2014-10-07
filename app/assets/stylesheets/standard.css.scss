@@ -86,7 +86,14 @@ a {
 #main-container-homepage {
   .user-avatar-thumb {
     width: 20px;
+    height: 20px;
     border-radius: 20px;
+
+    @include media($small) {
+      width: 16px;
+      height: 16px;
+      border-radius: 16px;
+    }
   }
 
   .spinner > div {
@@ -125,6 +132,7 @@ a {
 
   @include media($small) {
     width: 35px;
+    margin-right: 8px;
   }
 
   a.favorite-trigger {
@@ -235,14 +243,19 @@ a {
     padding: 30px 18px;
 
     @include media($small) {
-      padding: 20px 12px;
+      padding: 18px 10px;
     }
   }
 }
 
 .song {
+  clear: both;
   margin-bottom: 18px;
   padding: 8px;
+
+  @include media($small) {
+    padding: 0;
+  }
 }
 .song-active {
   background-color: #FCE4E4;
@@ -252,7 +265,7 @@ a {
   margin-left: 62px;
 
   @include media($small) {
-    margin-left: 47px;
+    margin-left: 40px;
   }
 }
 
@@ -343,6 +356,10 @@ a {
 
     i {
       font-size: 16px;
+    }
+
+    @include media($small) {
+      margin-left: 4px;
     }
   }
 
