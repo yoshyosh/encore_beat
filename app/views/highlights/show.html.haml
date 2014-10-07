@@ -23,7 +23,11 @@
     %br
     .highlights-additional-actions
       = link_to root_path, class: 'home-callout' do
-        Listen to today's newest tracks
+        - if current_user
+          Back to
+        - else
+          Listen to 
+        today's newest tracks
         %span.arrow →
     .main-side-container
       = render 'partials/social_media_side'
