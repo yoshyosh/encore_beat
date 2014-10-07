@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925081746) do
+ActiveRecord::Schema.define(version: 20141007033721) do
 
   create_table "comments", force: true do |t|
     t.text     "body",          null: false
@@ -29,6 +29,19 @@ ActiveRecord::Schema.define(version: 20140925081746) do
     t.integer  "submission_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "highlights", force: true do |t|
+    t.date     "date",                   null: false
+    t.integer  "interval",   default: 0
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "highlights_submissions", force: true do |t|
+    t.integer "highlight_id"
+    t.integer "submission_id"
   end
 
   create_table "identities", force: true do |t|

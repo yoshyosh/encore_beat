@@ -159,6 +159,10 @@ header.main-container-header {
         font-size: 20px;
       }
 
+      .fa-list-ol {
+        font-size: 16px;
+      }
+
       @include media($small) {
         float: none;
       }

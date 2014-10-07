@@ -7,6 +7,7 @@ class Submission < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   has_one :submission_count, dependent: :destroy
   belongs_to :user
+  has_and_belongs_to_many :highlights
 
   validates_presence_of :title, :artist, :url
   validates :url, format: { with: VALID_HOST_SUBMISSION_URLS }

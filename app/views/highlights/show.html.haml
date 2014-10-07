@@ -1,0 +1,12 @@
+.user
+  .main-container-outer
+    .main-content-container
+      .main-content-inner-container
+        %h1 Top 10 EDM Songs of The Week
+        %h2= "For the week of #{@highlight.weekly_start_date.strftime('%B %d')} to #{@highlight.date.strftime('%B %d')}, #{@highlight.date.year}"
+        %h4.song-list-date-group
+        - @highlight.submissions.each do |submission|
+          .song{ :'data-favorite-id' => submission.id }
+            .song-details-container
+              = render partial: 'partials/submission_row', locals: { submission: submission }
+        = render 'partials/player'
