@@ -12,19 +12,22 @@
           = link_to highlight_slug_path(last_highlight_slug) do
             = icon('list-ol')
             Weekly Top 10
-          = link_to new_submission_path do
+          = link_to new_submission_path, class: 'submit-link' do
             = icon('plus-circle')
-            Submit Song
+            Submit
           - if current_user.admin && current_user.site_admin
             = link_to "Admin", admin_index_path
           - elsif current_user.admin
             = link_to "Admin", approval_queue_path
           = link_to "Logout", session_path(current_user), method: :delete
         - else 
+          - if @show_nav_home_link
+            = link_to 'Home', root_path
+          = link_to highlight_slug_path(last_highlight_slug) do
+            = icon('list-ol')
+            Weekly Top 10
           = link_to signup_path(w: true) do
-            My Playlist
-          = link_to signup_path(w: true) do
-            Submit Song
+            Submit
           = link_to "Login", login_path, class: 'emphasize'
   .main-container-header-overlay
   - if @keep_headline || !current_user

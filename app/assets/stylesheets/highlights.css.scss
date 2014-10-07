@@ -1,0 +1,50 @@
+.highlights {
+  h1, h2, p {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    line-height: 30px;
+  }
+
+  h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+
+  .rankings {
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 12px;
+  }
+
+  .highlights-additional-actions {
+    width: 100%;
+    max-width: 760px;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+  }
+
+  .home-callout {
+    padding: 10px 20px;
+    background: #484C57;
+    color: #fff;
+    text-decoration: none;
+
+    .arrow {
+      color: $primary-accent;
+    }
+
+    &:hover {
+      background: #3A3D47;
+    }
+
+    &:active{
+      background: #2E3138;
+    }
+  }
+}

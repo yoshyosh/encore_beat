@@ -15,8 +15,10 @@
 
     .main-content-container
       .main-content-inner-container
-        %h4.song-list-date-group
+        %h1
           = succeed "'s Playlist" do
             = @user.username
         = render partial: 'show_favorites'
+      .main-side-container
+        = render 'partials/social_media_side'
         = render 'partials/player'

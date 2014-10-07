@@ -10,5 +10,6 @@ class HighlightsController < ApplicationController
     end
 
     @meta_data = "Top 10 EDM songs for the week of #{@highlight.weekly_start_date.strftime('%B %d')} to #{@highlight.date.strftime('%B %d')}, #{@highlight.date.year}"
+    @show_nav_home_link = true
   end
 end
