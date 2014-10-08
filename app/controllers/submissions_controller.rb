@@ -86,6 +86,6 @@ class SubmissionsController < ApplicationController
   end
 
   def edit_params
-    params.permit(:status, :id, :published_at, :url, :artist, :title)
+    params.permit(:status, :id, :published_at, :url, :artist, :title, :rejected_by)
   end
 end
