@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007033721) do
+ActiveRecord::Schema.define(version: 20141008040758) do
 
   create_table "comments", force: true do |t|
     t.text     "body",          null: false
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20141007033721) do
     t.integer  "status",       default: 0, null: false
     t.date     "published_at"
     t.string   "flat_name",                null: false
+    t.string   "rejected_by"
   end
 
   add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree

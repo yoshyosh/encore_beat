@@ -9,6 +9,7 @@
           %th URL
           %th Artist - Title
           %th Posted By
+          %th Rejected By
           %th When
           %th Move to Pending
         - @submissions.each do |submission|
@@ -17,6 +18,7 @@
             %td= link_to "URL", submission.url, target: '_blank'
             %td= "#{truncate(submission.artist, length: 15)} - #{truncate(submission.title, length: 25)}"
             %td= link_to submission_username(submission.user), "mailto:#{submission.user.email}"
+            %td= submission.rejected_by
             %td= submission.created_at.to_date
             %td= link_to "Move Back", submission_path(submission, status: 0), {remote: true, :'data-submission-id' => submission.id, class: 'js-approve-submission approve-submission', method: :put}
       = will_paginate @submissions
