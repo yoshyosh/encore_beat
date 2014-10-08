@@ -1,10 +1,10 @@
 module MailchimpApi
   WEEKLY_NEWSLETTER_ID = '26876761da'
-  def self.subscribe_user!(email)
+  def self.subscribe_user!(email, username = nil)
     return { success: true } unless Rails.env.production?
 
     begin
-      client.lists.subscribe(WEEKLY_NEWSLETTER_ID, { email: email }, nil, 'html', false)
+      client.lists.subscribe(WEEKLY_NEWSLETTER_ID, { email: email }, { username: username }, 'html', false)
     rescue Mailchimp::ListAlreadySubscribedError
       warn = "#{email} is already subscribed!"
     rescue Mailchimp::ListDoesNotExistError
