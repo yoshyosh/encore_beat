@@ -22,7 +22,7 @@
           %th Published
         - @submissions.each do |submission|
           %tr
-            %td= submission.id
+            %td= link_to submission.id, submission_path(submission.id)
             %td= truncate(submission.artist, length: 15)
             %td= truncate(submission.title, length: 25)
             %td= submission_username(submission.user)
