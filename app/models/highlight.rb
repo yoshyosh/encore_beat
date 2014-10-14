@@ -13,7 +13,7 @@ class Highlight < ActiveRecord::Base
       self.submissions << Submission.
         published.
         includes(:submission_count).
-        where('submissions.published_at > ? AND submissions.published_at < ?', date.to_date - 6, date.to_date).
+        where('submissions.published_at > ? AND submissions.published_at < ?', (date.to_date - 8).beginning_of_day, date.end_of_day).
         order('submission_counts.upvotes DESC').
         limit(10)
     end
