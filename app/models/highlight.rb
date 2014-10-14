@@ -33,6 +33,6 @@ class Highlight < ActiveRecord::Base
   end
 
   def weekly_start_date
-    date.to_date - 6
+    date.to_date - 7
   end
 end
