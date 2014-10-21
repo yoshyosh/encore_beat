@@ -21,7 +21,7 @@ class Highlight < ActiveRecord::Base
 
   def create_slug
     week_end = date.to_date
-    week_start = week_end - 6
+    week_start = week_end - 7
 
     if week_start.month == week_end.month
       self.slug = "#{week_start.strftime('%B-%d')}-#{week_end.strftime('%d-%Y')}".downcase # 'september-22-28-2014'
