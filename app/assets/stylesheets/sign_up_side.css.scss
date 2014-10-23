@@ -1,0 +1,27 @@
+.sign_up_side_container {
+  width: 254px;
+  padding: 20px 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 15px;
+  @include media($container-max) {
+    display: none;
+  }
+  .sign_up_side_button {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    width: 200px;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.sign_up_callout_title {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, .7);
+}
