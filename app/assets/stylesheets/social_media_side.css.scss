@@ -1,6 +1,9 @@
 .social_media_side_container {
   width: 254px;
   padding: 20px 0;
+  position: fixed;
+  bottom: 0px;
+  left: 15px;
   text-align: center;
   @include media($container-max) {
     display: none;

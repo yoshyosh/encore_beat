@@ -3,7 +3,7 @@
   padding: 20px 0;
   text-align: center;
   position: fixed;
-  bottom: 0;
+  bottom: 40px;
   left: 15px;
   @include media($container-max) {
     display: none;
@@ -11,12 +11,14 @@
   .sign_up_side_button {
     color: #fff;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     width: 200px;
     padding: 10px;
+    background: $primary-accent-alt;
     &:hover {
       color: #fff;
+      background: darken($primary-accent-alt, 5%);
     }
   }
 }
