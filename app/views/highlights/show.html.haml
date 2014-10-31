@@ -3,7 +3,7 @@
     .main-content-container
       .main-content-inner-container
         %h1 Top 10 EDM Songs of the Week
-        %h2.de-emphasize= "#{@highlight.weekly_start_date.strftime('%B %d')} to #{@highlight.date.strftime('%B %d')}, #{@highlight.date.year}"
+        %h2.de-emphasize= "#{@highlight.weekly_start_date.strftime('%B %d')} to #{(@highlight.date - 1).strftime('%B %d')}, #{@highlight.date.year}"
 
         - unless current_user
           %p
