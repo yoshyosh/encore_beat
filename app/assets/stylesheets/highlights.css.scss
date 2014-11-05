@@ -35,35 +35,35 @@
     font-size: 30px;
     margin-top: 12px;
   }
+}
 
-  .highlights-additional-actions {
-    width: 100%;
-    max-width: 760px;
-    display: block;
-    margin: auto;
-    margin-top: 30px;
+.highlights-additional-actions {
+  width: 100%;
+  max-width: 760px;
+  display: block;
+  margin-top: 30px;
+  margin: auto;
+}
+
+.home-callout {
+  padding: 10px 20px;
+  background: #484C57;
+  color: #fff;
+  text-decoration: none;
+
+  .arrow {
+    color: $primary-accent;
   }
 
-  .home-callout {
-    padding: 10px 20px;
-    background: #484C57;
-    color: #fff;
-    text-decoration: none;
+  &:hover {
+    background: #3A3D47;
+  }
 
-    .arrow {
-      color: $primary-accent;
-    }
+  &:active{
+    background: #2E3138;
+  }
 
-    &:hover {
-      background: #3A3D47;
-    }
-
-    &:active{
-      background: #2E3138;
-    }
-
-    @include media($small) {
-      font-size: 12px;
-    }
+  @include media($small) {
+    font-size: 12px;
   }
 }

@@ -144,6 +144,10 @@ a {
       font-size: 32px;
     }
 
+    span {
+      display: block; // Newline the span for submissions show page
+    }
+
     @include media($small) {
       i {
         font-size: 24px;

@@ -38,18 +38,18 @@ class SubmissionsController < ApplicationController
     end
 
     @meta_data = "#{@submission.artist} - #{@submission.title}"
-    @comments = @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
+    # @comments = @submission.comments.joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
 
-    @presenter = {
-      comments: @comments,
-      user: current_user || false,
-      submission_id: @submission.id,
-      form: {
-        action: comments_path,
-        csrf_param: request_forgery_protection_token,
-        csrf_token: form_authenticity_token
-      }
-    }
+    # @presenter = {
+    #   comments: @comments,
+    #   user: current_user || false,
+    #   submission_id: @submission.id,
+    #   form: {
+    #     action: comments_path,
+    #     csrf_param: request_forgery_protection_token,
+    #     csrf_token: form_authenticity_token
+    #   }
+    # }
 
     if current_user
       user_upvote = Upvote.find_by_user_id_and_submission_id(current_user.id, @submission.id)
