@@ -1,5 +1,6 @@
 class Highlight < ActiveRecord::Base
   INTERVALS = {weekly: 0}
+  PUBLISH_DAY = 'Friday'
 
   has_and_belongs_to_many :submissions
 
@@ -20,8 +21,8 @@ class Highlight < ActiveRecord::Base
   end
 
   def create_slug
-    week_end = date.to_date
-    week_start = week_end - 7
+    week_end = date.to_date - 1.day
+    week_start = week_end - 7.days
 
     if week_start.month == week_end.month
       self.slug = "#{week_start.strftime('%B-%d')}-#{week_end.strftime('%d-%Y')}".downcase # 'september-22-28-2014'
