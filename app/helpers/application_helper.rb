@@ -111,4 +111,8 @@ module ApplicationHelper
   def show_newsletter_callout?
     !current_user && !cookies[:newsletter_signed_up]
   end
+
+  def show_highlight_callout?(date)
+    date.wday == Date::DAYNAMES.index(Highlight::PUBLISH_DAY) && ((Date.current - 6)..Date.current).cover?(date)
+  end
 end

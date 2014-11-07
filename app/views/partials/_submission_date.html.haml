@@ -3,6 +3,8 @@
   - if date == Date.yesterday
     = render 'partials/newsletter_callout'
   %h4.song-list-date-group= humanize_date(date)
+  - if show_highlight_callout?(date)
+    = render 'partials/highlight_callout'
   .main-content-container.songs-for-the-day-container
     .main-content-inner-container
       - @submissions[date].each do |submission|
