@@ -3,5 +3,15 @@
     .song{ :'data-favorite-id' => submission.id }
       .song-details-container
         = render partial: 'partials/submission_row', locals: { submission: submission }
+- elsif current_user == @user
+  %p.callout Store your favorite songs for future listening by clicking the
+  %p.callout.emphasize
+    = icon('plus')
+    Add to Playlist
+  %p.callout
+    button below each song!
+  %br
+  %p.callout
+    = link_to "See the newest, best songs", root_path
 - else
   No songs added to playlist.
