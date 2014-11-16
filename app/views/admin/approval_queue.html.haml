@@ -40,3 +40,8 @@
                         = link_to "Publish Tomorrow", submission_path(submission, status: 1, published_at: Date.tomorrow), {remote: true, :'data-submission-id' => submission.id, class: 'js-approve-submission approve-submission', method: :put}
                         = link_to "Reject", submission_path(submission, status: 2, rejected_by: current_user.username), {remote: true, :'data-submission-id' => submission.id, class: 'js-reject-submission reject-submission', method: :put}
                         = link_to "Edit", edit_submission_path(submission), class: 'edit-submission'
+    .main-content-container.songs-for-the-day-container
+      .main-content-inner-container
+        .comments-container
+          %h1{style: "margin-bottom: 20px; font-size: 20px;"} Admin-Only Comments
+          = react_component('CommentBox', {presenter: @presenter.to_json}, {prerender: true})

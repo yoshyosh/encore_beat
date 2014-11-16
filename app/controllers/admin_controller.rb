@@ -13,6 +13,23 @@ class AdminController < ApplicationController
       .group_by {|s| s.created_at.strftime('%a %B %d')}
 
     @future_submissions = Submission.where('published_at = ?', Date.tomorrow).order('created_at DESC')
+
+    # TEMP ADMIN COMMENTS
+    @submission = Submission.find_by_flat_name("encorebeat-adminchat")
+    if @submission
+      @comments = @submission.comments.where("comments.created_at > ?", 1.week.ago).joins(:user).pluck(:id, :body, :created_at, "users.username", "users.avatar")
+
+      @presenter = {
+        comments: @comments,
+        user: current_user,
+        submission_id: @submission.id,
+        form: {
+          action: comments_path,
+          csrf_param: request_forgery_protection_token,
+          csrf_token: form_authenticity_token
+        }
+      }
+    end
   end
 
   def users
